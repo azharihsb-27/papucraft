@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-white;
+  }
+  main {
+    @apply text-black;
+  }
+}
+
+@layer components {
+  .open {
+    @apply top-20 !important;
+  }
+  .content {
+    @apply my-0 mx-auto min-h-full;
+  }
+}

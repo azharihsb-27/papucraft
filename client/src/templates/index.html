@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PapuCraft</title>
+  </head>
+  <body class="relative bg-white min-h-screen flex flex-col">
+    <header
+      class="w-full flex justify-between items-center bg-primary px-4 py-2 md:p-6"
+    >
+      <span>
+        <a href="#/" class="text-2xl font-bold py-2">PapuCraft</a>
+      </span>
+      <div
+        id="navigationDrawer"
+        class="absolute p-8 inset-x-6 -top-96 transition-all duration-300 bg-primary rounded-md flex flex-col gap-6 md:static md:flex-row md:p-0 font-medium"
+      >
+        <nav class="flex justify-center items-center">
+          <ul
+            class="flex flex-col justify-center items-center gap-y-3 md:flex-row md:gap-x-6 md:gap-y-0"
+          >
+            <li class="text-base hover:-translate-y-1 duration-300">
+              <a href="#/" class="px-1 py-3">Home</a>
+            </li>
+            <li class="text-base hover:-translate-y-1 duration-300">
+              <a href="#/gallery" class="px-1 py-3">Gallery</a>
+            </li>
+            <li class="text-base hover:-translate-y-1 duration-300">
+              <a href="#/article" class="px-1 py-3">Article</a>
+            </li>
+            <li class="text-base hover:-translate-y-1 duration-300">
+              <a href="#/event" class="px-1 py-3">Event</a>
+            </li>
+            <li class="text-base hover:-translate-y-1 duration-300">
+              <a href="#/course" class="px-1 py-3">Course</a>
+            </li>
+          </ul>
+        </nav>
+        <div
+          class="w-full flex flex-col gap-y-4 md:flex-row md:gap-x-6 md:gap-y-0 text-center"
+        >
+          <a
+            href="#/signin"
+            class="px-3 py-[9.2px] bg-white text-primary border border-white hover:bg-white/75 duration-300"
+          >
+            Sign In
+          </a>
+          <a
+            href="#/signup"
+            class="px-3 py-[9.2px] bg-primary border border-white hover:bg-primary_dark duration-300"
+          >
+            Sign Up
+          </a>
+        </div>
+      </div>
+      <div class="md:hidden">
+        <button id="drawerButton" class="text-2xl p-2">☰</button>
+      </div>
+    </header>
+
+    <main id="mainContent" class="flex-1"></main>
+
+    <footer class="bg-primary flex flex-col py-2 gap-6">
+      <div class="flex flex-col lg:flex-row gap-4 lg:gap-36 p-4 lg:p-8">
+        <div class="lg:w-1/4">
+          <span class="text-2xl font-bold">PapuCraft</span>
+          <p class="mt- text-sm">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+            exercitationem quo, aspernatur nobis animi distinctio quod nulla
+            voluptatibus odio accusamus voluptatum ea illum quaerat? Doloribus,
+            quos explicabo. Cum, pariatur deserunt.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-36">
+          <div>
+            <h3 class="text-2xl font-semibold">Links</h3>
+            <ul class="mt-1">
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Home</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/gallery">Gallery</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/article">Article</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/course">Event</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold">Supports</h3>
+            <ul class="mt-1">
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Help & FAQ</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Terms & Conditions</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Privacy Policy </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold">Social</h3>
+            <ul class="mt-1">
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Facebook</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Twitter</a>
+              </li>
+              <li class="text-sm hover:translate-x-2 duration-300">
+                <a href="#/">Instagram</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between border-t-2 border-white p-4 lg:px-8">
+        <p>&copy;2024 - All right reserved</p>
+        <span>PapuCraft</span>
+      </div>
+    </footer>
+  </body>
+</html>
