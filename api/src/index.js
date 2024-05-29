@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const {
   getAllKebudayaan,
   getDetailKebudayaan,
@@ -9,7 +10,7 @@ const { getDetailArtikel, getAllArtikel } = require("./firebase/model/artikel");
 const { successResult, errorResult } = require("./result/result");
 
 const app = express();
-
+app.use(cors())
 const port = 3000;
 
 app.get("/api/kebudayaan", async (req, res) => {
