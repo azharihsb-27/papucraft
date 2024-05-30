@@ -6,15 +6,31 @@ import Home from '../views/pages/home';
 import SignIn from '../views/pages/sign-in';
 import SignUp from '../views/pages/sign-up';
 
-const routes = {
-  '/': Home,
-  '/home': Home,
-  '/gallery': Gallery,
-  '/article': Article,
-  '/event': Event,
-  '/course': Course,
-  '/signin': SignIn,
-  '/signup': SignUp,
-};
+
+let routes 
+ if(sessionStorage.getItem('token')){
+  routes = {
+    '/': Home,
+    '/home': Home,
+    '/gallery': Gallery,
+    '/article': Article,
+    '/event': Event,
+    '/course': Course,
+    '/signin': Home,
+    '/signup': Home,
+  }
+ }else{
+  routes = {
+    '/': Home,
+    '/home': Home,
+    '/gallery': Gallery,
+    '/article': Article,
+    '/event': Event,
+    '/course': Course,
+    '/signin': SignIn,
+    '/signup': SignUp,
+  }
+ }
+
 
 export default routes;

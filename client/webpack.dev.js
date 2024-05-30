@@ -7,9 +7,6 @@ module.exports = merge(common, {
   devServer: {
     watchFiles: ["src/**/*"],
     open: true,
-    headers: {
-      "Cross-Origin-Opener-Policy": "same-origin allow-popup",
-    },
     client: {
       overlay: {
         errors: true,

@@ -8,6 +8,9 @@ module.exports = {
         primary: '#D03939',
         primary_dark: '#B73131',
       },
+      fontFamily: {
+        poppins: 'Poppins'
+      }
     },
   },
   plugins: [],

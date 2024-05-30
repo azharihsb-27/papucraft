@@ -12,24 +12,29 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const LoginInitiator = {
-  init({ loginWithGoogle }) {
-    // login.addEventListener("click", (ev) => {
-    //   signInWithEmailAndPassword(auth, email, password)
-    //     .then((userCredential) => {
-    //       const user = userCredential.user;
-    //       alert("login berhasil");
-    //     })
-    //     .catch((err) => {
-    //       const errCode = err.code;
-    //       const errMessage = err.message;
-    //       alert(errMessage);
-    //     });
-    // });
-
-    loginWithGoogle.addEventListener("click", (ev) => {
-      signInWithRedirect(auth, provider);
-      
+  init({ email ,password, login }) {
+    login.addEventListener("click", (ev) => {
+      ev.preventDefault()
+      const emailValue = email.value
+      const passwordValue = password.value
+      signInWithEmailAndPassword(auth, emailValue, passwordValue)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          location.href = '/'
+          alert("login berhasil");
+        })
+        .catch((err) => {
+          const errCode = err.code;
+          const errMessage = err.message;
+          alert(errMessage);
+        });
+        console.log({emailValue, passwordValue})
     });
+
+    // loginWithGoogle.addEventListener("click", (ev) => {
+    //   signInWithRedirect(auth, provider);
+      
+    // });
   },
 };
 
