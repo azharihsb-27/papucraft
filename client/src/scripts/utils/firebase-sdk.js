@@ -1,15 +1,14 @@
 import {initializeApp} from 'firebase/app'
-import 'dotenv/config'
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.FIREBASE_DATABASE_URL,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+  apiKey: "AIzaSyB9Pf1C6CGuh6ZiqK2-QT5QrPqpK_ZN1HY",
+  authDomain: "papucrafts.firebaseapp.com",
+  databaseURL: "https://papucrafts-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "papucrafts",
+  storageBucket: "papucrafts.appspot.com",
+  messagingSenderId: "212728383296",
+  appId: "1:212728383296:web:e295d26991621fd88f5ca5",
+  measurementId: "G-18WKFQ6GLJ",
 };
 
 const app = initializeApp(firebaseConfig);
-// module.exports = app;
+export default app

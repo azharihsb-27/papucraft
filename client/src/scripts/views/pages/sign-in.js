@@ -1,4 +1,6 @@
-import { session, loginWithGoogle } from "../../utils/session";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../../utils/firebase-sdk";
+import LoginInitiator from "../../utils/login-initiator";
 
 const SignIn = {
   async render() {
@@ -11,8 +13,28 @@ const SignIn = {
   },
 
   async afterRender() {
-    const button = document.querySelector("button#popup");
-    
+    const RENDER_EVENT = "RENDER_EVENT";
+    const auth = getAuth(app);
+
+    LoginInitiator.init({
+      loginWithGoogle: document.querySelector("#popup"),
+    });
+
+    console.log('res')
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
+    document.addEventListener(RENDER_EVENT, () => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.uid;
+          sessionStorage.setItem("user", uid);
+          console.log(user)
+        } else {
+          console.log('nonuser')
+          sessionStorage.clear();
+        }
+      });
+    });
   },
 };
 
