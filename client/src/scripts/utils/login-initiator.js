@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 
 import app from "./firebase-sdk";
+import { alertError, alertSuccess } from "./show-alert";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -20,15 +21,14 @@ const LoginInitiator = {
       signInWithEmailAndPassword(auth, emailValue, passwordValue)
         .then((userCredential) => {
           const user = userCredential.user;
-          location.href = '/'
-          alert("login berhasil");
+          alertSuccess('Login Success!')
+          setTimeout(()=> location.href = '/',3000)
         })
         .catch((err) => {
           const errCode = err.code;
           const errMessage = err.message;
-          alert(errMessage);
+          alertError(errMessage);
         });
-        console.log({emailValue, passwordValue})
     });
 
     // loginWithGoogle.addEventListener("click", (ev) => {

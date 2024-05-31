@@ -1,5 +1,6 @@
 import { signOut,getAuth, onAuthStateChanged } from "firebase/auth"
 import app from './firebase-sdk'
+import { alertSuccess } from "./show-alert"
 
 const auth = getAuth(app)
 
@@ -19,8 +20,8 @@ const logout = (btnLogout) =>{
     btnLogout.addEventListener('click', (ev)=>{
         ev.preventDefault()
         signOut(auth).then(()=>{
-            alert('Logout Success !')
-            location.reload()
+            alertSuccess('Logout Success!')
+            setTimeout(()=> location.reload(),3000)
         }).catch(err=>{
             return err
         })

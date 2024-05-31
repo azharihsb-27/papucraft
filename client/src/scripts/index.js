@@ -19,7 +19,7 @@ window.addEventListener('hashchange', () => {
   logout(btnLogout)
   getSession()
   const url = UrlParser.parseActiveUrlWithCombiner();
-  if(url === '/signin' || url === '/signUp'){
+  if(url === '/signin' || url === '/signup'){
     document.querySelector('header').classList.add('hidden')
     document.querySelector('footer').classList.add('hidden')
   }else{
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
   logout(btnLogout)
   getSession()
   const url = UrlParser.parseActiveUrlWithCombiner();
-  if(url === '/signin' || url === '/signUp'){
+  if(url === '/signin' || url === '/signup'){
     document.querySelector('header').classList.add('hidden')
     document.querySelector('footer').classList.add('hidden')
   }else{
