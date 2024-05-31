@@ -5,9 +5,9 @@
 * F6846YB084 – Muhammad Raka Sondara
 
 ## Stacks
-<div style="display: flex;">
+<div style="display: flex; gap: 10px; justify-items: center; width: 100%;">
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Firebase_icon.svg/140px-Firebase_icon.svg.png?20231023160108" width="70px"/>
-  <img src="https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png" width="70px"/>
+  <img src="https://static-00.iconduck.com/assets.00/tailwind-css-icon-2048x1229-u8dzt4uh.png" width="70px"/>
 </div>
 
 ## How to start
