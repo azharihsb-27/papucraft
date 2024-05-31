@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
 const {
   getAllKebudayaan,
   getDetailKebudayaan,
@@ -11,7 +11,8 @@ const { successResult, errorResult } = require("./result/result");
 const { addUser } = require("./firebase/model/user");
 
 const app = express();
-app.use(cors({credentials: true,origin: '*'}))
+app.use(cors());
+app.use(express.json());
 const port = 3000;
 
 app.get("/api/kebudayaan", async (req, res) => {
@@ -28,7 +29,7 @@ app.get("/api/kebudayaan/detail/:id", async (req, res) => {
   try {
     const data = await getDetailKebudayaan(id);
     res
-      .json(successResult(`Data ${id} berhasil ditampilkan`, data ))
+      .json(successResult(`Data ${id} berhasil ditampilkan`, data))
       .status(200);
   } catch (error) {
     res.json(errorResult(`Data ${id} tidak ditemukan`)).status(404);
@@ -57,15 +58,16 @@ app.get("/api/artikel", async (req, res) => {
 });
 
 app.get("/api/artikel/detail/:id", async (req, res) => {
-  const { id } = req.params; 
+  const { id } = req.params;
   const data = await getDetailArtikel(id);
   res.json(successResult("Data ditampilkan", data)).status(200);
 });
 
-app.post("/api/register", async (req,res)=>{
-  const body = req.body
-  const data = await addUser(body)
-})
+app.post("/api/register", (req, res) => {
+  const body = req.body;
+  const data = addUser(body);
+  res.json(successResult("Register Success", data)).status(200);
+});
 
 app.use("/", (req, res) => {
   res.json(errorResult("Not Found")).status(404);

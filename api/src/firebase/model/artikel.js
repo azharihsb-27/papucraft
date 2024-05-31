@@ -22,4 +22,10 @@ const getDetailArtikel = async (id) => {
   return dbGet.val();
 };
 
+const addArtikel = (data) =>{
+  const dbPath = child(rootReference, 'artikel');
+  const dbPush = push(dbPath, data);
+  return dbPush
+}
+
 module.exports = { getAllArtikel, getDetailArtikel };
