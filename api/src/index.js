@@ -53,7 +53,7 @@ app.get("/api/artikel", async (req, res) => {
 });
 
 app.get("/api/artikel/detail/:id", async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; 
   const data = await getDetailArtikel(id);
   res.json(successResult("Data ditampilkan", data)).status(200);
 });

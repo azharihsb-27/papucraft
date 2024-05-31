@@ -13,7 +13,7 @@ const rootReference = ref(database);
 
 const getDetailUser = async (id) => {
   const dbGet = await get(child(rootReference, `user/${id}`));
-  return dbGet.val();
+  return dbGet.val(); 
 };
 
 const addUser = async (body) =>{
