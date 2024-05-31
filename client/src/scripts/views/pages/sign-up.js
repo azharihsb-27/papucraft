@@ -35,7 +35,7 @@ const SignUp = {
               <label for="confirm">Confirm Password</label>
               <input type="password" placeholder="Enter your confirm" class="border border-2 border-primary outline-none px-2 py-1" name="confirm" id="confirm"/>
             </div>
-            <button class="w-1/2 md:w-1/4 mx-auto font-bold rounded-md py-2 mt-4 bg-primary hover:border hover:border-2 hover:border-primary hover:text-primary hover:bg-transparent transition text-white" id="sign-up">Sign In</button>
+            <button class="w-1/2 md:w-1/4 mx-auto font-bold rounded-md py-2 mt-4 bg-primary hover:border hover:border-2 hover:border-primary hover:text-primary hover:bg-transparent transition text-white" id="sign-up">Sign Up</button>
             <p class="mx-auto text-sm ">Have an account? <a href="#/signin" class="text-primary font-bold">Sign In</a></p>
           </form>
         </div>

@@ -1,5 +1,4 @@
-// const baseURL = "http://localhost:3000/api";
-const baseURL = "https://3000-idx-papucraft-1717066276171.cluster-bs35cdu5w5cuaxdfch3hqqt7zm.cloudworkstations.dev/api"
+const baseURL = "http://localhost:3000/api";
 
 const getAllKebudayaan = async () => {
   const response = await fetch(`${baseURL}/kebudayaan`);
@@ -7,12 +6,14 @@ const getAllKebudayaan = async () => {
   return responseJson;
 };
 
-const addUser = async ({usernameValue, emailValue}) =>{
-  const data = {usernameValue,emailValue}
+const addUser = async ({usernameValue, emailValue, uid}) =>{
+  const data = {usernameValue,emailValue,uid}
   await fetch(`${baseURL}/register`, {
     method: 'POST',
-    body: data,
-    credentials: 'include'
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
   })
   const responseJson = await response.json()
   return responseJson

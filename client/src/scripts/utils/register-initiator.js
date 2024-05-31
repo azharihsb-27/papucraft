@@ -1,6 +1,7 @@
 import { getAuth,createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import app from './firebase-sdk'
 import { addUser } from "./api";
+import { alertError, alertSuccess } from "./show-alert";
 
 const auth = getAuth(app)
 const RegisterInitiator = {
@@ -15,22 +16,25 @@ const RegisterInitiator = {
             if(passwordValue !== confirmValue){
                 alert('Password not match !')
             }else{
-                await addUser({usernameValue, emailValue})
-                
-                createUserWithEmailAndPassword(auth, emailValue,passwordValue).then((userCredential)=>{
+                createUserWithEmailAndPassword(auth, emailValue,passwordValue).then(async (userCredential)=>{
                     const user = userCredential.user
                     const {uid} = user
-                    signOut(auth).then(()=>{
-                        alert('Register success!')
-                        location.href = '/signin'
-                    }).catch(err=>{
-                        return err
-                    })
+                    const response = await addUser({usernameValue, emailValue, uid})
+                    const {error,message} = response
+                    if(!error){
+                        signOut(auth).then(()=>{
+                            alertSuccess('Register Success!')  
+                            setTimeout(() => location.href = '/signin', 3000);
+                        }).catch(err=>{
+                            alertError(err)
+                        })
+                    }else{
+                        alertError(message)
+                    }
                 }).catch(err=>{
                     const errCode = err.code
                     const errMessage = err.message
-                    alert(errMessage)
-                    console.log({errCode, errMessage})
+                    alertError(errMessage)
                 })
             }
         })

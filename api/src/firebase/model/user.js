@@ -3,7 +3,6 @@ const {
   getDatabase,
   child,
   get,
-  push,
   set,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
@@ -17,13 +16,14 @@ const getDetailUser = async (id) => {
 };
 
 const addUser = (body) => {
-  const { username, email } = body;
+  const { username, email, uid } = body;
   const data = {
-    username,
-    email,
-    profile_image: 'profile.jpg',
+      username,
+      email,
+      profile_image: 'profile.jpg',
+      uid
   };
-  const reference = child(rootReference, "user/" + 84);
+  const reference = child(rootReference, "user/" + uid);
   set(reference, data);
   return email;
 };
