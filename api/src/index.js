@@ -11,12 +11,16 @@ const { successResult, errorResult } = require("./result/result");
 const { addUser } = require("./firebase/model/user");
 
 const app = express();
-app.use(cors())
+app.use(cors({credentials: true,origin: '*'}))
 const port = 3000;
 
 app.get("/api/kebudayaan", async (req, res) => {
   const data = await getAllKebudayaan();
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   res.json(successResult("Data berhasil ditampilkan", data)).status(200);
+  
 });
 
 app.get("/api/kebudayaan/detail/:id", async (req, res) => {
@@ -60,8 +64,7 @@ app.get("/api/artikel/detail/:id", async (req, res) => {
 
 app.post("/api/register", async (req,res)=>{
   const body = req.body
-  // const data = await addUser(body)
-  console.log(body)
+  const data = await addUser(body)
 })
 
 app.use("/", (req, res) => {
