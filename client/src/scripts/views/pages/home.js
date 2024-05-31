@@ -5,7 +5,7 @@ const Home = {
     return `
         <div class="content">
           <article id="hero" class="w-full h-screen">
-            <img src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Hero Image"
+            <img src="/img/bg.jpg" alt="Hero Image"
               class="w-full h-full object-cover"
             />
           </article>
