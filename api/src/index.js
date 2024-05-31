@@ -60,8 +60,8 @@ app.get("/api/artikel/detail/:id", async (req, res) => {
 
 app.post("/api/register", async (req,res)=>{
   const body = req.body
-  const data = await addUser(body)
-  console.log(data)
+  // const data = await addUser(body)
+  console.log(body)
 })
 
 app.use("/", (req, res) => {
