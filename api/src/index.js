@@ -8,6 +8,7 @@ const {
 const { getDetailEvent, getAllEvent } = require("./firebase/model/event");
 const { getDetailArtikel, getAllArtikel } = require("./firebase/model/artikel");
 const { successResult, errorResult } = require("./result/result");
+const { addUser } = require("./firebase/model/user");
 
 const app = express();
 app.use(cors())
@@ -56,6 +57,12 @@ app.get("/api/artikel/detail/:id", async (req, res) => {
   const data = await getDetailArtikel(id);
   res.json(successResult("Data ditampilkan", data)).status(200);
 });
+
+app.post("/api/register", async (req,res)=>{
+  const body = req.body
+  const data = await addUser(body)
+  console.log(data)
+})
 
 app.use("/", (req, res) => {
   res.json(errorResult("Not Found")).status(404);

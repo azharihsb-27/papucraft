@@ -16,4 +16,9 @@ const getDetailUser = async (id) => {
   return dbGet.val();
 };
 
-module.exports = { getDetailUser };
+const addUser = async (body) =>{
+  const {username} = body
+  return username
+}
+
+module.exports = { getDetailUser, addUser };
