@@ -9,7 +9,7 @@ const {
   equalTo,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
-const { getKebudayaanImage } = require("../storage");
+const { getImageFromStorage } = require("../storage");
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -19,7 +19,7 @@ const getAllKebudayaan = async () => {
   const dbGetObject = Object.values(dbGet.val());
 
   const thumbnail = dbGetObject.map((db) => {
-    return getKebudayaanImage(db.thumbnail).then((res) => {
+    return getImageFromStorage('kebudayaan',db.thumbnail).then((res) => {
       return res;
     });
   });
