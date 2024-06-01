@@ -81,8 +81,8 @@ app.post("/api/register", (req, res) => {
 
 app.post("/api/artikel", upload.single("file"), async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  const body = req.body;
-  if (!req.file) {
+  const body = {...req.body, createdAt: new Date()};
+  if (!req.file) { 
     res.status(400).json(errorResult("Fill the thumbnail!"));
     return;
   }
