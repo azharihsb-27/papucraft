@@ -7,7 +7,7 @@ const Article = {
                 <div class="py-2 lg:py-9">
                   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -18,7 +18,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -29,7 +29,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -48,7 +48,7 @@ const Article = {
                 <div class="py-2 lg:py-9">
                   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -59,7 +59,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -70,7 +70,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -81,7 +81,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -92,7 +92,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -103,7 +103,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -122,7 +122,7 @@ const Article = {
                 <div class="py-2 lg:py-9">
                   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -133,7 +133,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
@@ -144,7 +144,7 @@ const Article = {
                       </a>
                     </li>
                     <li class="shadow-xl p-2 rounded-lg">
-                      <a href="#/gallery">
+                      <a href="#/detailarticle/02311">
                         <img
                           src="https://images.unsplash.com/photo-1528360458789-d7774f47397b?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         />
