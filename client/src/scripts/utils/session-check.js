@@ -1,4 +1,4 @@
-import { signOut,getAuth, onAuthStateChanged } from "firebase/auth"
+import { signOut,getAuth, onAuthStateChanged, getRedirectResult } from "firebase/auth"
 import app from './firebase-sdk'
 import { alertSuccess } from "./show-alert"
 
@@ -31,13 +31,21 @@ const logout = (btnLogout) =>{
 const getSession = () =>{
     onAuthStateChanged(auth, (user) => {
         if (user) {
-          const {accessToken,uid} = user;
-          sessionStorage.setItem("user", uid);
-          sessionStorage.setItem("token", accessToken);
+            const {accessToken,uid, displayName, photoURL} = user;
+            if(user.emailVerified){
+                const userProfile = {displayName, photoURL, uid}
+                sessionStorage.setItem("token", accessToken);
+                sessionStorage.setItem("user", JSON.stringify(userProfile));
+                sessionStorage.setItem("loginMethod",'google');
+            }else{
+                sessionStorage.setItem("token", accessToken);
+                sessionStorage.setItem("user", uid);
+                sessionStorage.setItem("loginMethod",'non-google');
+            }
         } else {
           sessionStorage.clear();
         }
-      });
+    });
 }
 
 export {sessionButton, logout, getSession}

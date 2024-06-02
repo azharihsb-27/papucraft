@@ -1,9 +1,8 @@
 import {
   getAuth,
   signInWithEmailAndPassword,
-  signInWithRedirect,
   GoogleAuthProvider,
-  getRedirectResult,
+  signInWithPopup
 } from "firebase/auth";
 
 import app from "./firebase-sdk";
@@ -13,7 +12,7 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const LoginInitiator = {
-  init({ email ,password, login }) {
+  init({ email ,password, login, loginWithGoogle }) {
     login.addEventListener("click", (ev) => {
       ev.preventDefault()
       const emailValue = email.value
@@ -31,10 +30,13 @@ const LoginInitiator = {
         });
     });
 
-    // loginWithGoogle.addEventListener("click", (ev) => {
-    //   signInWithRedirect(auth, provider);
-      
-    // });
+    loginWithGoogle.addEventListener("click", async (ev) => {
+      ev.preventDefault()
+      signInWithPopup(auth, provider).then(()=>{
+        alertSuccess('Login Success!')
+        setTimeout(()=> location.href = "/",3000)
+      })
+    });
   },
 };
 

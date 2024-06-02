@@ -14,7 +14,7 @@ const RegisterInitiator = {
             const confirmValue = confirm.value
 
             if(passwordValue !== confirmValue){
-                alert('Password not match !')
+                alertError('Password not match !')
             }else{
                 createUserWithEmailAndPassword(auth, emailValue,passwordValue).then(async (userCredential)=>{
                     const user = userCredential.user
