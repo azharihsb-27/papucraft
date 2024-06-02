@@ -5,6 +5,7 @@ const {
   get,
   push,
   set,
+  remove
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 const { getImageFromStorage, addImageToStorage } = require("../storage");
@@ -35,32 +36,21 @@ const getAllArtikel = async () => {
 
 const getDetailArtikel = async (id) => {
   const dbGet = await get(child(rootReference, `kebudayaan/${id}`));
-  return dbGet.val();
+  const dbGetObject = Object.values(dbGet.val())
+  const thumbnail = getImageFromStorage("artikel", dbGetObject.thumbnail).then(res=>{
+    return res
+  })
+ 
+  const detailArtikel = {...dbGetObject, thumbnail}
+  return detailArtikel
 };
 
 const addArtikel = async (path, data, thumbnail) => {
   const { originalname } = thumbnail;
   const split = originalname.split(".");
   const getType = split[split.length - 1];
-  const lowerExt = getType.toLowerCase();
-
-  switch (lowerExt) {
-    case "jpg":
-      await pushArtikel({ path, data, thumbnail, getType });
-      break;
-    case "jpeg":
-      await pushArtikel({ path, data, thumbnail, getType });
-      break;
-    case "png":
-      await pushArtikel({ path, data, thumbnail, getType });
-      break;
-    case "webp":
-      await pushArtikel({ path, data, thumbnail, getType });
-      break;
-    default:
-      return;
-  }
-};
+  await pushArtikel({ path, data, thumbnail, getType });
+}
 
 const pushArtikel = async ({ path, data, thumbnail, getType }) => {
   const dbRef = child(rootReference, "artikel");
@@ -75,4 +65,15 @@ const pushArtikel = async ({ path, data, thumbnail, getType }) => {
   return dbSet;
 };
 
-module.exports = { getAllArtikel, getDetailArtikel, addArtikel };
+const deleteArtikel = async (id) =>{
+    const dbPath = child(rootReference, `artikel/${id}`);
+    const valuedbPath = await get(dbPath);
+    const isExist = valuedbPath.val();
+    if (!isExist) {
+      return false;
+    } else {
+      return remove(dbPath);
+    }
+}
+
+module.exports = { getAllArtikel, getDetailArtikel, addArtikel, deleteArtikel };

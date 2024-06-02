@@ -11,6 +11,7 @@ const {
   getDetailArtikel,
   getAllArtikel,
   addArtikel,
+  deleteArtikel
 } = require("./firebase/model/artikel");
 const { successResult, errorResult } = require("./result/result");
 const { addUser } = require("./firebase/model/user");
@@ -21,28 +22,33 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb" }));
 const port = 3000;
 
-// const storage = multer.diskStorage({
-//   filename: function (req, file, cb) {
-//     cb(null, file.originalname);
-//   },
-// });
-
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.get("/api/kebudayaan", async (req, res) => {
   const data = await getAllKebudayaan();
-  res.json(successResult("Data berhasil ditampilkan", data)).status(200);
+  res.header('Access-Control-Allow-Origin', '*')
+  res.status(200).json(successResult("Data berhasil ditampilkan", data))
 });
+
+app.delete("/api/kebudayaan/delete/:id", async (req,res)=>{
+  const {id} = req.params
+  try{
+    await deleteArtikel(id)
+    res.status(200).json(successResult(`Data ${id} berhasil dihapus`))
+  }catch(error){
+    res.status(400).json(errorResult(`Data ${id} tidak ditemukan`))
+  }
+})
 
 app.get("/api/kebudayaan/detail/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const data = await getDetailKebudayaan(id);
     res
+      .status(200)
       .json(successResult(`Data ${id} berhasil ditampilkan`, data))
-      .status(200);
   } catch (error) {
-    res.json(errorResult(`Data ${id} tidak ditemukan`)).status(404);
+    res.status(404).json(errorResult(`Data ${id} tidak ditemukan`))
   }
 });
 
@@ -53,30 +59,30 @@ app.get("/api/kebudayaan/kategori/:kategori", async (req, res) => {
 
 app.get("/api/event", async (req, res) => {
   const data = await getAllEvent();
-  res.json(successResult("Data ditampilkan", data)).status(200);
+  res.status(200).json(successResult("Data ditampilkan", data))
 });
 
 app.get("/api/event/detail/:id", async (req, res) => {
   const { id } = req.params;
   const data = await getDetailEvent(id);
-  res.json(successResult("Data ditampilkan", data)).status(200);
+  res.status(200).json(successResult("Data ditampilkan", data))
 });
 
 app.get("/api/artikel", async (req, res) => {
   const data = await getAllArtikel();
-  res.json(successResult("Data ditampilkan", data)).status(200);
+  res.status(200).json(successResult('Data ditampilkan',data))
 });
 
 app.get("/api/artikel/detail/:id", async (req, res) => {
   const { id } = req.params;
   const data = await getDetailArtikel(id);
-  res.json(successResult("Data ditampilkan", data)).status(200);
+  res.status(200).json(successResult('Data ditampilkan',data))
 });
 
 app.post("/api/register", (req, res) => {
   const body = req.body;
   const data = addUser(body);
-  res.json(successResult("Register Success", data)).status(200);
+  res.status(200).json(successResult("Register Success", data));
 });
 
 app.post("/api/artikel", upload.single("file"), async (req, res) => {

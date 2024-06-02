@@ -5,7 +5,7 @@ import Gallery from '../views/pages/gallery';
 import Home from '../views/pages/home';
 import SignIn from '../views/pages/sign-in';
 import SignUp from '../views/pages/sign-up';
-
+import DetailArtikel from '../views/pages/detail-artikel';
 
 let routes 
  if(sessionStorage.getItem('token')){
@@ -18,6 +18,7 @@ let routes
     '/course': Course,
     '/signin': Home,
     '/signup': Home,
+    '/article/:id': DetailArtikel,
   }
  }else{
   routes = {
@@ -29,6 +30,7 @@ let routes
     '/course': Course,
     '/signin': SignIn,
     '/signup': SignUp,
+    '/article/:id': DetailArtikel,
   }
  }
 

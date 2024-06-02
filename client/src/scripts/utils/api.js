@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000/api";
+const baseURL = "https://3000-idx-papucraft-1717066276171.cluster-bs35cdu5w5cuaxdfch3hqqt7zm.cloudworkstations.dev/api";
 
 const getAllKebudayaan = async () => {
   const response = await fetch(`${baseURL}/kebudayaan`);
