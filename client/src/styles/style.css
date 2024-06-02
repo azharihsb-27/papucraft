@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply text-white;
+    @apply relative text-white bg-white min-h-screen flex flex-col font-poppins;
   }
   main {
     @apply text-black;
