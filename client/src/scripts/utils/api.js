@@ -12,6 +12,12 @@ const getAllArtikel = async () => {
   return responseJson;
 };
 
+const getDetailArtikel = async (id) =>{
+  const response = await fetch(`${baseURL}/artikel/detail/${id}`)
+  const responseJson = await response.json()
+  return responseJson
+}
+
 const addUser = async ({ usernameValue, emailValue, uid }) => {
   const data = { usernameValue, emailValue, uid };
   const response = await fetch(`${baseURL}/register`, {
@@ -40,4 +46,4 @@ const addArtikel = async ({ judul, source, file, body }) => {
   return responseJson;
 };
 
-module.exports = { getAllKebudayaan, addUser, getAllArtikel, addArtikel };
+module.exports = { getAllKebudayaan, addUser, getAllArtikel, addArtikel, getDetailArtikel };
