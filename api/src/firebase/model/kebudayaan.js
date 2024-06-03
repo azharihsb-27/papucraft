@@ -64,12 +64,12 @@ const addKebudayaan = async (path, data, thumbnail) => {
 const pushKebudayaan = async ({ path, data, thumbnail, getType }) => {
   const dbRef = child(rootReference, "kebudayaan");
   const id = push(dbRef).key;
-  const result = { ...data, thumbnail: `${id}.${getType}` };
+  const result = { ...data, thumbnail: id };
   const dbPath = child(rootReference, `${path}/${id}`);
   const { mimetype } = thumbnail;
   const ext = mimetype.split("/")[1];
   const dbSet = await set(dbPath, result);
-  const name = `${id}.${ext}`;
+  const name = `${id}`;
   await addImageToStorage({ path, thumbnail, name });
   return dbSet;
 };
