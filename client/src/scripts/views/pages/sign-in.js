@@ -8,9 +8,9 @@ const SignIn = {
           <img src="/img/bg.jpg" alt="Hero Image"
                 class="w-full h-full object-cover"
           />
-          <a href="#/" class="text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
+          <a href="#/" class="text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCrafts</a>
         </div>
-        <a href="#/" class="md:hidden text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
+        <a href="#/" class="md:hidden text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCrafts</a>
 
         <div class="md:w-1/2 flex my-auto justify-center relative flex-col px-5 py-[2rem] gap-2 h-screen">
           <img src="/img/bg.jpg" alt="Hero Image"

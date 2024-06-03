@@ -5,7 +5,9 @@ import Gallery from '../views/pages/gallery';
 import Home from '../views/pages/home';
 import SignIn from '../views/pages/sign-in';
 import SignUp from '../views/pages/sign-up';
-import DetailArtikel from '../views/pages/detail-artikel';
+import DetailArticle from '../views/pages/detail-artikel';
+import AddArticle from '../views/pages/add-article';
+import AddKebudayaan from '../views/pages/add-kebudayaan';
 
 let routes 
  if(sessionStorage.getItem('token')){
@@ -18,7 +20,9 @@ let routes
     '/course': Course,
     '/signin': Home,
     '/signup': Home,
-    '/article/:id': DetailArtikel,
+    '/article/:id': DetailArticle,
+    '/addarticle': AddArticle,
+    '/addkebudayaan': AddKebudayaan,
   }
  }else{
   routes = {
@@ -30,7 +34,7 @@ let routes
     '/course': Course,
     '/signin': SignIn,
     '/signup': SignUp,
-    '/article/:id': DetailArtikel,
+    '/article/:id': DetailArticle,
   }
  }
 
