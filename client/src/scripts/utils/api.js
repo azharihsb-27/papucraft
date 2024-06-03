@@ -1,4 +1,4 @@
-const baseURL = "https://3000-idx-papucraft-1717066276171.cluster-bs35cdu5w5cuaxdfch3hqqt7zm.cloudworkstations.dev/api";
+const baseURL = "http://localhost:3000/api";
 
 const getAllKebudayaan = async () => {
   const response = await fetch(`${baseURL}/kebudayaan`);
@@ -7,7 +7,7 @@ const getAllKebudayaan = async () => {
 };
 
 const getAllArtikel = async () => {
-  const response = await fetch(`${baseURL}/kebudayaan`);
+  const response = await fetch(`${baseURL}/artikel`);
   const responseJson = await response.json();
   return responseJson;
 };
@@ -31,13 +31,7 @@ const addUser = async ({ usernameValue, emailValue, uid }) => {
   return responseJson;
 };
 
-const addArtikel = async ({ judul, source, file, body }) => {
-  const data = new FormData();
-  data.set("judul", judul);
-  data.set("source", source);
-  data.set("file", file[0]);
-  data.set("body", body);
-
+const addArtikel = async (data) => {
   const response = await fetch(`${baseURL}/artikel`, {
     method: "POST",
     body: data,
@@ -46,4 +40,13 @@ const addArtikel = async ({ judul, source, file, body }) => {
   return responseJson;
 };
 
-module.exports = { getAllKebudayaan, addUser, getAllArtikel, addArtikel, getDetailArtikel };
+const addKebudayaan = async (data) => {
+  const response = await fetch(`${baseURL}/kebudayaan`, {
+    method: "POST",
+    body: data,
+  });
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+module.exports = { getAllKebudayaan, addUser, getAllArtikel, addArtikel, getDetailArtikel, addKebudayaan };

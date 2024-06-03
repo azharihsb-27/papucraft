@@ -5,7 +5,7 @@ const {
   get,
   push,
   set,
-  remove
+  remove,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 const { getImageFromStorage, addImageToStorage } = require("../storage");
@@ -35,14 +35,17 @@ const getAllArtikel = async () => {
 };
 
 const getDetailArtikel = async (id) => {
-  const dbGet = await get(child(rootReference, `kebudayaan/${id}`));
-  const dbGetObject = Object.values(dbGet.val())
-  const thumbnail = getImageFromStorage("artikel", dbGetObject.thumbnail).then(res=>{
-    return res
-  })
- 
-  const detailArtikel = {...dbGetObject, thumbnail}
-  return detailArtikel
+  const dbGet = await get(child(rootReference, `artikel/${id}`));
+  const dbGetObject = dbGet.val();
+  const thumbnail = await getImageFromStorage(
+    "artikel",
+    dbGetObject.thumbnail
+  ).then((res) => {
+    return res;
+  });
+
+  const detailArtikel = { ...dbGetObject, thumbnail };
+  return detailArtikel;
 };
 
 const addArtikel = async (path, data, thumbnail) => {
@@ -50,30 +53,30 @@ const addArtikel = async (path, data, thumbnail) => {
   const split = originalname.split(".");
   const getType = split[split.length - 1];
   await pushArtikel({ path, data, thumbnail, getType });
-}
+};
 
 const pushArtikel = async ({ path, data, thumbnail, getType }) => {
   const dbRef = child(rootReference, "artikel");
   const id = push(dbRef).key;
-  const result = { ...data, thumbnail: `${id}.${getType}` };
+  const result = { ...data, thumbnail: id, id };
   const dbPath = child(rootReference, `${path}/${id}`);
   const { mimetype } = thumbnail;
   const ext = mimetype.split("/")[1];
   const dbSet = await set(dbPath, result);
-  const name = `${id}.${ext}`;
+  const name = `${id}}`;
   await addImageToStorage({ path, thumbnail, name });
   return dbSet;
 };
 
-const deleteArtikel = async (id) =>{
-    const dbPath = child(rootReference, `artikel/${id}`);
-    const valuedbPath = await get(dbPath);
-    const isExist = valuedbPath.val();
-    if (!isExist) {
-      return false;
-    } else {
-      return remove(dbPath);
-    }
-}
+const deleteArtikel = async (id) => {
+  const dbPath = child(rootReference, `artikel/${id}`);
+  const valuedbPath = await get(dbPath);
+  const isExist = valuedbPath.val();
+  if (!isExist) {
+    return false;
+  } else {
+    return remove(dbPath);
+  }
+};
 
 module.exports = { getAllArtikel, getDetailArtikel, addArtikel, deleteArtikel };
