@@ -12,8 +12,11 @@
 }
 
 @layer components {
-  .open {
+  .open-user-drawer {
     @apply top-20 !important;
+  }
+  .open-admin-drawer {
+    @apply -translate-x-52 !important;
   }
   .content {
     @apply my-0 mx-auto min-h-full;

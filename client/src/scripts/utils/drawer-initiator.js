@@ -11,12 +11,22 @@ const DrawerInitiator = {
 
   _toggleDrawer(event, drawer) {
     event.stopPropagation();
-    drawer.classList.toggle('open');
+    const nav = drawer.getAttribute('aria-label');
+    if (nav === 'User Navigation') {
+      drawer.classList.toggle('open-user-drawer');
+    } else {
+      drawer.classList.toggle('open-admin-drawer');
+    }
   },
 
   _closeDrawer(event, drawer) {
     event.stopPropagation();
-    drawer.classList.remove('open');
+    const nav = drawer.getAttribute('aria-label');
+    if (nav === 'User Navigation') {
+      drawer.classList.remove('open-user-drawer');
+    } else {
+      drawer.classList.remove('open-admin-drawer');
+    }
   },
 };
 
