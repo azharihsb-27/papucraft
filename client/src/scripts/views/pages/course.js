@@ -13,7 +13,7 @@ const Course = {
                 <div class="w-2/3 px-10">
                     <h3 class="text-lg font-bold text-primary pb-2" >Nama Kelas</h3>
                     <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Tempor nibh tortor mattis rutrum lobortis. Ut eleifend rhoncus natoque ipsum mattis. Non non est arcu purus vel elit pulvinar blandit lobortis.</p>
-                    <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded">Lihat Selengkapnya</button>
+                    <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300"><a href="#/course/:id">Lihat Selengkapnya</a></button>
                 </div>
             </div>
         </article>
