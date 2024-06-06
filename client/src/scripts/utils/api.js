@@ -6,6 +6,12 @@ const getAllKebudayaan = async () => {
   return responseJson;
 };
 
+const getDetailKebudayaan = async (id) =>{
+  const response = await fetch(`${baseURL}/kebudayaan/${id}`)
+  const responseJson = await response.json()
+  return responseJson
+}
+
 const getAllArtikel = async () => {
   const response = await fetch(`${baseURL}/artikel`);
   const responseJson = await response.json();
@@ -13,7 +19,19 @@ const getAllArtikel = async () => {
 };
 
 const getDetailArtikel = async (id) =>{
-  const response = await fetch(`${baseURL}/artikel/detail/${id}`)
+  const response = await fetch(`${baseURL}/artikel/${id}`)
+  const responseJson = await response.json()
+  return responseJson
+}
+
+const getAllKelas = async () => {
+  const response = await fetch(`${baseURL}/kelas`);
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const getDetailKelas = async (id) =>{
+  const response = await fetch(`${baseURL}/kelas/${id}`)
   const responseJson = await response.json()
   return responseJson
 }
@@ -49,4 +67,13 @@ const addKebudayaan = async (data) => {
   return responseJson;
 };
 
-module.exports = { getAllKebudayaan, addUser, getAllArtikel, addArtikel, getDetailArtikel, addKebudayaan };
+const addKelas = async (data) => {
+  const response = await fetch(`${baseURL}/kelas`, {
+    method: "POST",
+    body: data,
+  });
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+module.exports = { getAllKebudayaan, getDetailKebudayaan, getAllArtikel, getDetailArtikel, getAllKelas, getDetailKelas,addUser,addArtikel, addKebudayaan,addKelas };

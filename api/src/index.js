@@ -4,7 +4,6 @@ const multer = require("multer");
 const {
   getAllKebudayaan,
   getDetailKebudayaan,
-  getKebudayaanByKategori,
   addKebudayaan,
   deleteKebudayaan,
 } = require("./firebase/model/kebudayaan");
@@ -15,6 +14,7 @@ const {
   addArtikel,
   deleteArtikel,
 } = require("./firebase/model/artikel");
+const {getAllKelas,getDetailKelas, addKelas, deleteKelas} = require('./firebase/model/kelas')
 const { successResult, errorResult } = require("./result/result");
 const { addUser } = require("./firebase/model/user");
 
@@ -32,17 +32,17 @@ app.get("/api/kebudayaan", async (req, res) => {
   res.status(200).json(successResult("Data berhasil ditampilkan", data));
 });
 
-app.delete("/api/kebudayaan/delete/:id", async (req, res) => {
+app.delete("/api/kebudayaan/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    await deleteArtikel(id);
+    await deleteKebudayaan(id);
     res.status(200).json(successResult(`Data ${id} berhasil dihapus`));
   } catch (error) {
     res.status(400).json(errorResult(`Data ${id} tidak ditemukan`));
   }
 });
 
-app.get("/api/kebudayaan/detail/:id", async (req, res) => {
+app.get("/api/kebudayaan/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const data = await getDetailKebudayaan(id);
@@ -54,17 +54,12 @@ app.get("/api/kebudayaan/detail/:id", async (req, res) => {
   }
 });
 
-app.get("/api/kebudayaan/kategori/:kategori", async (req, res) => {
-  const { kategori } = req.params;
-  const data = await getKebudayaanByKategori(kategori);
-});
-
 app.get("/api/event", async (req, res) => {
   const data = await getAllEvent();
   res.status(200).json(successResult("Data ditampilkan", data));
 });
 
-app.get("/api/event/detail/:id", async (req, res) => {
+app.get("/api/event/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const data = await getDetailEvent(id);
@@ -79,13 +74,49 @@ app.get("/api/artikel", async (req, res) => {
   res.status(200).json(successResult("Data ditampilkan", data));
 });
 
-app.get("/api/artikel/detail/:id", async (req, res) => {
+app.get("/api/artikel/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const data = await getDetailArtikel(id);
     res.status(200).json(successResult(`Data ${id} ditampilkan`, data));
   } catch (err) {
     res.status(400).json(errorResult("Data tidak ditemukan"));
+  }
+});
+
+app.delete("/api/artikel/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteArtikel(id);
+    res.status(200).json(successResult(`Data ${id} berhasil dihapus`));
+  } catch (error) {
+    res.status(400).json(errorResult(`Data ${id} tidak ditemukan`));
+  }
+});
+
+app.get("/api/kelas", async (req, res) => {
+  const data = await getAllKelas();
+  res.status(200).json(successResult("Data ditampilkan", data));
+});
+
+app.get("/api/kelas/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const data = await getDetailKelas(id);
+    res.status(200).json(successResult(`Data ${id} ditampilkan`, data));
+  } catch (err) {
+    res.status(400).json(errorResult("Data tidak ditemukan"));
+  }
+});
+
+
+app.delete("/api/kelas/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteKelas(id);
+    res.status(200).json(successResult(`Data ${id} berhasil dihapus`));
+  } catch (error) {
+    res.status(400).json(errorResult(`Data ${id} tidak ditemukan`));
   }
 });
 
@@ -127,6 +158,24 @@ app.post("/api/kebudayaan", upload.single("file"), async (req, res) => {
     res.status(400).json(errorResult("Image Only!"));
   } else {
     await addKebudayaan("kebudayaan", body, thubmnail);
+    res.status(200).json(successResult("Add Kebudayaan Success", body));
+  }
+});
+
+app.post("/api/kelas", upload.single("file"), async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  const body = req.body;
+  if (!req.file) {
+    res.status(400).json(errorResult("Fill the thumbnail!"));
+    return;
+  }
+  const thubmnail = req.file;
+  const { mimetype } = thubmnail;
+  const imageOnly = mimetype.split("/")[0];
+  if (imageOnly !== "image") {
+    res.status(400).json(errorResult("Image Only!"));
+  } else {
+    await addKelas("kelas", body, thubmnail);
     res.status(200).json(successResult("Add Kebudayaan Success", body));
   }
 });
