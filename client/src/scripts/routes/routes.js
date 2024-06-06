@@ -10,9 +10,12 @@ import AddArticle from "../views/pages/add-article";
 import AddKebudayaan from "../views/pages/add-kebudayaan";
 import DetailCourse from "../views/pages/detail-course";
 import DetailGallery from "../views/pages/detail-gallery";
+import { token } from "../utils/session-check";
+import UserProfile from "../views/pages/user-profile";
+import AddKelas from "../views/pages/add-kelas";
 
 let routes;
-if (sessionStorage.getItem("token")) {
+if (token) {
   routes = {
     "/": Home,
     "/home": Home,
@@ -27,6 +30,8 @@ if (sessionStorage.getItem("token")) {
     "/gallery/:id": DetailGallery,
     "/addarticle": AddArticle,
     "/addkebudayaan": AddKebudayaan,
+    "/profile": UserProfile,
+    "/addkelas": AddKelas
   };
 } else {
   routes = {

@@ -63,7 +63,7 @@ const {
     const { mimetype } = thumbnail;
     const ext = mimetype.split("/")[1];
     const dbSet = await set(dbPath, result);
-    const name = `${id}}`;
+    const name = `${id}`;
     await addImageToStorage({ path, thumbnail, name });
     return dbSet;
   };

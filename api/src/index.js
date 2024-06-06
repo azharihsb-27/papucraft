@@ -176,7 +176,7 @@ app.post("/api/kelas", upload.single("file"), async (req, res) => {
     res.status(400).json(errorResult("Image Only!"));
   } else {
     await addKelas("kelas", body, thubmnail);
-    res.status(200).json(successResult("Add Kebudayaan Success", body));
+    res.status(200).json(successResult("Add Kelas Success", body));
   }
 });
 
