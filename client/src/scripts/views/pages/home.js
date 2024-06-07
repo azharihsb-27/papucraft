@@ -16,7 +16,7 @@ const Home = {
               <a href="#/gallery" class="py-3 lg:text-xl font-medium hover:translate-x-2 duration-300">Lihat Semua</a>
             </div>
             <div class="py-2 lg:py-9">
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="list-kebudayaan">
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" id="list-kebudayaan">
                 
               </div>
             </div>
@@ -58,7 +58,8 @@ const Home = {
           <a href=#/gallery/${kebudayaan.id}>
             <img
               src=${kebudayaan.thumbnail}
-              class="rounded-xl max-h-[240px] w-full object-fit object-center"
+              class="rounded-xl h-[150px] md:h-[170px] w-full object-fit object-center"
+              alt=${kebudayaan.nama}
             />
             <div class="py-2">
               <h3 class="text-xl text-primary font-semibold">${kebudayaan.nama}</h3>
@@ -73,6 +74,21 @@ const Home = {
     const article = await getAllArtikel()
     const articleData = article.data
     const newestArticle = articleData[articleData.length - 1]
+    
+    // const newest = articleData.filter(data=>  {
+    //   toLocale
+    //   data.createdAt.sort(function (a, b) {
+    //     let dateA = new Date(a)
+    //     let dateB = new Date(b)
+    //     if (dateB < dateA) {
+    //       return -1;
+    //     } else {
+    //       return 1;
+    //     }
+    //   });
+    // })
+    console.log(articleData)
+
     articleWrapper.innerHTML += `
       <div class="flex justify-between items-center text-primary">
         <h2 class="text-xl lg:text-2xl font-medium">Artikel Baru</h2>

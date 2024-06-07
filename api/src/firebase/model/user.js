@@ -15,16 +15,16 @@ const getDetailUser = async (id) => {
   return dbGet.val();
 };
 
-const addUser = (body) => {
+const addUser =  async (body) => {
   const { username, email, uid } = body;
   const data = {
-      username,
+      username, 
       email,
       profile_image: 'profile.jpg',
       uid
   };
   const reference = child(rootReference, "user/" + uid);
-  set(reference, data);
+  await set(reference, data);
   return email;
 };
 

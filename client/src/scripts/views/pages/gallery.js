@@ -14,7 +14,7 @@ const Gallery = {
                   <button class="px-2 py-1 border-2 border-primary rounded-full hover:bg-primary hover:text-white duration-300" id="makanan">Makanan</button>
                 </div>
                 <div class="mt-4">
-                  <div class="grid grid-cols-2 lg:grid-cols-3 gap-2" id="list-gallery">
+                  <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2" id="list-gallery">
                     
                     
                   </div>
@@ -40,7 +40,7 @@ const Gallery = {
         <div class="group rounded-md">
           <a href="#/gallery/${budaya.id}" class="relative">
             <img
-              src="${budaya.thumbnail}" class="w-full h-full block m-auto rounded-md"
+              src="${budaya.thumbnail}" class="w-full h-full block m-auto rounded-md bg-cover bg-center object-fit"
             />
             <div class="w-full h-full top-0 left-0 absolute bg-black/30 opacity-0 duration-300 rounded-md group-hover:opacity-100">
               <h3 class="text-white text-xl inset-4 absolute">${budaya.nama}</h3>
