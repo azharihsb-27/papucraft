@@ -120,9 +120,9 @@ app.delete("/api/kelas/:id", async (req, res) => {
   }
 });
 
-app.post("/api/register", (req, res) => {
+app.post("/api/register", async (req, res) => {
   const body = req.body;
-  const data = addUser(body);
+  const data = await addUser(body);
   res.status(200).json(successResult("Register Success", data));
 });
 
