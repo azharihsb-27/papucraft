@@ -5,8 +5,6 @@ const {
   get,
   push,
   set,
-  query,
-  equalTo,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 const { getImageFromStorage, addImageToStorage } = require("../storage");
@@ -52,11 +50,6 @@ const getDetailKebudayaan = async (id) => {
   }
 };
 
-const getKebudayaanByKategori = async (kategori) => {
-  const dbGet = await query((rootReference, "kebudayaan"), equalTo(kategori));
-  console.log(dbGet);
-};
-
 const addKebudayaan = async (path, data, thumbnail) => {
   const { originalname } = thumbnail;
   const split = originalname.split(".");
@@ -67,7 +60,7 @@ const addKebudayaan = async (path, data, thumbnail) => {
 const pushKebudayaan = async ({ path, data, thumbnail, getType }) => {
   const dbRef = child(rootReference, "kebudayaan");
   const id = push(dbRef).key;
-  const result = { ...data, thumbnail: id };
+  const result = { ...data, thumbnail: id, id };
   const dbPath = child(rootReference, `${path}/${id}`);
   const { mimetype } = thumbnail;
   const ext = mimetype.split("/")[1];
@@ -91,7 +84,7 @@ const deleteKebudayaan = async (id) => {
 module.exports = {
   getAllKebudayaan,
   getDetailKebudayaan,
-  getKebudayaanByKategori,
   addKebudayaan,
   deleteKebudayaan,
 };
+
