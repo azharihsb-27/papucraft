@@ -7,7 +7,12 @@ const {
   addKebudayaan,
   deleteKebudayaan,
 } = require("./firebase/model/kebudayaan");
-const { getDetailEvent, getAllEvent } = require("./firebase/model/event");
+const {
+  getDetailEvent,
+  getAllEvent,
+  addEvent,
+  deleteEvent,
+} = require("./firebase/model/event");
 const {
   getDetailArtikel,
   getAllArtikel,
@@ -34,13 +39,13 @@ const port = 3000;
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-app.get("/api/highlight", async (req,res)=>{
-  const dataKebudayaan = await getAllKebudayaan()
-  const dataArtikel = await getAllArtikel()
-  await updateViewsPage()
-  const data = {kebudayaan: dataKebudayaan, artikel: dataArtikel}
-  res.status(200).json(successResult('Data berhasil ditampilkan', data))
-})
+app.get("/api/highlight", async (req, res) => {
+  const dataKebudayaan = await getAllKebudayaan();
+  const dataArtikel = await getAllArtikel();
+  await updateViewsPage();
+  const data = { kebudayaan: dataKebudayaan, artikel: dataArtikel };
+  res.status(200).json(successResult("Data berhasil ditampilkan", data));
+});
 
 app.get("/api/kebudayaan", async (req, res) => {
   const data = await getAllKebudayaan();
@@ -76,11 +81,21 @@ app.get("/api/event", async (req, res) => {
 
 app.get("/api/event/:id", async (req, res) => {
   const { id } = req.params;
-  try {
-    const data = await getDetailEvent(id);
+  const data = await getDetailEvent(id);
+  if (data) {
     res.status(200).json(successResult(`Data ${id} ditampilkan`, data));
-  } catch (err) {
+  } else {
     res.status(400).json(errorResult("Data tidak ditemukan"));
+  }
+});
+
+app.delete("/api/event/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteEvent(id);
+    res.status(200).json(successResult(`Data ${id} berhasil dihapus`));
+  } catch (error) {
+    res.status(400).json(errorResult(`Data ${id} tidak ditemukan`));
   }
 });
 
@@ -215,6 +230,24 @@ app.post("/api/kelas", upload.single("file"), async (req, res) => {
   } else {
     await addKelas("kelas", body, thubmnail);
     res.status(200).json(successResult("Add Kelas Success", body));
+  }
+});
+
+app.post("/api/event", upload.single("file"), async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  const body = { ...req.body, createdAt: new Date() };
+  if (!req.file) {
+    res.status(400).json(errorResult("Fill the thumbnail!"));
+    return;
+  }
+  const thubmnail = req.file;
+  const { mimetype } = thubmnail;
+  const imageOnly = mimetype.split("/")[0];
+  if (imageOnly !== "image") {
+    res.status(400).json(errorResult("Image Only!"));
+  } else {
+    await addEvent("event", body, thubmnail);
+    res.status(200).json(successResult("Add Event Success", body));
   }
 });
 
