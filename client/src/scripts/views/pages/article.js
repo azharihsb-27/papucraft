@@ -102,9 +102,7 @@ const Article = {
   async afterRender() {
     const wrapperAllArtikel = document.getElementById('all-artikel')
     const {success,data,message} = await getAllArtikel()
-    if(!success){
-      alertError(message)
-    }else{
+    if(wrapperAllArtikel){
       wrapperAllArtikel.innerHTML += data.map(artikel=>{
         return`
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 bg-gray-100 duration-300">
@@ -119,7 +117,6 @@ const Article = {
         `
       }).join('')
     }
-                      
   },
 
 };

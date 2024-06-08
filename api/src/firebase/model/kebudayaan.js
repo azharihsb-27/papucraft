@@ -38,15 +38,18 @@ const getAllKebudayaan = async () => {
 const getDetailKebudayaan = async (id) => {
   const dbGet = await get(child(rootReference, `kebudayaan/${id}`));
   const dbGetObject = dbGet.val();
-  const thumbnail = await getImageFromStorage(
-    "kebudayaan",
-    dbGetObject.thumbnail
-  ).then((res) => {
-    return res;
-  });
-
-  const detailKebudayaan = { ...dbGetObject, thumbnail };
-  return detailKebudayaan;
+  if (!dbGetObject) {
+    return false;
+  } else {
+    const thumbnail = await getImageFromStorage(
+      "kebudayaan",
+      dbGetObject.thumbnail
+    ).then((res) => {
+      return res;
+    });
+    const detailKebudayaan = { ...dbGetObject, thumbnail };
+    return detailKebudayaan;
+  }
 };
 
 const getKebudayaanByKategori = async (kategori) => {

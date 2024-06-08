@@ -64,8 +64,9 @@ const Gallery = {
         }
       })
     })
-    
-    renderKebudayaan(data)
+    if(wrapper){
+      renderKebudayaan(data)
+    }
 
   },
 };

@@ -1,4 +1,4 @@
-import RegisterInitiator from '../../utils/register-initiator';
+import registerInitiator from '../../utils/register-initiator';
 
 const SignUp = {
   async render() {
@@ -18,7 +18,7 @@ const SignUp = {
         <div class="w-full flex flex-col h-[screen] justify-center backdrop-blur-md rounded-md">
           <h2 class="text-3xl mb-2 text-primary mx-auto font-bold">Sign Up</h2>
           <p class="mx-auto -mt-2">Let's start with your account</p>
-          <form class="flex flex-col gap-2 px-4 py-[1rem] ">
+          <form class="flex flex-col gap-2 px-4 py-[1rem]" method="post" id="form-register">
             <div class="flex flex-col gap-2">
               <label for="username">Username</label>
               <input type="username" placeholder="Enter your username" class="border-2 border-primary outline-none px-2 py-1" name="username" id="username"/>
@@ -35,7 +35,7 @@ const SignUp = {
               <label for="confirm">Confirm Password</label>
               <input type="password" placeholder="Enter your confirm" class="border-2 border-primary outline-none px-2 py-1" name="confirm" id="confirm"/>
             </div>
-            <button class="w-1/2 md:w-1/4 mx-auto font-bold rounded-md py-2 mt-4 bg-primary hover:border-2 hover:border-primary hover:text-primary hover:bg-transparent transition text-white" id="sign-up">Sign Up</button>
+            <button class="w-1/2 md:w-1/4 mx-auto font-bold rounded-md py-2 mt-4 bg-primary hover:border-2 hover:border-primary hover:text-primary hover:bg-transparent transition text-white" type="submit">Sign Up</button>
             <p class="mx-auto text-sm ">Have an account? <a href="#/signin" class="text-primary font-bold">Sign In</a></p>
           </form>
         </div>
@@ -46,13 +46,12 @@ const SignUp = {
   },
 
   async afterRender() {
-    RegisterInitiator.init({
-      username: document.querySelector('input#username'),
-      email: document.querySelector('input#email'),
-      password: document.querySelector('input#password'),
-      confirm: document.querySelector('input#confirm'),
-      btnRegister: document.querySelector('button#sign-up'),
-    });
+    const form = document.querySelector('#form-register')
+    const username = document.querySelector('input#username')
+    const email = document.querySelector('input#email')
+    const password = document.querySelector('input#password')
+    const confirm = document.querySelector('input#confirm')
+    registerInitiator.init({form,username,email,password,confirm});
   },
 };
 

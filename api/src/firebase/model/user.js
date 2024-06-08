@@ -1,10 +1,4 @@
-const {
-  ref,
-  getDatabase,
-  child,
-  get,
-  set,
-} = require("firebase/database");
+const { ref, getDatabase, child, get, set } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 
 const database = getDatabase(firebaseSDK);
@@ -15,17 +9,24 @@ const getDetailUser = async (id) => {
   return dbGet.val();
 };
 
-const addUser =  async (body) => {
-  const { username, email, uid } = body;
-  const data = {
-      username, 
-      email,
-      profile_image: 'profile.jpg',
-      uid
-  };
+const addUser = async (body) => {
+  const {uid} = body
   const reference = child(rootReference, "user/" + uid);
-  await set(reference, data);
-  return email;
+  if(body.profile_image){
+    const data = {...body}
+    await set(reference, data);
+    return data.uid;
+  }else{
+    const { username, email} = body;
+    const data = {
+      username,
+      email,
+      profile_image: "profile.jpg",
+      uid,
+    };
+    await set(reference, data);
+    return data.uid;
+  }
 };
 
 module.exports = { getDetailUser, addUser };
