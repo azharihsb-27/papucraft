@@ -14,39 +14,36 @@ import { token } from "../utils/session-check";
 import UserProfile from "../views/pages/user-profile";
 import AddKelas from "../views/pages/add-kelas";
 
-let routes;
-if (token) {
-  routes = {
-    "/": Home,
-    "/home": Home,
-    "/gallery": Gallery,
-    "/article": Article,
-    "/event": Event,
-    "/course": Course,
-    "/signin": Home,
-    "/signup": Home,
-    "/article/:id": DetailArticle,
-    "/course/:id": DetailCourse,
-    "/gallery/:id": DetailGallery,
-    "/addarticle": AddArticle,
-    "/addkebudayaan": AddKebudayaan,
-    "/profile": UserProfile,
-    "/addkelas": AddKelas
-  };
-} else {
-  routes = {
-    "/": Home,
-    "/home": Home,
-    "/gallery": Gallery,
-    "/article": Article,
-    "/event": Event,
-    "/course": Course,
-    "/signin": SignIn,
-    "/signup": SignUp,
-    "/article/:id": DetailArticle,
-    "/course/:id": DetailCourse,
-    "/gallery/:id": DetailGallery,
-  };
+const userRoutes = {
+  "/": Home,
+  "/home": Home,
+  "/gallery": Gallery,
+  "/article": Article,
+  "/event": Event,
+  "/course": Course,
+  "/signin": Home,
+  "/signup": Home,
+  "/article/:id": DetailArticle,
+  "/course/:id": DetailCourse,
+  "/gallery/:id": DetailGallery,
+  "/addarticle": AddArticle,
+  "/addkebudayaan": AddKebudayaan,
+  "/profile": UserProfile,
+  "/addkelas": AddKelas
 }
 
-export default routes;
+const noSessionRoutes = {
+  "/": Home,
+  "/home": Home,
+  "/gallery": Gallery,
+  "/article": Article,
+  "/event": Event,
+  "/course": Course,
+  "/signin": SignIn,
+  "/signup": SignUp,
+  "/article/:id": DetailArticle,
+  "/course/:id": DetailCourse,
+  "/gallery/:id": DetailGallery,
+}
+
+export {userRoutes, noSessionRoutes};
