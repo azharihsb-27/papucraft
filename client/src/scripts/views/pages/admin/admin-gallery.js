@@ -1,3 +1,5 @@
+import { getAllKebudayaan } from "../../../utils/api";
+
 const AdminGallery = {
   async render() {
     return `
@@ -20,65 +22,37 @@ const AdminGallery = {
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">1</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/gallery/gallery-detail/:id" class="hover:underline"
-										>Tari Soanggi</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">Kabupaten Waropen</td>
-								<td class="border-2 p-2 whitespace-nowrap">Tarian</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#/dashboard/gallery/gallery-edit/:id"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">2</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/gallery/gallery-detail/:id" class="hover:underline"
-										>Tari Soanggi</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">Kabupaten Waropen</td>
-								<td class="border-2 p-2 whitespace-nowrap">Tarian</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#/dashboard/gallery/gallery-edit/:id"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">3</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/gallery/gallery-detail/:id" class="hover:underline"
-										>Tari Soanggi</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">Kabupaten Waropen</td>
-								<td class="border-2 p-2 whitespace-nowrap">Tarian</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#/dashboard/gallery/gallery-edit/:id"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-						</tbody>
+						<tbody id="gallery-list"></tbody>
 					</table>
 				</div>
 			</div>
 		`;
   },
-  async afterRender() {},
+  async afterRender() {
+		const galleryListContainer = document.getElementById('gallery-list');
+		const { data } = await getAllKebudayaan();
+		galleryListContainer.innerHTML = data.map(({nama, asal_daerah, kategori}, index) => {
+			return `
+				<tr>
+					<td class="border-2 p-2 whitespace-nowrap w-10 text-center">${index + 1}</td>
+					<td class="border-2 p-2 whitespace-nowrap">
+						<a href="#/dashboard/gallery/gallery-detail/:id" class="hover:underline"
+							>${nama}</a
+						>
+					</td>
+					<td class="border-2 p-2 whitespace-nowrap">${asal_daerah}</td>
+					<td class="border-2 p-2 whitespace-nowrap">${kategori}</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">
+						<a
+							href="#/dashboard/gallery/gallery-edit/:id"
+							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+							>Ubah</a
+						>
+					</td>
+				</tr>
+			`
+		}).join('');
+	},
 };
 
 export default AdminGallery;

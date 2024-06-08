@@ -13,6 +13,9 @@ import DetailGallery from "../views/pages/detail-gallery";
 import { token } from "../utils/session-check";
 import UserProfile from "../views/pages/user-profile";
 import AddKelas from "../views/pages/add-kelas";
+import AdminArticle from "../views/pages/admin/admin-article";
+import AdminCourse from "../views/pages/admin/admin-course";
+import AdminGallery from "../views/pages/admin/admin-gallery";
 
 const userRoutes = {
   "/": Home,
@@ -44,6 +47,9 @@ const noSessionRoutes = {
   "/article/:id": DetailArticle,
   "/course/:id": DetailCourse,
   "/gallery/:id": DetailGallery,
+  "/adminarticle": AdminArticle,
+  "/admincourse": AdminCourse,
+  "/admingallery": AdminGallery
 }
 
 export {userRoutes, noSessionRoutes};

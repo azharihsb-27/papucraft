@@ -1,3 +1,5 @@
+import { getAllArtikel } from '../../../utils/api';
+
 const AdminArticle = {
   async render() {
     return `
@@ -10,7 +12,7 @@ const AdminArticle = {
 								<th class="w-10 p-3 text-sm font-semibol text-center border-2">
 									No.
 								</th>
-								<th class="p-3 text-sm font-semibol text-left border-2 w-20">
+								<th class="p-3 text-sm font-semibol text-left border-2">
 									Judul
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">
@@ -21,37 +23,41 @@ const AdminArticle = {
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">1</td>
-								<td class="border-2 p-2 md:whitespace-nowrap">
-									<a href="#/dashboard/article/article-detail/:id" class="hover:underline"
-										>Warisan Budaya Tak Benda (WBTB) Tanah Papua</a
-									>
-								</td>
-								<td class="border-2 p-2">
-									Warisan budaya adalah keseluruhan peninggalan kebudayaan yang
-									memiliki nilai penting sejarah, ilmu pengetahuan dan teknologi,
-									dan/atau seni yang dimiliki bersama oleh suatu komunitas atau
-									masyarakat dan mengalami perkembangan dari generasi ke generasi,
-									dalam alur suatu tradisi.
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#/dashboard/article/article-edit/:id"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-						</tbody>
+						<tbody id="article-list"></tbody>
 					</table>
 				</div>
       </div>
     `;
   },
 
-  async afterRender() {},
+  async afterRender() {
+    const articleListContainer = document.getElementById('article-list');
+    const { data } = await getAllArtikel();
+    articleListContainer.innerHTML = data.map(({judul, ringkasan}, index) => {
+      return `
+				<tr>
+					<td class="border-2 p-2 whitespace-nowrap w-10 text-center">${index + 1}</td>
+					<td class="border-2 p-2 md:whitespace-nowrap">
+						<a href="#/dashboard/article/article-detail/:id" class="hover:underline"
+							>${judul}</a
+						>
+					</td>
+					<td class="border-2 p-2">
+						${ringkasan}
+					</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">
+						<a
+							href="#/dashboard/article/article-edit/:id"
+							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+							>Ubah</a
+						>
+					</td>
+				</tr>
+			`;
+    }).join('');
+
+    console.log(data);
+  },
 };
 
 export default AdminArticle;

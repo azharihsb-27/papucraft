@@ -1,3 +1,5 @@
+import { getAllKelas } from "../../../utils/api";
+
 const AdminCourse = {
   async render() {
     return `
@@ -14,38 +16,49 @@ const AdminCourse = {
 									Nama kelas
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">
-									Nama pengajar
+									Deskripsi
+								</th>
+								<th class="p-3 text-sm font-semibol text-left border-2">
+									Alamat
 								</th>
 								<th class="p-3 text-sm font-semibol text-center border-2">
 									Aksi
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">1</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/course/course-detail/:id" class="hover:underline"
-										>Bahasa daerah pedalaman papua</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">Kak Desi</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#/dashboard/course/course-edit/:id"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-						</tbody>
+						<tbody id="course-list"></tbody>
 					</table>
 				</div>
 			</div>
     `;
   },
 
-  async afterRender() {},
+  async afterRender() {
+		const courseListContainer = document.getElementById('course-list');
+		const { data } = await getAllKelas()
+		console.log(data)
+		courseListContainer.innerHTML = data.map(({nama_kelas, deskripsi, alamat}, index) => {
+			return `
+				<tr>
+					<td class="border-2 p-2 whitespace-nowrap w-10 text-center">${index + 1}</td>
+					<td class="border-2 p-2 whitespace-nowrap">
+						<a href="#/dashboard/course/course-detail/:id" class="hover:underline"
+							>${nama_kelas}
+						</a>
+					</td>
+					<td class="border-2 p-2">${deskripsi}</td>
+					<td class="border-2 p-2">${alamat}</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">
+						<a
+							href="#/dashboard/course/course-edit/:id"
+							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+								>Ubah
+						</a>
+					</td>
+				</tr>
+			`
+		}).join('')
+	},
 };
 
 export default AdminCourse;
