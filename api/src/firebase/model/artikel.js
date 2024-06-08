@@ -37,15 +37,19 @@ const getAllArtikel = async () => {
 const getDetailArtikel = async (id) => {
   const dbGet = await get(child(rootReference, `artikel/${id}`));
   const dbGetObject = dbGet.val();
-  const thumbnail = await getImageFromStorage(
-    "artikel",
-    dbGetObject.thumbnail
-  ).then((res) => {
-    return res;
-  });
-
-  const detailArtikel = { ...dbGetObject, thumbnail };
-  return detailArtikel;
+  if(!dbGetObject){
+    return false
+  }{
+    const thumbnail = await getImageFromStorage(
+      "artikel",
+      dbGetObject.thumbnail
+    ).then((res) => {
+      return res;
+    });
+  
+    const detailArtikel = { ...dbGetObject, thumbnail };
+    return detailArtikel;
+  }
 };
 
 const addArtikel = async (path, data, thumbnail) => {
@@ -79,4 +83,22 @@ const deleteArtikel = async (id) => {
   }
 };
 
-module.exports = { getAllArtikel, getDetailArtikel, addArtikel, deleteArtikel };
+const updateArtikelViews = async (id) => {
+  const dbPath = child(rootReference, `artikel/${id}`);
+  const valuedbPath = await get(dbPath)
+  const oldData = valuedbPath.val();
+  if (!oldData) {
+    return false;
+  } else {
+    const newViews = oldData.views + 1;
+    return set(dbPath, { ...oldData, views: newViews });
+  }
+};
+
+module.exports = {
+  getAllArtikel,
+  getDetailArtikel,
+  addArtikel,
+  deleteArtikel,
+  updateArtikelViews,
+};
