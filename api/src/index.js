@@ -28,7 +28,7 @@ const {
   updateKelasViews,
 } = require("./firebase/model/kelas");
 const { successResult, errorResult } = require("./result/result");
-const { getDetailUser, addUser } = require("./firebase/model/user");
+const { getDetailUser, addUser, getAllUser } = require("./firebase/model/user");
 const { getDetailAdmin, updateViewsPage } = require("./firebase/model/admin");
 
 const app = express();
@@ -152,6 +152,15 @@ app.delete("/api/kelas/:id", async (req, res) => {
     res.status(400).json(errorResult(`Data ${id} tidak ditemukan`));
   }
 });
+
+app.get("/api/user", async (req,res)=>{
+  try {
+    const data = await getAllUser()
+    res.status(200).json(successResult(`Data ditampilkan`, data));
+  } catch (error) {
+    res.status(400).json(errorResult(`Something Error`));
+  }
+})
 
 app.get("/api/user/:id", async (req, res) => {
   const { id } = req.params;
