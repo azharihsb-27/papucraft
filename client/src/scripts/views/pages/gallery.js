@@ -25,18 +25,20 @@ const Gallery = {
   },
 
   async afterRender() {
-    const {success,data, message} = await getAllKebudayaan()
-    const wrapper = document.getElementById('list-gallery')
-    const button = document.querySelectorAll('#switch-wrapper button')
-    const musikData = data.filter(data=> data.kategori == 'Alat Musik')
-    const makananData = data.filter(data=> data.kategori == 'Makanan')
-    const tarianData = data.filter(data=> data.kategori == 'Tarian')
+    const { success, data, message } = await getAllKebudayaan();
+    const wrapper = document.getElementById("list-gallery");
+    const button = document.querySelectorAll("#switch-wrapper button");
+    const musikData = data.filter((data) => data.kategori == "Alat Musik");
+    const makananData = data.filter((data) => data.kategori == "Makanan");
+    const tarianData = data.filter((data) => data.kategori == "Tarian");
 
-    
-    const renderKebudayaan = (data) =>{
-      wrapper.innerHTML = ''
-      wrapper.innerHTML += data.map(budaya=>{
-        return `
+    const renderKebudayaan = (data) => {
+      wrapper.innerHTML = "";
+      console.log(data);
+      wrapper.innerHTML += data
+        .map((budaya) => {
+          console.log(budaya.id);
+          return `
         <div class="group rounded-md">
           <a href="#/gallery/${budaya.id}" class="relative">
             <img
@@ -46,28 +48,28 @@ const Gallery = {
               <h3 class="text-white text-xl inset-4 absolute">${budaya.nama}</h3>
             </div>
           </a>
-        </div>`  
-      }).join('')
-    }
-    
-    button.forEach((btn)=>{
-      btn.addEventListener('click', (ev)=>{
-        ev.preventDefault()
-        if(btn.getAttribute('id') == 'tarian'){
-          renderKebudayaan(tarianData)
-        }else if(btn.getAttribute('id') == 'alat-musik'){
-          renderKebudayaan(musikData)
-        }else if(btn.getAttribute('id') == 'makanan'){
-          renderKebudayaan(makananData)
-        }else{
-          renderKebudayaan(data)
-        }
-      })
-    })
-    if(wrapper){
-      renderKebudayaan(data)
-    }
+        </div>`;
+        })
+        .join("");
+    };
 
+    button.forEach((btn) => {
+      btn.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        if (btn.getAttribute("id") == "tarian") {
+          renderKebudayaan(tarianData);
+        } else if (btn.getAttribute("id") == "alat-musik") {
+          renderKebudayaan(musikData);
+        } else if (btn.getAttribute("id") == "makanan") {
+          renderKebudayaan(makananData);
+        } else {
+          renderKebudayaan(data);
+        }
+      });
+    });
+    if (wrapper) {
+      renderKebudayaan(data);
+    }
   },
 };
 
