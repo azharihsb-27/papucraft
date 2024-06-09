@@ -10,9 +10,9 @@ import AddArticle from '../views/pages/add-article';
 import AddKebudayaan from '../views/pages/add-kebudayaan';
 import DetailCourse from '../views/pages/detail-course';
 import DetailGallery from '../views/pages/detail-gallery';
-import { token } from '../utils/session-check';
 import UserProfile from '../views/pages/user-profile';
 import AddKelas from '../views/pages/add-kelas';
+import AddEvent from '../views/pages/add-event';
 import AdminArticle from '../views/pages/admin/admin-article';
 import AdminCourse from '../views/pages/admin/admin-course';
 import AdminGallery from '../views/pages/admin/admin-gallery';
@@ -33,12 +33,25 @@ const userRoutes = {
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
   '/addarticle': AddArticle,
-  '/addkebudayaan': AddKebudayaan,
   '/profile': UserProfile,
-  '/addkelas': AddKelas,
+  '/addevent': AddEvent,
 };
 
 const noSessionRoutes = {
+  '/': Home,
+  '/home': Home,
+  '/gallery': Gallery,
+  '/article': Article,
+  '/event': Event,
+  '/course': Course,
+  '/signin': SignIn,
+  '/signup': SignUp,
+  '/article/:id': DetailArticle,
+  '/course/:id': DetailCourse,
+  '/gallery/:id': DetailGallery,
+};
+
+const adminRoutes = {
   '/': Home,
   '/home': Home,
   '/gallery': Gallery,
@@ -56,6 +69,10 @@ const noSessionRoutes = {
   '/adminarticle': AdminArticle,
   '/adminevent': AdminEvent,
   '/admincourse': AdminCourse,
-};
+  '/addkebudayaan': AddKebudayaan,
+  '/addkelas': AddKelas,
+  '/addevent': AddEvent,
 
-export { userRoutes, noSessionRoutes };
+}
+
+export { userRoutes, noSessionRoutes, adminRoutes };

@@ -1,4 +1,4 @@
-import routes, { noSessionRoutes, userRoutes } from '../routes/routes';
+import { adminRoutes, noSessionRoutes, userRoutes } from '../routes/routes';
 import UrlParser from '../routes/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
 import { isAdmin, token } from '../utils/session-check';
@@ -23,14 +23,15 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     let page
-    
-    if(token){
+    const admin = await isAdmin()
+    if(token && !admin){
       page = userRoutes[url]
+    }else if(admin){
+      page = adminRoutes[url]
     }else{
       page = noSessionRoutes[url]
     }
 
-    // const admin = await isAdmin()
     if(page){
       this._content.innerHTML = await page.render();
       await page.afterRender();
