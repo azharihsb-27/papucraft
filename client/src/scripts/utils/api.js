@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000/api";
+const baseURL = 'http://localhost:3000/api';
 
 const getAllKebudayaan = async () => {
   const response = await fetch(`${baseURL}/kebudayaan`);
@@ -6,11 +6,11 @@ const getAllKebudayaan = async () => {
   return responseJson;
 };
 
-const getDetailKebudayaan = async (id) =>{
-  const response = await fetch(`${baseURL}/kebudayaan/${id}`)
-  const responseJson = await response.json()
-  return responseJson
-}
+const getDetailKebudayaan = async (id) => {
+  const response = await fetch(`${baseURL}/kebudayaan/${id}`);
+  const responseJson = await response.json();
+  return responseJson;
+};
 
 const getAllArtikel = async () => {
   const response = await fetch(`${baseURL}/artikel`);
@@ -18,11 +18,23 @@ const getAllArtikel = async () => {
   return responseJson;
 };
 
-const getDetailArtikel = async (id) =>{
-  const response = await fetch(`${baseURL}/artikel/${id}`)
-  const responseJson = await response.json()
-  return responseJson
-}
+const getDetailArtikel = async (id) => {
+  const response = await fetch(`${baseURL}/artikel/${id}`);
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const getAllEvent = async () => {
+  const response = await fetch(`${baseURL}/event`);
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const getDetailEvent = async (id) => {
+  const response = await fetch(`${baseURL}/event/${id}`);
+  const responseJson = await response.json();
+  return responseJson;
+};
 
 const getAllKelas = async () => {
   const response = await fetch(`${baseURL}/kelas`);
@@ -30,38 +42,48 @@ const getAllKelas = async () => {
   return responseJson;
 };
 
-const getDetailKelas = async (id) =>{
-  const response = await fetch(`${baseURL}/kelas/${id}`)
-  const responseJson = await response.json()
-  return responseJson
-}
+const getDetailKelas = async (id) => {
+  const response = await fetch(`${baseURL}/kelas/${id}`);
+  const responseJson = await response.json();
+  return responseJson;
+};
 
-const addUser =  async (data) => {
-  
-  if(data.method === 'google'){
-    const displayName = data.displayName
-    const email =  data.email
-    const uid = data.uid
-    const profileImage = data.profile_image
+const getAllUser = async () => {
+  const response = await fetch(`${baseURL}/user`);
+  const responseJson = await response.json();
+  return responseJson;
+};
+
+const addUser = async (data) => {
+  if (data.method === 'google') {
+    const displayName = data.displayName;
+    const email = data.email;
+    const uid = data.uid;
+    const profileImage = data.profile_image;
     const response = await fetch(`${baseURL}/register`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({displayName,email,uid,profile_image: profileImage}),
+      body: JSON.stringify({
+        displayName,
+        email,
+        uid,
+        profile_image: profileImage,
+      }),
     });
     const responseJson = await response.json();
     return responseJson;
-  }else{
-    const username =  data.usernameValue
-    const email =  data.emailValue
-    const uid = data.uid
+  } else {
+    const username = data.usernameValue;
+    const email = data.emailValue;
+    const uid = data.uid;
     const response = await fetch(`${baseURL}/register`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({username,email,uid}),
+      body: JSON.stringify({ username, email, uid }),
     });
     const responseJson = await response.json();
     return responseJson;
@@ -70,7 +92,7 @@ const addUser =  async (data) => {
 
 const addArtikel = async (data) => {
   const response = await fetch(`${baseURL}/artikel`, {
-    method: "POST",
+    method: 'POST',
     body: data,
   });
   const responseJson = await response.json();
@@ -79,7 +101,7 @@ const addArtikel = async (data) => {
 
 const addKebudayaan = async (data) => {
   const response = await fetch(`${baseURL}/kebudayaan`, {
-    method: "POST",
+    method: 'POST',
     body: data,
   });
   const responseJson = await response.json();
@@ -88,29 +110,46 @@ const addKebudayaan = async (data) => {
 
 const addKelas = async (data) => {
   const response = await fetch(`${baseURL}/kelas`, {
-    method: "POST",
+    method: 'POST',
     body: data,
   });
   const responseJson = await response.json();
   return responseJson;
 };
 
-const isAdminCheck = async (uid)=>{
-  const response = await fetch(`${baseURL}/admin/${uid}`)
-  const {success} = await response.json();
-  return success
-}
+const isAdminCheck = async (uid) => {
+  const response = await fetch(`${baseURL}/admin/${uid}`);
+  const { success } = await response.json();
+  return success;
+};
 
-const getUserProfile = async (uid)=>{
-  const response = await fetch(`${baseURL}/user/${uid}`)
+const getUserProfile = async (uid) => {
+  const response = await fetch(`${baseURL}/user/${uid}`);
   const responseJson = await response.json();
   return responseJson;
-}
+};
 
-const getHighlight = async ()=>{
-  const response = await fetch(`${baseURL}/highlight`)
-  const responseJson = await response.json()
-  return responseJson
-}
+const getHighlight = async () => {
+  const response = await fetch(`${baseURL}/highlight`);
+  const responseJson = await response.json();
+  return responseJson;
+};
 
-module.exports = {getAllKebudayaan, getDetailKebudayaan, getAllArtikel, getDetailArtikel, getAllKelas, getDetailKelas, addUser, addArtikel, addKebudayaan, addKelas, isAdminCheck, getUserProfile, getHighlight}
+module.exports = {
+  getAllKebudayaan,
+  getDetailKebudayaan,
+  getAllArtikel,
+  getDetailArtikel,
+  getAllEvent,
+  getDetailEvent,
+  getAllKelas,
+  getDetailKelas,
+  getAllUser,
+  addUser,
+  addArtikel,
+  addKebudayaan,
+  addKelas,
+  isAdminCheck,
+  getUserProfile,
+  getHighlight,
+};

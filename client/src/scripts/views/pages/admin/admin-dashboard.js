@@ -9,7 +9,7 @@ const AdminDashboard = {
 					>
 						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-user"></i>
-							<a href="#/dashboard/user" class="font-semibold">Pengguna</a>
+							<a href="#/adminuser" class="font-semibold">Pengguna</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Pengguna :</p>
@@ -21,7 +21,7 @@ const AdminDashboard = {
 					>
 						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-camera"></i>
-							<a href="#/dashboard/gallery" class="font-semibold">Galeri</a>
+							<a href="#/admingallery" class="font-semibold">Galeri</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Galeri :</p>
@@ -33,7 +33,7 @@ const AdminDashboard = {
 					>
 						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-book-open"></i>
-							<a href="#/dashboard/article" class="font-semibold">Artikel</a>
+							<a href="#/adminarticle" class="font-semibold">Artikel</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Artikel :</p>
@@ -45,7 +45,7 @@ const AdminDashboard = {
 					>
 						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-calendar-week"></i>
-							<a href="#/dashboard/event" class="font-semibold">Acara</a>
+							<a href="#/adminevent" class="font-semibold">Acara</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Acara :</p>
@@ -57,7 +57,7 @@ const AdminDashboard = {
 					>
 						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-chalkboard"></i>
-							<a href="#/dashboard/course" class="font-semibold">Kelas</a>
+							<a href="#/admincourse" class="font-semibold">Kelas</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Kelas :</p>
