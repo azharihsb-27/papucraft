@@ -1,4 +1,4 @@
-import { getAllKebudayaan } from "../../../utils/api";
+import { getAllKebudayaan } from '../../../utils/api';
 
 const AdminGallery = {
   async render() {
@@ -29,12 +29,13 @@ const AdminGallery = {
 		`;
   },
   async afterRender() {
-		const galleryListContainer = document.getElementById('gallery-list');
-		const { data } = await getAllKebudayaan();
-		galleryListContainer.innerHTML = data.map(({nama, asal_daerah, kategori}, index) => {
-			return `
+    const galleryListContainer = document.getElementById('gallery-list');
+    const { data } = await getAllKebudayaan();
+    galleryListContainer.innerHTML = data
+      .map(({ nama, asal_daerah, kategori }, index) => {
+        return `
 				<tr>
-					<td class="border-2 p-2 whitespace-nowrap w-10 text-center">${index + 1}</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
 					<td class="border-2 p-2 whitespace-nowrap">
 						<a href="#/dashboard/gallery/gallery-detail/:id" class="hover:underline"
 							>${nama}</a
@@ -50,9 +51,10 @@ const AdminGallery = {
 						>
 					</td>
 				</tr>
-			`
-		}).join('');
-	},
+			`;
+      })
+      .join('');
+  },
 };
 
 export default AdminGallery;

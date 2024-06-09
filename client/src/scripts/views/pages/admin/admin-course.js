@@ -1,4 +1,4 @@
-import { getAllKelas } from "../../../utils/api";
+import { getAllKelas } from '../../../utils/api';
 
 const AdminCourse = {
   async render() {
@@ -34,13 +34,14 @@ const AdminCourse = {
   },
 
   async afterRender() {
-		const courseListContainer = document.getElementById('course-list');
-		const { data } = await getAllKelas()
-		console.log(data)
-		courseListContainer.innerHTML = data.map(({nama_kelas, deskripsi, alamat}, index) => {
-			return `
+    const courseListContainer = document.getElementById('course-list');
+    const { data } = await getAllKelas();
+    console.log(data);
+    courseListContainer.innerHTML = data
+      .map(({ nama_kelas, deskripsi, alamat }, index) => {
+        return `
 				<tr>
-					<td class="border-2 p-2 whitespace-nowrap w-10 text-center">${index + 1}</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
 					<td class="border-2 p-2 whitespace-nowrap">
 						<a href="#/dashboard/course/course-detail/:id" class="hover:underline"
 							>${nama_kelas}
@@ -56,9 +57,10 @@ const AdminCourse = {
 						</a>
 					</td>
 				</tr>
-			`
-		}).join('')
-	},
+			`;
+      })
+      .join('');
+  },
 };
 
 export default AdminCourse;
