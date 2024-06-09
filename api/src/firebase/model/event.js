@@ -7,7 +7,11 @@ const {
   set,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
-const { getImageFromStorage, addImageToStorage } = require("../storage");
+const {
+  getImageFromStorage,
+  addImageToStorage,
+  deleteImageFromStorage,
+} = require("../storage");
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -50,6 +54,55 @@ const getDetailEvent = async (id) => {
   }
 };
 
+const updateEventNoImages = async (data, id) => {
+  const dbOld = child(rootReference, `event/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const newData = {
+      ...data,
+      thumbnail: dbOldGetObject.thumbnail,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id,
+    };
+    await set(dbOld, newData);
+    return newData.id;
+  }
+};
+
+const updateEventWithImages = async ({ data, id, thumbnail }) => {
+  await putEvent({ data, id, thumbnail });
+};
+
+const putEvent = async ({ data, id, thumbnail }) => {
+  const dbOld = child(rootReference, `event/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const oldThumbnail = dbOldGetObject.thumbnail;
+    const newData = {
+      ...data,
+      thumbnail: id,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id
+    };
+    const path = "event";
+
+    await deleteImageFromStorage(path, oldThumbnail);
+
+    const dbSet = await set(dbOld, newData);
+    const name = `${id}`;
+    await addImageToStorage({ path, thumbnail, name });
+    return dbSet;
+  }
+};
+
 const addEvent = async (path, data, thumbnail) => {
   const { originalname } = thumbnail;
   const split = originalname.split(".");
@@ -77,8 +130,29 @@ const deleteEvent = async (id) => {
   if (!isExist) {
     return false;
   } else {
+    await deleteImageFromStorage("event", isExist.thumbnail);
     return remove(dbPath);
   }
 };
 
-module.exports = { getAllEvent, getDetailEvent, addEvent, deleteEvent };
+const updateEventViews = async (id) => {
+  const dbPath = child(rootReference, `event/${id}`);
+  const valuedbPath = await get(dbPath);
+  const oldData = valuedbPath.val();
+  if (!oldData) {
+    return false;
+  } else {
+    const newViews = oldData.views + 1;
+    return set(dbPath, { ...oldData, views: newViews });
+  }
+};
+
+module.exports = {
+  getAllEvent,
+  getDetailEvent,
+  addEvent,
+  deleteEvent,
+  updateEventViews,
+  updateEventNoImages,
+  updateEventWithImages,
+};

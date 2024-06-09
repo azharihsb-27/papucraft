@@ -113,7 +113,7 @@ const addKelas = async (data) => {
     method: 'POST',
     body: data,
   });
-  const responseJson = await response.json();
+  const responseJson = await response.json(); 
   return responseJson;
 };
 

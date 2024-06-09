@@ -3,6 +3,7 @@ const {
   ref,
   uploadBytesResumable,
   getDownloadURL,
+  deleteObject,
 } = require("firebase/storage");
 const firebaseSDK = require("./firebase-sdk");
 const getImageFromStorage = async (path, fileName) => {
@@ -26,4 +27,17 @@ const addImageToStorage = async ({ path, thumbnail, name }) => {
   );
 };
 
-module.exports = { getImageFromStorage, addImageToStorage };
+const deleteImageFromStorage = async (path, name) => {
+  const storage = getStorage(firebaseSDK);
+  const storageRef = ref(storage, `${path}/${name}`);
+
+  await deleteObject(storageRef).then((res) => {
+    return res;
+  });
+};
+
+module.exports = {
+  getImageFromStorage,
+  addImageToStorage,
+  deleteImageFromStorage,
+};
