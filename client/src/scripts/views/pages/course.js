@@ -1,7 +1,9 @@
+import { getAllKelas } from "../../utils/api";
+
 const Course = {
   async render() {
     return `
-        <div class="container mx-auto p-4">
+        <div class="container mx-auto p-4" id="course">
 
         <!-- Kelas Populer -->
         <article class="p-7 lg:p-14">
@@ -19,78 +21,40 @@ const Course = {
         </article>
 
         <!-- Semua Kelas -->
-        <article class="p-7 lg:p-14">
+        <article class="p-7 lg:p-14" >
             <h2 class="text-xl font-semibold mb-2 pb-5 text-primary">Semua Kelas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="semuaKelas">
                 <!-- Class Card -->
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-                <!-- Repeat the above block for more classes -->
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
-                <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div class="bg-gray-300 h-54 flex justify-center items-center">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="text-lg font-bold text-primary pb-3">Judul Kelas</h3>
-                        <p class="text-gray-600">Lorem ipsum dolor sit amet consectetur. Scelerisque pellentesque quis amet est viverra. Ut in mollis pharetra vitae felis enim ultricies interdum.</p>
-                        <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded w-full">Lihat Selengkapnya</button>
-                    </div>
-                </div>
+                
             </div>
         </article>
         </div>
     `;
   },
 
-  async afterRender() {},
+  async afterRender() {
+    const container = document.getElementById("semuaKelas");
+    const { success, data, message } = await getAllKelas();
+    console.log(data);
+    if (container) {
+      container.innerHTML += data
+        .map((kelas) => {
+          return `
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="bg-gray-300 h-54 flex justify-center items-center">
+                <img src="${kelas.thumbnail}" alt="Kelas Populer" class="object-cover h-80 w-full"/>
+            </div>
+            <div class="p-4">
+            <h3 class="text-lg font-bold text-primary pb-3">Kelas ${kelas.nama_kelas}</h3>
+            <p class="text-gray-600">${kelas.deskripsi}</p>
+            <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300 w-full"><a href="#/course/:id">Lihat Selengkapnya</a></button>
+            </div>
+        </div>
+            `;
+        })
+        .join("");
+    }
+  },
 };
 
 export default Course;
