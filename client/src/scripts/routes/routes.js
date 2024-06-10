@@ -32,8 +32,8 @@ const userRoutes = {
   '/article/:id': DetailArticle,
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
-  '/addarticle': AddArticle,
   '/profile': UserProfile,
+  '/addarticle': AddArticle,
   '/addevent': AddEvent,
 };
 
@@ -66,6 +66,9 @@ const adminRoutes = {
   '/admindashboard': AdminDashboard,
   '/adminuser': AdminUser,
   '/admingallery': AdminGallery,
+  '/addarticle': AddArticle,
+  '/addevent': AddEvent,
+  '/addkelas': AddKelas,
   '/adminarticle': AdminArticle,
   '/adminevent': AdminEvent,
   '/admincourse': AdminCourse,

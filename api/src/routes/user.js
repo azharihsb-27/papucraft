@@ -5,17 +5,7 @@ const {
   getAllUser,
 } = require("../firebase/model/user");
 const { successResult, errorResult } = require("../result/result");
-
 const app = Router();
-
-app.get("/api/user", async (req, res) => {
-  try {
-    const data = await getAllUser();
-    res.status(200).json(successResult(`Data ditampilkan`, data));
-  } catch (error) {
-    res.status(400).json(errorResult(`Something Error`));
-  }
-});
 
 app.get("/api/user/:id", async (req, res) => {
   const { id } = req.params;

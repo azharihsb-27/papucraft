@@ -105,7 +105,7 @@ const Article = {
     if(wrapperAllArtikel){
       wrapperAllArtikel.innerHTML += data.map(artikel=>{
         return`
-          <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 bg-gray-100 duration-300">
+          <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
             <a href="#/article/${artikel.id}">
             <img src="${artikel.thumbnail}" class="rounded-md max-h-[90%]">
               <div class="py-2">

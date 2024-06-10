@@ -1,8 +1,11 @@
+const admin = require('../admin-sdk')
 const { ref, getDatabase, child, get, set } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 
+
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
+
 
 const getDetailAdmin = async (id) => {
   const dbGet = await get(child(rootReference, `admin/${id}`));
@@ -14,6 +17,35 @@ const getHighlight = async (id) =>{
   return dbGet.val()
 }
 
+const getDetailUser = async (target) =>{
+  const getUser = (await admin.auth().getUserByEmail(target)).toJSON()
+  const {uid, email, metadata} = getUser
+  const {lastSignInTime, creationTime} = metadata 
+  const userData = {uid, email, createdAt: creationTime, lastLogin: lastSignInTime}
+  return userData
+}
+
+const getAllUser = async () =>{
+  const getUser = await admin.auth().listUsers(10)
+  const data = getUser.users.map(user=>{
+    const {lastSignInTime, creationTime} = user.metadata
+    const {uid, email} = user
+    const userData = {uid, email, createdAt: creationTime, lastLogin: lastSignInTime}
+    return userData
+  })
+  return data
+}
+
+const deleteUser = async (uid) =>{
+  const response = admin.auth().deleteUser(uid).then(()=>{
+    return true
+  }).catch(err=>{
+    return err
+  })
+
+  return response
+}
+
 const updateViewsPage = async () =>{
   const dbPath = child(rootReference, 'admin/highlight')
   const valuedbPath = await get(dbPath)
@@ -22,4 +54,8 @@ const updateViewsPage = async () =>{
   return set(dbPath, {...oldData, views: newViews})  
 }
 
-module.exports = { getDetailAdmin, updateViewsPage };
+const isTokenValid = async () =>{
+  admin.auth().verifyIdToken()
+}
+
+module.exports = { getDetailAdmin, updateViewsPage, getDetailUser, getAllUser, deleteUser };
