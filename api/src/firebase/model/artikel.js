@@ -8,7 +8,11 @@ const {
   remove,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
-const { getImageFromStorage, addImageToStorage } = require("../storage");
+const {
+  getImageFromStorage,
+  addImageToStorage,
+  deleteImageFromStorage,
+} = require("../storage");
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -37,35 +41,82 @@ const getAllArtikel = async () => {
 const getDetailArtikel = async (id) => {
   const dbGet = await get(child(rootReference, `artikel/${id}`));
   const dbGetObject = dbGet.val();
-  if(!dbGetObject){
-    return false
-  }{
+  if (!dbGetObject) {
+    return false;
+  }
+  {
     const thumbnail = await getImageFromStorage(
       "artikel",
       dbGetObject.thumbnail
     ).then((res) => {
       return res;
     });
-  
+
     const detailArtikel = { ...dbGetObject, thumbnail };
     return detailArtikel;
+  }
+};
+
+const updateArtikelNoImages = async (data, id) => {
+  const dbOld = child(rootReference, `artikel/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const newData = {
+      ...data,
+      thumbnail: dbOldGetObject.thumbnail,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id,
+    };
+    await set(dbOld, newData);
+    return newData.id;
+  }
+};
+
+const updateArtikelWithImages = async ({ data, id, thumbnail }) => {
+  await putArtikel({ data, id, thumbnail });
+};
+
+const putArtikel = async ({ data, id, thumbnail }) => {
+  const dbOld = child(rootReference, `artikel/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const oldThumbnail = dbOldGetObject.thumbnail;
+    const newData = {
+      ...data,
+      thumbnail: id,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id,
+    };
+    const path = "artikel";
+
+    await deleteImageFromStorage(path, oldThumbnail);
+
+    const dbSet = await set(dbOld, newData);
+    const name = `${id}`;
+    await addImageToStorage({ path, thumbnail, name });
+    return dbSet;
   }
 };
 
 const addArtikel = async (path, data, thumbnail) => {
   const { originalname } = thumbnail;
   const split = originalname.split(".");
-  const getType = split[split.length - 1];
-  await pushArtikel({ path, data, thumbnail, getType });
+  await pushArtikel({ path, data, thumbnail });
 };
 
-const pushArtikel = async ({ path, data, thumbnail, getType }) => {
+const pushArtikel = async ({ path, data, thumbnail }) => {
   const dbRef = child(rootReference, "artikel");
   const id = push(dbRef).key;
   const result = { ...data, thumbnail: id, id };
   const dbPath = child(rootReference, `${path}/${id}`);
-  const { mimetype } = thumbnail;
-  const ext = mimetype.split("/")[1];
   const dbSet = await set(dbPath, result);
   const name = `${id}`;
   await addImageToStorage({ path, thumbnail, name });
@@ -79,13 +130,14 @@ const deleteArtikel = async (id) => {
   if (!isExist) {
     return false;
   } else {
+    await deleteImageFromStorage("artikel", isExist.thumbnail);
     return remove(dbPath);
   }
 };
 
 const updateArtikelViews = async (id) => {
   const dbPath = child(rootReference, `artikel/${id}`);
-  const valuedbPath = await get(dbPath)
+  const valuedbPath = await get(dbPath);
   const oldData = valuedbPath.val();
   if (!oldData) {
     return false;
@@ -101,4 +153,6 @@ module.exports = {
   addArtikel,
   deleteArtikel,
   updateArtikelViews,
+  updateArtikelNoImages,
+  updateArtikelWithImages,
 };

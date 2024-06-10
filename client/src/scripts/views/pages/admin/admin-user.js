@@ -1,3 +1,5 @@
+import { getAllUser } from '../../../utils/api';
+
 const AdminUser = {
   async render() {
     return `
@@ -10,76 +12,41 @@ const AdminUser = {
 								<th class="w-10 p-3 text-sm font-semibol text-center border-2">
 									No.
 								</th>
-								<th class="p-3 text-sm font-semibol text-left border-2">
-									Nama Pengguna
-								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">Email</th>
-								<th class="p-3 text-sm font-semibol text-left border-2">Peran</th>
 								<th class="p-3 text-sm font-semibol text-center border-2">
 									Aksi
 								</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10">1</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/user/user-detail/:id" class="hover:underline"
-										>M Kasim Azhari Hasibuan</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">papucraf@gmail.com</td>
-								<td class="border-2 p-2 whitespace-nowrap">admin</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-							<tr>
-								<td class="border-2 p-2 whitespace-nowrap w-10 text-center">2</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/user/user-detail/:id" class="hover:underline"
-										>M Kasim Azhari Hasibuan</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">papucraf@gmail.com</td>
-								<td class="border-2 p-2 whitespace-nowrap">pengguna</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-							<tr>
-								<td class="border-2 p-2 w-10 whitespace-nowrap text-center">3</td>
-								<td class="border-2 p-2 whitespace-nowrap">
-									<a href="#/dashboard/user/user-detail/:id" class="hover:underline"
-										>M Kasim Azhari Hasibuan</a
-									>
-								</td>
-								<td class="border-2 p-2 whitespace-nowrap">papucraf@gmail.com</td>
-								<td class="border-2 p-2 whitespace-nowrap">pengguna</td>
-								<td class="border-2 p-2 whitespace-nowrap text-center">
-									<a
-										href="#"
-										class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-										>Ubah</a
-									>
-								</td>
-							</tr>
-						</tbody>
+						<tbody id="user-list"></tbody>
 					</table>
 				</div>
 			</div>
 		`;
   },
 
-  async afterRender() {},
+  async afterRender() {
+    const userListContainer = document.querySelector('#user-list');
+    const { data } = await getAllUser();
+
+    userListContainer.innerHTML = data
+      .map(({ email }, index) => {
+        return `
+			<tr>
+				<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
+				<td class="border-2 p-2 whitespace-nowrap">${email}</td>
+				<td class="border-2 p-2 whitespace-nowrap text-center">
+					<a
+						href="#"
+						class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+						>Ubah</a
+					>
+				</td>
+			</tr>
+		`;
+      })
+      .join('');
+  },
 };
 
 export default AdminUser;

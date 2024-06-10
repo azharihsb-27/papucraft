@@ -8,7 +8,11 @@ const {
   remove,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
-const { getImageFromStorage, addImageToStorage } = require("../storage");
+const {
+  getImageFromStorage,
+  addImageToStorage,
+  deleteImageFromStorage,
+} = require("../storage");
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -37,20 +41,70 @@ const getAllKelas = async () => {
 const getDetailKelas = async (id) => {
   const dbGet = await get(child(rootReference, `kelas/${id}`));
   const dbGetObject = dbGet.val();
-  if(!dbGetObject){
-    return false
-  }else{
+  if (!dbGetObject) {
+    return false;
+  } else {
     const thumbnail = await getImageFromStorage(
       "kelas",
       dbGetObject.thumbnail
     ).then((res) => {
       return res;
     });
-  
+
     const detailKelas = { ...dbGetObject, thumbnail };
     return detailKelas;
   }
 };
+
+const updateKelasNoImages = async (data, id) => {
+  const dbOld = child(rootReference, `kelas/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const newData = {
+      ...data,
+      thumbnail: dbOldGetObject.thumbnail,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id,
+    };
+    await set(dbOld, newData);
+    return newData.id;
+  }
+};
+
+const updateKelasWithImages = async ({ data, id, thumbnail }) => {
+  await putKelas({ data, id, thumbnail });
+};
+
+const putKelas = async ({ data, id, thumbnail }) => {
+  const dbOld = child(rootReference, `kelas/${id}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const oldThumbnail = dbOldGetObject.thumbnail;
+    const newData = {
+      ...data,
+      thumbnail: id,
+      author: dbOldGetObject.author,
+      views: dbOldGetObject.views,
+      id
+    };
+    const path = "kelas";
+
+    await deleteImageFromStorage(path, oldThumbnail);
+
+    const dbSet = await set(dbOld, newData);
+    const name = `${id}`;
+    await addImageToStorage({ path, thumbnail, name });
+    return dbSet;
+  }
+};
+
 
 const addKelas = async (path, data, thumbnail) => {
   const { originalname } = thumbnail;
@@ -79,6 +133,7 @@ const deleteKelas = async (id) => {
   if (!isExist) {
     return false;
   } else {
+    await deleteImageFromStorage("kelas", isExist.thumbnail);
     return remove(dbPath);
   }
 };
@@ -101,4 +156,6 @@ module.exports = {
   addKelas,
   deleteKelas,
   updateKelasViews,
+  updateKelasNoImages,
+  updateKelasWithImages,
 };
