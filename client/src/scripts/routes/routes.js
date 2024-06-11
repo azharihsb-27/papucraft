@@ -12,13 +12,17 @@ import DetailCourse from '../views/pages/detail-course';
 import DetailGallery from '../views/pages/detail-gallery';
 import UserProfile from '../views/pages/user-profile';
 import AddKelas from '../views/pages/add-kelas';
-import AddEvent from '../views/pages/add-event';
+// import AddEvent from '../views/pages/add-event';
 import AdminArticle from '../views/pages/admin/admin-article';
 import AdminCourse from '../views/pages/admin/admin-course';
 import AdminGallery from '../views/pages/admin/admin-gallery';
 import AdminDashboard from '../views/pages/admin/admin-dashboard';
 import AdminUser from '../views/pages/admin/admin-user';
 import AdminEvent from '../views/pages/admin/admin-event';
+import AdminGalleryDetail from '../views/pages/admin/admin-gallery-detail';
+import AdminArticleDetail from '../views/pages/admin/admin-article-detail';
+import AdminEventDetail from '../views/pages/admin/admin-event-detail';
+import AdminCourseDetail from '../views/pages/admin/admin-course-detail';
 
 const userRoutes = {
   '/': Home,
@@ -67,16 +71,19 @@ const adminRoutes = {
   '/admindashboard': AdminDashboard,
   '/adminuser': AdminUser,
   '/admingallery': AdminGallery,
+  '/admingallerydetail/:id': AdminGalleryDetail,
   '/addarticle': AddArticle,
   '/addevent': AddEvent,
   '/addkelas': AddKelas,
   '/adminarticle': AdminArticle,
+  '/adminarticledetail/:id': AdminArticleDetail,
   '/adminevent': AdminEvent,
+  '/admineventdetail/:id': AdminEventDetail,
   '/admincourse': AdminCourse,
+  '/admincoursedetail/:id': AdminCourseDetail,
   '/addkebudayaan': AddKebudayaan,
   '/addkelas': AddKelas,
   '/addevent': AddEvent,
-
-}
+};
 
 export { userRoutes, noSessionRoutes, adminRoutes };
