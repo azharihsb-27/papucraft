@@ -5,6 +5,7 @@ const {
   get,
   push,
   set,
+  remove,
 } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 const {
@@ -104,23 +105,28 @@ const putEvent = async ({ data, id, thumbnail }) => {
 };
 
 const addEvent = async (path, data, thumbnail) => {
-  const { originalname } = thumbnail;
-  const split = originalname.split(".");
-  const getType = split[split.length - 1];
-  await pushEvent({ path, data, thumbnail, getType });
+  await pushEvent({ path, data, thumbnail });
 };
 
-const pushEvent = async ({ path, data, thumbnail, getType }) => {
+const pushEvent = async ({ path, data, thumbnail }) => {
   const dbRef = child(rootReference, "event");
+
   const id = push(dbRef).key;
-  const result = { ...data, thumbnail: id, id };
+  const {nama, lokasi, deskripsi, tanggal_mulai, tanggal_selesai, uid, username, createdAt,views} = data
+
+  const result = {nama, lokasi, deskripsi, tanggal_mulai, tanggal_selesai, createdAt, views, thumbnail: id, id};
   const dbPath = child(rootReference, `${path}/${id}`);
-  const { mimetype } = thumbnail;
-  const ext = mimetype.split("/")[1];
+
   const dbSet = await set(dbPath, result);
+
+  const refAuthorId = child(rootReference, `${path}/${id}/` + 'author/uid');
+  const refAuthorUsername = child(rootReference, `${path}/${id}/` + 'author/username');
+
+  const uidSet = await(set(refAuthorId, uid))
+  const usernameSet = await(set(refAuthorUsername, username))
   const name = `${id}`;
   await addImageToStorage({ path, thumbnail, name });
-  return dbSet;
+  return dbSet
 };
 
 const deleteEvent = async (id) => {

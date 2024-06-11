@@ -1,4 +1,4 @@
-import { getAllEvent } from '../../../utils/api';
+import { getAllArtikel, getAllEvent } from '../../../utils/api';
 
 const AdminEvent = {
   async render() {
@@ -32,12 +32,12 @@ const AdminEvent = {
     console.log(data);
 
     eventListContainer.innerHTML = data
-      .map(({ nama, lokasi, tanggal_mulai, tanggal_selesai }, index) => {
+      .map(({ id, nama, lokasi, tanggal_mulai, tanggal_selesai }, index) => {
         return `
 				<tr>
 					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
 					<td class="border-2 p-2 whitespace-nowrap">
-						<a href="#/dashboard/event/event-detail/:id" class="hover:underline"
+						<a href="#/admineventdetail/${id}" class="hover:underline"
 							>${nama}</a
 						>
 					</td>
@@ -46,7 +46,7 @@ const AdminEvent = {
 					<td class="border-2 p-2 whitespace-nowrap">${tanggal_selesai}</td>
 					<td class="border-2 p-2 whitespace-nowrap text-center">
 						<a
-							href="#/dashboard/event/event-edit/:id"
+							href="#/admineventedit/${id}"
 							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
 							>Ubah</a
 						>

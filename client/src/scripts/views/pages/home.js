@@ -31,18 +31,8 @@ const Home = {
               <h2 class="text-xl lg:text-2xl font-medium">Acara Baru</h2>
               <a href="#/event" class="py-3 lg:text-xl font-medium hover:translate-x-2 duration-300">Lihat Semua</a>
             </div>
-            <div class="py-2 lg:py-9 grid md:grid-cols-2 gap-6">
-              <div class="flex flex-col justify-center gap-4">
-                <h3 class="font-semibold text-primary text-xl xl:text-2xl">Nama Acara</h3>
-                <p class="-mt-2 xl:text-lg">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis ab amet quas ipsam, qui ullam molestiae consequatur saepe quam esse quae minus laboriosam fugiat autem, porro voluptate ex eos. A aut necessitatibus optio nihil, dolorum magni, eos molestiae doloribus officia illo harum aperiam. Dolores, repudiandae quos. Quod molestias vitae provident!
-                </p>
-                <a href="#/event/:id" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
-              </div>
-              <img 
-                src="/img/bg.jpg"
-                class="order-first md:order-last"
-              />
+            <div class="py-2 lg:py-9 grid md:grid-cols-2 gap-6" id="acara-baru">
+              
             </div>
           </article>
       </div>
@@ -52,8 +42,8 @@ const Home = {
   async afterRender() {
     const listKebudayaan = document.getElementById('list-kebudayaan');
     const {data} = await getHighlight()
-    const {kebudayaan, artikel} = data
-    listKebudayaan.innerHTML += kebudayaan.slice(0,4).map(budaya=>{
+    const {kebudayaan, artikel, event} = data
+    listKebudayaan.innerHTML += kebudayaan.map(budaya=>{
       return `
         <div class="shadow-xl px-2 py-1 rounded-lg">
           <a href=#/gallery/${budaya.id}>
@@ -72,8 +62,6 @@ const Home = {
     }).join('')
 
     const articleWrapper = document.querySelector('article#article')
-    const newestArticle = artikel[artikel.length - 1]
-    
     if(articleWrapper){
       articleWrapper.innerHTML += `
         <div class="flex justify-between items-center text-primary">
@@ -82,18 +70,37 @@ const Home = {
         </div>
         <div class="py-2 lg:py-9 grid md:grid-cols-2 gap-6">
           <img 
-            src="${newestArticle.thumbnail}"
+            src="${artikel.thumbnail}"
           />
           <div class="flex flex-col justify-center gap-4">
-            <h3 class="font-semibold text-primary text-xl xl:text-2xl">${newestArticle.judul}</h3>
+            <h3 class="font-semibold text-primary text-xl xl:text-2xl">${artikel.judul}</h3>
             <p class="-mt-2 xl:text-lg">
-              ${newestArticle.ringkasan}
+              ${artikel.ringkasan}
             </p>
-            <a href="#/article/${newestArticle.id}" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
+            <a href="#/article/${artikel.id}" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
           </div>
         </div>
       `
     }
+    const acaraWrapper = document.querySelector('#acara-baru')
+    if(acaraWrapper){
+      acaraWrapper.innerHTML += `
+      <div class="flex flex-col justify-center gap-4">
+          <h3 class="font-semibold text-primary text-xl xl:text-2xl">${event.nama}</h3>
+          <p class="-mt-2 xl:text-lg">
+            ${event.deskripsi}
+          </p>
+          <a href="#/event/${event.id}" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
+        </div>
+        <img 
+          src=${event.thumbnail}
+          class="order-first md:order-last"
+        />
+      </div>
+      `
+    }
+
+ 
 
   },
 };

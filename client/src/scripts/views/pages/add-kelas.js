@@ -1,4 +1,5 @@
 import addKelasInitiator from "../../utils/add-kelas-initiator"
+const user = JSON.parse(sessionStorage.getItem('user'))
 
 const AddKelas = {
     async render(){
@@ -41,6 +42,8 @@ const AddKelas = {
         const alamat = document.getElementById('alamat')
         const deskripsi = document.getElementById('deskripsi')
         const thumbnail = document.getElementById('thumbnail')
+
+        console.log(user)
 
         const preview = document.getElementById('preview-thumbnail')
         thumbnail.onchange = (ev) =>{

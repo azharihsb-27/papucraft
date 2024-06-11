@@ -34,12 +34,12 @@ const AdminArticle = {
     const articleListContainer = document.getElementById('article-list');
     const { data } = await getAllArtikel();
     articleListContainer.innerHTML = data
-      .map(({ judul, ringkasan }, index) => {
+      .map(({ id, judul, ringkasan }, index) => {
         return `
 				<tr>
 					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
-					<td class="border-2 p-2 md:whitespace-nowrap">
-						<a href="#/dashboard/article/article-detail/:id" class="hover:underline"
+					<td class="border-2 p-2">
+						<a href="#/adminarticledetail/${id}" class="hover:underline"
 							>${judul}</a
 						>
 					</td>
@@ -57,8 +57,6 @@ const AdminArticle = {
 			`;
       })
       .join('');
-
-    console.log(data);
   },
 };
 

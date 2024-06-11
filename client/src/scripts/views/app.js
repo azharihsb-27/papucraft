@@ -3,6 +3,7 @@ import UrlParser from '../routes/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
 import { isAdmin, token } from '../utils/session-check';
 import NotFound from './pages/not-found';
+const admin = await isAdmin()
 class App {
   constructor({ drawerButton, drawer, content }) {
     this._drawerButton = drawerButton;
@@ -23,14 +24,19 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     let page
-    const admin = await isAdmin()
-    if(token && !admin){
-      page = userRoutes[url]
-    }else if(admin){
-      page = adminRoutes[url]
+    if(token){
+      switch (admin) {
+        case true:
+          page = adminRoutes[url]
+          break;
+        default:
+          page = userRoutes[url]
+          break;
+      }
     }else{
       page = noSessionRoutes[url]
     }
+    
 
     if(page){
       this._content.innerHTML = await page.render();

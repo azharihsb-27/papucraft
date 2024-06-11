@@ -36,8 +36,23 @@ const deleteImageFromStorage = async (path, name) => {
   });
 };
 
+// const getAdminSDKFromStorage = ()=>{
+//  const storage = getStorage(firebaseSDK)
+//  const gsRef = ref(storage, 'gs://papucrafts.appspot.com/admin/credential.json') 
+//  const getUrl = await getDownloadURL(gsRef).then((url=>{
+//   return url
+//  }))
+//  return getUrl
+// }
+
+const getSDK = getDownloadURL(ref(getStorage(firebaseSDK), 'gs://papucrafts.appspot.com/admin/credential.json')).then((url)=>{
+ return url
+})
+  
+
 module.exports = {
   getImageFromStorage,
   addImageToStorage,
   deleteImageFromStorage,
+  getSDK
 };
