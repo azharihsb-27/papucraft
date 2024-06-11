@@ -155,6 +155,12 @@ const updateArtikelViews = async (id) => {
   }
 };
 
+const getArtikelByAuthorId = async (uid) =>{
+  const artikel = await getAllArtikel()
+  const filtered = artikel.filter(art=> art.author.uid == uid)
+  return filtered
+}
+
 module.exports = {
   getAllArtikel,
   getDetailArtikel,
@@ -163,4 +169,5 @@ module.exports = {
   updateArtikelViews,
   updateArtikelNoImages,
   updateArtikelWithImages,
+  getArtikelByAuthorId,
 };

@@ -1,5 +1,6 @@
 import UrlParser from "../../routes/url-parser";
 import { getDetailArtikel } from "../../utils/api";
+import { token } from "../../utils/session-check";
 import { alertError } from "../../utils/show-alert";
 const DetailArticle = {
   async render() {
@@ -12,9 +13,12 @@ const DetailArticle = {
   },
   async afterRender() {
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
+    let uid
+    if(token){
+      uid = JSON.parse(sessionStorage.getItem('user')).uid
+    }
     const { success, data, message } = await getDetailArtikel(id);
     const wrapper = document.querySelector("div#detail");
-    console.log(id);
     if (!success) {
       alertError(message);
     } else {
@@ -31,8 +35,13 @@ const DetailArticle = {
                         <a class="ml-auto flex items-center gap-1 text-sm hover:text-blue-500 cursor-pointer" href="${
                           data.source
                         }">
-                            <span class="">source</span>
-                            <span class="material-symbols-outlined">Public</span>
+                        ${data.author.uid === uid ? `
+                            <a hre="#/editarticle/${data.id}" class="px-2 py-1 ml-1 bg-green-400 hover:border hover:border-2 hover:border-green-400 text-white hover:text-black rounded-lg hover:bg-transparent cursor-pointer transition">Edit Artikel</a>
+                            ` : 
+                        ''}
+                          
+                          <span class="">source</span>
+                          <span class="material-symbols-outlined">Public</span>
                         </a>
                     </div>
                 </div>

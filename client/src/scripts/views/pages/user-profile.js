@@ -20,9 +20,9 @@ const UserProfile = {
 
                         <div class="flex w-full items-center">
                         <h4 class="text-lg">Acara Anda</h4>
-                        <a href="/#/addarticle" class="w-[150px] text-center text-white hover:text-primary px-2 bg-primary hover:border hover:border-1 hover:border-primary hover:bg-transparent rounded-md ml-auto transition">Tambah Acara</a>
+                        <a href="/#/addevent" class="w-[150px] text-center text-white hover:text-primary px-2 bg-primary hover:border hover:border-1 hover:border-primary hover:bg-transparent rounded-md ml-auto transition">Tambah Acara</a>
                         </div>
-                        <div class="px-4" id="Acara-anda">
+                        <div class="px-4" id="acara-anda">
                             <p>Belum Ada Acara
                         </div>
                     </div>

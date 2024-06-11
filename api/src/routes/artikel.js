@@ -8,6 +8,7 @@ const {
   updateArtikelViews,
   updateArtikelNoImages,
   updateArtikelWithImages,
+  getArtikelByAuthorId,
 } = require("../firebase/model/artikel");
 const { successResult, errorResult } = require("../result/result");
 
@@ -30,6 +31,22 @@ app.get("/api/artikel/:id", async (req, res) => {
     res.status(400).json(errorResult("Data tidak ditemukan"));
   }
 });
+
+app.get("/api/artikel/author/:uid", async (req, res) => {
+  const { uid } = req.params;
+  try{
+    const data = await getArtikelByAuthorId(uid)
+    if(data){
+      res.status(200).json(successResult(`Data artikel dengan author${uid} ditampilkan`, data));
+    }else{
+      res.status(400).json(errorResult("Data tidak ditemukan"));
+    }
+  }catch(err){
+    res.status(400).json(errorResult('Something Error'))
+  }
+});
+
+
 
 app.delete("/api/artikel/:id", async (req, res) => {
   const { id } = req.params;

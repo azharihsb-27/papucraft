@@ -1,28 +1,10 @@
 import {addEvent, getUserProfile} from './api'
 import {token} from './session-check'
 import { alertError, alertSuccess } from './show-alert'
-let author
-if(token){
-    const user = JSON.parse(sessionStorage.getItem('user'))
-    const loginMethod = JSON.parse(sessionStorage.getItem('login-method'))
-    if(loginMethod == 'google'){
-        const {uid, displayName} = user
-        author = {
-            uid, username: displayName
-        }
-    }else{
-        const userData = await getUserProfile(user.uid)
-        const {username, uid} = userData.data
-        author = {
-            uid, username
-        }
-    }
-}
-
 
 const addEventInitiator = {
     init({form, nama, lokasi, deskripsi, tglMulai, tglSelesai, thumbnail}){
-        form.addEventListener('submit', ev=>{
+        form.addEventListener('submit', async (ev)=>{
             ev.preventDefault()
             const namaValue = nama.value
             const lokasiValue = lokasi.value
@@ -30,6 +12,25 @@ const addEventInitiator = {
             const tglMulaiValue = tglMulai.value
             const tglSelesaiValue = tglSelesai.value
             const file = thumbnail.files
+
+            let author
+            if(token){
+                const user = JSON.parse(sessionStorage.getItem('user'))
+                const loginMethod = sessionStorage.getItem('loginMethod')
+                if(loginMethod == 'google'){
+                    const {uid, displayName} = user
+                   author = {
+                        uid, username: displayName
+                    }
+                }else{
+                    const userData = await getUserProfile(user.uid)
+                    const {username, uid} = userData.data
+                    author = {
+                        uid, username
+                    }
+                }
+            }
+
 
             const dataEvent = new FormData()
             dataEvent.set('nama', namaValue)
@@ -39,7 +40,7 @@ const addEventInitiator = {
             dataEvent.set('tanggal_selesai', tglSelesaiValue)
             dataEvent.set('file', file[0])
             dataEvent.set('uid', author.uid)
-            dataEvent.set('username', username.uid)
+            dataEvent.set('username', author.username)
 
             this._addEvent(dataEvent)
         }) 
