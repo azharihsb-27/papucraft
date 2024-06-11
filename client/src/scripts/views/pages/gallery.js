@@ -1,5 +1,4 @@
 import { getAllKebudayaan } from "../../utils/api";
-import SwitchKebudayaanInitiator from "../../utils/switch-kebudayaan.initiator";
 
 const Gallery = {
   async render() {

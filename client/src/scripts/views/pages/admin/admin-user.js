@@ -13,6 +13,8 @@ const AdminUser = {
 									No.
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">Email</th>
+								<th class="p-3 text-sm font-semibol text-left border-2">Created At</th>
+								<th class="p-3 text-sm font-semibol text-left border-2">Last Login</th>
 								<th class="p-3 text-sm font-semibol text-center border-2">
 									Aksi
 								</th>
@@ -30,11 +32,13 @@ const AdminUser = {
     const { data } = await getAllUser();
 
     userListContainer.innerHTML = data
-      .map(({ email }, index) => {
+      .map(({ email, createdAt, lastLogin }, index) => {
         return `
 			<tr>
 				<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
 				<td class="border-2 p-2 whitespace-nowrap">${email}</td>
+				<td class="border-2 p-2 whitespace-nowrap">${createdAt}</td>
+				<td class="border-2 p-2 whitespace-nowrap">${lastLogin}</td>
 				<td class="border-2 p-2 whitespace-nowrap text-center">
 					<a
 						href="#"

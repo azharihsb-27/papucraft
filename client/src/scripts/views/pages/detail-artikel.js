@@ -26,7 +26,7 @@ const DetailArticle = {
                     }" class="md:max-h-[5%] rounded-lg" id="">
                     <div class="flex mt-2 gap-2 items-center">
                         <h3 class="font-bold">${
-                          data.source ? "Internet" : data.username
+                          data.author.username
                         }</h3> - <p class="text-sm">23/12/2021</p>
                         <a class="ml-auto flex items-center gap-1 text-sm hover:text-blue-500 cursor-pointer" href="${
                           data.source

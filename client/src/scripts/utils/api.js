@@ -117,6 +117,15 @@ const addKelas = async (data) => {
   return responseJson;
 };
 
+const addEvent = async (data) => {
+  const response = await fetch(`${baseURL}/event`, {
+    method: 'POST',
+    body: data,
+  });
+  const responseJson = await response.json(); 
+  return responseJson;
+};
+
 const isAdminCheck = async (uid) => {
   const response = await fetch(`${baseURL}/admin/${uid}`);
   const { success } = await response.json();
@@ -135,6 +144,12 @@ const getHighlight = async () => {
   return responseJson;
 };
 
+const getArtikelByAuthor = async (uid) =>{
+  const response = await fetch(`${baseURL}/artikel/author/${uid}`)
+  const responseJson = response.json()
+  return responseJson
+}
+
 module.exports = {
   getAllKebudayaan,
   getDetailKebudayaan,
@@ -152,4 +167,6 @@ module.exports = {
   isAdminCheck,
   getUserProfile,
   getHighlight,
+  addEvent,
+  getArtikelByAuthor,
 };

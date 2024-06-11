@@ -44,19 +44,23 @@ app.get("/api/kebudayaan/:id", async (req, res) => {
 
 app.post("/api/kebudayaan", upload.single("file"), async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-  const body = { ...req.body, views: 0 };
-  if (!req.file) {
-    res.status(400).json(errorResult("Fill the thumbnail!"));
-    return;
-  }
-  const thubmnail = req.file;
-  const { mimetype } = thubmnail;
-  const imageOnly = mimetype.split("/")[0];
-  if (imageOnly !== "image") {
-    res.status(400).json(errorResult("Image Only!"));
-  } else {
-    await addKebudayaan("kebudayaan", body, thubmnail);
-    res.status(200).json(successResult("Add Kebudayaan Success", body));
+  try{
+    const body = { ...req.body, views: 0 };
+    if (!req.file) {
+      res.status(400).json(errorResult("Fill the thumbnail!"));
+      return;
+    }
+    const thubmnail = req.file;
+    const { mimetype } = thubmnail;
+    const imageOnly = mimetype.split("/")[0];
+    if (imageOnly !== "image") {
+      res.status(400).json(errorResult("Image Only!"));
+    } else {
+      await addKebudayaan("kebudayaan", body, thubmnail);
+      res.status(200).json(successResult("Add Kebudayaan Success"));
+    }
+  }catch(err){
+    res.status(400).json(errorResult('Something Error'))
   }
 });
 

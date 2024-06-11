@@ -107,17 +107,25 @@ const putArtikel = async ({ data, id, thumbnail }) => {
 };
 
 const addArtikel = async (path, data, thumbnail) => {
-  const { originalname } = thumbnail;
-  const split = originalname.split(".");
   await pushArtikel({ path, data, thumbnail });
 };
 
 const pushArtikel = async ({ path, data, thumbnail }) => {
   const dbRef = child(rootReference, "artikel");
+  
   const id = push(dbRef).key;
-  const result = { ...data, thumbnail: id, id };
+  const {body, judul, ringkasan, source, views, createdAt, uid, username} = data
+
+  const result = {body, judul, ringkasan, source, views, createdAt, thumbnail: id, id}
   const dbPath = child(rootReference, `${path}/${id}`);
+
   const dbSet = await set(dbPath, result);
+  const refAuthorId = child(rootReference, `${path}/${id}/` + 'author/uid');
+  const refAuthorUsername = child(rootReference, `${path}/${id}/` + 'author/username');
+
+  const uidSet = await(set(refAuthorId, uid))
+  const usernameSet = await(set(refAuthorUsername, username))
+  
   const name = `${id}`;
   await addImageToStorage({ path, thumbnail, name });
   return dbSet;
