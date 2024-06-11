@@ -36,14 +36,13 @@ const AdminCourse = {
   async afterRender() {
     const courseListContainer = document.getElementById('course-list');
     const { data } = await getAllKelas();
-    console.log(data);
     courseListContainer.innerHTML = data
-      .map(({ nama_kelas, deskripsi, alamat }, index) => {
+      .map(({ id, nama_kelas, deskripsi, alamat }, index) => {
         return `
 				<tr>
 					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
 					<td class="border-2 p-2 whitespace-nowrap">
-						<a href="#/dashboard/course/course-detail/:id" class="hover:underline"
+						<a href="#/admincoursedetail/${id}" class="hover:underline"
 							>${nama_kelas}
 						</a>
 					</td>
@@ -51,7 +50,7 @@ const AdminCourse = {
 					<td class="border-2 p-2">${alamat}</td>
 					<td class="border-2 p-2 whitespace-nowrap text-center">
 						<a
-							href="#/dashboard/course/course-edit/:id"
+							href="#/admincourseedit/${id}"
 							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
 								>Ubah
 						</a>
