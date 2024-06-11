@@ -84,7 +84,6 @@ const adminRoutes = {
   '/addkebudayaan': AddKebudayaan,
   '/addkelas': AddKelas,
   '/addevent': AddEvent,
-
-}
+};
 
 export { userRoutes, noSessionRoutes, adminRoutes };
