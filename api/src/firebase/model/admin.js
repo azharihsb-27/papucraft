@@ -26,7 +26,7 @@ const getDetailUser = async (target) =>{
 }
 
 const getAllUser = async () =>{
-  const getUser = await admin.auth().listUsers(10)
+  const getUser = await admin.auth().listUsers(10) 
   const data = getUser.users.map(user=>{
     const {lastSignInTime, creationTime} = user.metadata
     const {uid, email} = user

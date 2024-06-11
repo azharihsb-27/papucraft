@@ -49,14 +49,14 @@ app.post("/api/event", upload.single("file"), async (req, res) => {
     res.status(400).json(errorResult("Fill the thumbnail!"));
     return;
   }
-  const thubmnail = req.file;
-  const { mimetype } = thubmnail;
+  const thumbnail = req.file;
+  const { mimetype } = thumbnail;
   const imageOnly = mimetype.split("/")[0];
   if (imageOnly !== "image") {
     res.status(400).json(errorResult("Image Only!"));
   } else {
-    await addEvent("event", body, thubmnail);
-    res.status(200).json(successResult("Add Event Success", body));
+    const data = await addEvent("event", body, thumbnail);
+    res.status(200).json(successResult("Add Event Success", data));
   }
 });
 

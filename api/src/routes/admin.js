@@ -29,13 +29,13 @@ app.get("/api/admin/:id", async (req, res) => {
   }
 });
 
-app.get("/api/user/:uid", async (req,res)=>{
-  const {uid} = req.params
-  try{
-    const data = await getDetailUser(uid)
-    res.status(200).json(successResult(`Data ${uid} ditampilkan`), data);
-  }catch (err){
-    res.status(400).json(errorResult(`Data ${uid} tidak ada`));
+app.get("/api/admin/user/:email", async (req,res)=>{
+  const {email} = req.params
+  const data = await getDetailUser(email)
+  if(data){
+    res.status(200).json(successResult(`Data ${email} ditampilkan`,data));
+  }else{
+    res.status(400).json(errorResult(`Data ${email} tidak ada`));
   }
 })
 
@@ -48,7 +48,7 @@ app.get("/api/user", async (req,res)=>{
   }
 })
 
-app.delete("/api/user/:id", async (req, res) => {
+app.delete("/api/admin/user/:id", async (req, res) => {
   const { id } = req.params;
   const data = await getDetailUser(id);
   if (data) {

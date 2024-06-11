@@ -2,7 +2,6 @@ const { Router } = require("express");
 const {
   getDetailUser,
   addUser,
-  getAllUser,
 } = require("../firebase/model/user");
 const { successResult, errorResult } = require("../result/result");
 const app = Router();

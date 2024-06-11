@@ -56,7 +56,7 @@ app.post("/api/artikel", upload.single("file"), async (req, res) => {
     res.status(400).json(errorResult("Image Only!"));
   } else {
     await addArtikel("artikel", body, thubmnail);
-    res.status(201).json(successResult("Add Artikel Success", body));
+    res.status(201).json(successResult("Add Artikel Success"));
   }
 });
 

@@ -62,6 +62,7 @@ const adminRoutes = {
   '/signup': SignUp,
   '/article/:id': DetailArticle,
   '/course/:id': DetailCourse,
+  '/profile': UserProfile,
   '/gallery/:id': DetailGallery,
   '/admindashboard': AdminDashboard,
   '/adminuser': AdminUser,

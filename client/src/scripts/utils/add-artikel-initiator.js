@@ -1,6 +1,23 @@
 import {addArtikel} from './api'
+import {token} from './session-check'
 import {alertError, alertSuccess} from './show-alert'
-
+let author
+if(token){
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    const loginMethod = JSON.parse(sessionStorage.getItem('login-method'))
+    if(loginMethod == 'google'){
+        const {uid, displayName} = user
+        author = {
+            uid, username: displayName
+        }
+    }else{
+        const userData = await getUserProfile(user.uid)
+        const {username, uid} = userData.data
+        author = {
+            uid, username
+        }
+    }
+}
 
 const addArtikelInitiator = {
     init({form, judul, source, ringkasan, editorValue, thumbnail}){
@@ -18,6 +35,9 @@ const addArtikelInitiator = {
             dataArtikel.set('ringkasan', ringkasanValue)
             dataArtikel.set('body', body)
             dataArtikel.set('file', file[0])
+            dataArtikel.set('uid', author.uid)
+            dataArtikel.set('username', username.uid)
+
             if(body.length < 1){
                 alertError('Mohon isi semua input!')
             }else{
@@ -29,7 +49,7 @@ const addArtikelInitiator = {
         const {success, data, message} = await addArtikel(dataArtikel)
         if(success){
             alertSuccess(message)
-            setTimeout(()=> location.href = '/', 3000)
+            setTimeout(()=> location.href = '#/article', 3000)
         }else{
             alertError(message)
         }
