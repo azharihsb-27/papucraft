@@ -16,7 +16,7 @@ const AdminArticle = {
 									Judul
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">
-									Deskripsi singkat
+									Ringkasan
 								</th>
 								<th class="p-3 text-sm font-semibol text-center border-2">
 									Aksi
@@ -48,7 +48,7 @@ const AdminArticle = {
 					</td>
 					<td class="border-2 p-2 whitespace-nowrap text-center">
 						<a
-							href="#/dashboard/article/article-edit/:id"
+							href="#/adminarticleedit/${id}"
 							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
 							>Ubah</a
 						>

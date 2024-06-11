@@ -12,7 +12,7 @@ import DetailCourse from '../views/pages/detail-course';
 import DetailGallery from '../views/pages/detail-gallery';
 import UserProfile from '../views/pages/user-profile';
 import AddKelas from '../views/pages/add-kelas';
-// import AddEvent from '../views/pages/add-event';
+import AddEvent from '../views/pages/add-event';
 import AdminArticle from '../views/pages/admin/admin-article';
 import AdminCourse from '../views/pages/admin/admin-course';
 import AdminGallery from '../views/pages/admin/admin-gallery';
@@ -23,6 +23,10 @@ import AdminGalleryDetail from '../views/pages/admin/admin-gallery-detail';
 import AdminArticleDetail from '../views/pages/admin/admin-article-detail';
 import AdminEventDetail from '../views/pages/admin/admin-event-detail';
 import AdminCourseDetail from '../views/pages/admin/admin-course-detail';
+import AdminGalleryEdit from '../views/pages/admin/admin-gallery-edit';
+import AdminArticleEdit from '../views/pages/admin/admin-article-edit';
+import AdminEventEdit from '../views/pages/admin/admin-event-edit';
+import AdminCourseEdit from '../views/pages/admin/admin-course-edit';
 
 const userRoutes = {
   '/': Home,
@@ -72,15 +76,19 @@ const adminRoutes = {
   '/adminuser': AdminUser,
   '/admingallery': AdminGallery,
   '/admingallerydetail/:id': AdminGalleryDetail,
+  '/admingalleryedit/:id': AdminGalleryEdit,
   '/addarticle': AddArticle,
   '/addevent': AddEvent,
   '/addkelas': AddKelas,
   '/adminarticle': AdminArticle,
   '/adminarticledetail/:id': AdminArticleDetail,
+  '/adminarticleedit/:id': AdminArticleEdit,
   '/adminevent': AdminEvent,
   '/admineventdetail/:id': AdminEventDetail,
+  '/admineventedit/:id': AdminEventEdit,
   '/admincourse': AdminCourse,
   '/admincoursedetail/:id': AdminCourseDetail,
+  '/admincourseedit/:id': AdminCourseEdit,
   '/addkebudayaan': AddKebudayaan,
   '/addkelas': AddKelas,
   '/addevent': AddEvent,

@@ -6,7 +6,7 @@ const UserProfile = {
             <div class="content p-7 lg:p-14">
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Profil User</h2>
                 <div class="w-full flex flex-col md:flex-row md:justify-center mt-2 gap-5">
-                    <div class="w-full md:w-2/5 p-4 flex flex-col items-center shadow-lg gap-2 p-2 rounded-md mb-4">
+                    <div class="w-full md:w-2/5 p-4 flex flex-col items-center shadow-lg gap-2 rounded-md mb-4">
                         <img class="w-[175px] h-[175px] rounded-full" id="profile-image" alt="profile image">
                         <h3 class="text-xl font-semibold" id="profile-name"></h3>
                     </div>

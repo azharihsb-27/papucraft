@@ -29,12 +29,12 @@ const AdminGalleryDetail = {
             
           </div>
           <div class="flex flex-col gap-2 w-full">
-            <label for="kategori" class="inline-block">Kategori</label>
-            <span class="p-2 border-2 border-primary text-gray-500">${data.kategori}</span>
-          </div>
-          <div class="flex flex-col gap-2 w-full">
             <label for="asal_daerah" class="inline-block">Asal daerah</label>
             <span class="p-2 border-2 border-primary text-gray-500">${data.asal_daerah}</span>
+          </div>
+          <div class="flex flex-col gap-2 w-full">
+            <label for="kategori" class="inline-block">Kategori</label>
+            <span class="p-2 border-2 border-primary text-gray-500">${data.kategori}</span>
           </div>
           <div class="flex flex-col gap-2 w-full">
             <label for="deskripsi" class="inline-block">Deskripsi</label>
