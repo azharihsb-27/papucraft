@@ -23,7 +23,7 @@ const AddArticle = {
                 <label>Body<span class="text-red-500 text-sm">*</span></label>
                 <quill-editor></quill-editor>
                 <div class="flex flex-col gap-2">
-                    <label for="thumbnail">Thumbnail</label>
+                    <label for="thumbnail">Thumbnail<span class="text-red-500 text-sm">*</span></label>
                     <input type="file" name="thumbnail" id="thumbnail" class="border-2 border-primary outline-none px-2 py-1" required/>
                 </div>
                 <button type="submit" class="w-[40%] ml-auto gap-2 md:w-[20%] rounded-md hover:bg-white bg-primary text-white hover:text-primary border border-1 border-slate-800 p-2 transition">Tambah Artikel</button>

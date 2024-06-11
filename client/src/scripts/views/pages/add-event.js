@@ -1,12 +1,11 @@
 import addEventInitiator from "../../utils/add-event-initiator"
-import { getUserProfile } from "../../utils/api"
 
 
 const AddEvent = {
     async render(){
         return `
         <div class="content p-7 lg:p-14">
-            <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Kelas</h2>
+            <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Event</h2>
             <div class="flex flex-col md:flex-row w-full mt-2 justify-center bg-gray-100 shadow-xl rounded-lg">
                <div class="w-full md:w-[30%] flex flex-col justify-center items-center md:py-0 py-2 px-2 gap-1">
                     <p>Preview Thumbnail</p>
@@ -40,7 +39,7 @@ const AddEvent = {
                         <label for="thumbnail">Thumbnail<span class="text-red-500 text-sm">*</span></label>
                         <input type="file" accept="image/*" name="thumbnail" id="thumbnail" class="border-2 border-primary outline-none px-2 py-1" required/>
                     </div>
-                    <button type="submit" class="w-[40%] ml-auto gap-2 md:w-[20%] rounded-md hover:bg-white bg-primary text-white hover:text-primary border border-1 border-slate-800 p-2 transition">Tambah Kelas</button>
+                    <button type="submit" class="w-[40%] ml-auto gap-2 md:w-[20%] rounded-md hover:bg-white bg-primary text-white hover:text-primary border border-1 border-slate-800 p-2 transition">Tambah Event</button>
                 </form>
                </div>
             </div>

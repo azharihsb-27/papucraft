@@ -7,7 +7,21 @@ const rootReference = ref(database);
 
 const getDetailUser = async (id) => {
   const dbGet = await get(child(rootReference, `user/${id}`));
-  return dbGet.val();
+  const dbGetObject = dbGet.val();
+  if (!dbGetObject) {
+    return false;
+  }
+  {
+    const profile_image = await getImageFromStorage(
+      "user",
+      dbGetObject.profile_image
+    ).then((res) => {
+      return res;
+    });
+
+    const detailUser = { ...dbGetObject, profile_image };
+    return detailUser;
+  }
 };
 
 const getAllUser = async () =>{

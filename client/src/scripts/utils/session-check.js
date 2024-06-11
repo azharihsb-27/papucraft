@@ -1,7 +1,7 @@
 import { signOut,getAuth, onAuthStateChanged, getRedirectResult } from "firebase/auth"
 import app from './firebase-sdk'
 import { alertSuccess } from "./show-alert"
-import { isAdminCheck } from "./api"
+import { getUserProfile, isAdminCheck } from "./api"
 
 const auth = getAuth(app)
 
@@ -60,4 +60,30 @@ const isAdmin = async () =>{
 
 const token = sessionStorage.getItem('token')
 
-export {sessionButton, logout, getSession, token, isAdmin}
+const showProfile = async () =>{
+    const navSession = document.getElementById('nav-session')
+    const btnLogout = document.getElementById('btn-logout')
+    const iconProfile = document.getElementById('icon-profile')
+    const loginMethod = sessionStorage.getItem('loginMethod')
+    if(token){
+        iconProfile.classList.remove('hidden')
+        if(loginMethod === 'google'){
+            const userData = JSON.parse(sessionStorage.getItem('user'))
+            iconProfile.setAttribute('src',userData.photoURL)
+        }else{
+            const {uid} = JSON.parse(sessionStorage.getItem('user'))
+            const {data} = await getUserProfile(uid)
+            const urlImage = data.profile_image
+            iconProfile.setAttribute('src',urlImage)
+        }
+        iconProfile.addEventListener('click', (ev)=>{
+            location.href = '#/profile'
+        } 
+        )
+    }else{
+        iconProfile.classList.add('hidden')
+    }
+}
+
+
+export {sessionButton, logout, getSession, token, isAdmin, showProfile}

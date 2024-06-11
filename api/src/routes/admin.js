@@ -15,7 +15,6 @@ app.get("/api/highlight", async (req, res) => {
   const eventTerbaru = dataEvent[dataEvent.length - 1]
   await updateViewsPage();
   const data = { kebudayaan: dataKebudayaan, artikel: artikelTerbaru,event: eventTerbaru };
-  console.log(eventTerbaru)
   res.status(200).json(successResult("Data berhasil ditampilkan", data));
 });
 

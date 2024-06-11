@@ -49,7 +49,7 @@ const Home = {
           <a href=#/gallery/${budaya.id}>
             <img
               src=${budaya.thumbnail}
-              class="rounded-xl h-[150px] md:h-[170px] w-full object-fit object-center"
+              class="rounded-xl h-[170px] w-full object-fit object-center"
               alt=${budaya.nama}
             />
             <div class="py-2">
