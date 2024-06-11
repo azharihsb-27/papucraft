@@ -16,10 +16,10 @@ const AdminCourse = {
 									Nama kelas
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">
-									Deskripsi
+									Alamat
 								</th>
 								<th class="p-3 text-sm font-semibol text-left border-2">
-									Alamat
+									Deskripsi
 								</th>
 								<th class="p-3 text-sm font-semibol text-center border-2">
 									Aksi
@@ -46,8 +46,8 @@ const AdminCourse = {
 							>${nama_kelas}
 						</a>
 					</td>
-					<td class="border-2 p-2">${deskripsi}</td>
 					<td class="border-2 p-2">${alamat}</td>
+					<td class="border-2 p-2">${deskripsi}</td>
 					<td class="border-2 p-2 whitespace-nowrap text-center">
 						<a
 							href="#/admincourseedit/${id}"

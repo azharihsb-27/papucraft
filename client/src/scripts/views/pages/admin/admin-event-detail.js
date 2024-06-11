@@ -44,7 +44,7 @@ const AdminEventDetail = {
             <label for="deskripsi" class="inline-block">Deskripsi</label>
             <span class="p-2 border-2 border-primary text-gray-500">${data.deskripsi}</span>
           </div>
-          <a href="#/admingalleryedit/${data.id}" class="px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300">Ubah</a>
+          <a href="#/admineventedit/${data.id}" class="px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300">Ubah</a>
       `;
     }
   },
