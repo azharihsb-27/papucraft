@@ -9,7 +9,6 @@ class QuillEditor extends HTMLElement{
     render(){
         this.innerHTML += `
             <div id="editor">
-                <p>Isi Body Artikel</p>
             </div>
         `
         const toolbarOptions = [

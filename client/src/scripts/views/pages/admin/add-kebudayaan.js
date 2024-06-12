@@ -1,4 +1,4 @@
-import addKebudayaanInitiator from '../../utils/add-kebudayaan-initiator';
+import addKebudayaanInitiator from '../../../utils/add-kebudayaan-initiator';
 
 const AddKebudayaan = {
     async render(){

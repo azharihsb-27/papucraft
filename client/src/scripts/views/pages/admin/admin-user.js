@@ -45,6 +45,10 @@ const AdminUser = {
 						class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
 						>Ubah</a
 					>
+					<a
+							class="block w-full px-4 my-1 py-2 bg-primary text-white rounded hover:bg-red-700 duration-300"
+							>Hapus</a
+						>
 				</td>
 			</tr>
 		`;

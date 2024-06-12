@@ -5,7 +5,7 @@ import { alertError } from "../../utils/show-alert";
 const DetailGallery = {
   async render() {
     return `
-    <div class="container mx-auto p-4" id="detail">
+    <div class="container mx-auto p-7 lg:p-14" id="detail">
         
     </div>
     `;
@@ -32,7 +32,7 @@ const DetailGallery = {
         <article>
             <h1 class="text-2xl font-bold text-red-600">Galery Detail</h1>
             <div class="mt-4">
-            <img src="${data.thumbnail}" alt="Kelas Populer" class="object-cover h-full w-full"/>
+            <img src="${data.thumbnail}" alt="Kelas Populer" class="object-contain max-h-96 w-full"/>
                 <h2 class="mt-4 text-xl font-semibold text-primary">${data.nama}</h2>
                 <p class="text-gray-500">${data.asal_daerah}</p>
                 <h3 class="mt-4 text-lg font-bold text-red-600">Deskripsi</h3>

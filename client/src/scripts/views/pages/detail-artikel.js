@@ -27,7 +27,7 @@ const DetailArticle = {
                 <div class="flex flex-col gap-2 h-[20%]">
                     <img src="${
                       data.thumbnail
-                    }" class="md:max-h-[5%] rounded-lg" id="">
+                    }" class="md:max-h-96 object-contain rounded-lg" id="">
                     <div class="flex mt-2 gap-2 items-center">
                         <h3 class="font-bold">${
                           data.author.username
@@ -36,7 +36,7 @@ const DetailArticle = {
                           data.source
                         }">
                         ${data.author.uid === uid ? `
-                            <a hre="#/editarticle/${data.id}" class="px-2 py-1 ml-1 bg-green-400 hover:border hover:border-2 hover:border-green-400 text-white hover:text-black rounded-lg hover:bg-transparent cursor-pointer transition">Edit Artikel</a>
+                            <a href="#/editarticle/${data.id}" class="px-2 py-1 ml-1 bg-green-400 hover:border hover:border-2 hover:border-green-400 text-white hover:text-black rounded-lg hover:bg-transparent cursor-pointer transition">Edit Artikel</a>
                             ` : 
                         ''}
                           

@@ -1,8 +1,12 @@
 import { adminRoutes, noSessionRoutes, userRoutes } from '../routes/routes';
 import UrlParser from '../routes/url-parser';
 import DrawerInitiator from '../utils/drawer-initiator';
-import { isAdmin, showProfile, token } from '../utils/session-check';
+import { getSession, isAdmin, sessionButton, showProfile, token } from '../utils/session-check';
 import NotFound from './pages/not-found';
+const btnLogin = document.querySelector('a#btn-signIn');
+const btnRegister = document.querySelector('a#btn-signUp');
+const btnLogout = document.querySelector('a#btn-logout');
+
 class App {
   constructor({ drawerButton, drawer, content }) {
     this._drawerButton = drawerButton;
@@ -22,6 +26,8 @@ class App {
 
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
+    getSession()
+    sessionButton({ btnLogin, btnLogout, btnRegister });
     await showProfile()
     let page
     const admin = await isAdmin()

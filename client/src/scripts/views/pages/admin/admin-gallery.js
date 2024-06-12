@@ -43,11 +43,15 @@ const AdminGallery = {
 					</td>
 					<td class="border-2 p-2 whitespace-nowrap">${asal_daerah}</td>
 					<td class="border-2 p-2 whitespace-nowrap">${kategori}</td>
-					<td class="border-2 p-2 whitespace-nowrap text-center">
+					<td class="border-2 p-2 whitespace-nowrap text-center gap-2">
 						<a
 							href="#/admingalleryedit/${id}"
-							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+							class="block w-full px-4 my-1 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
 							>Ubah</a
+						>
+						<a
+							class="block w-full px-4 my-1 py-2 bg-primary text-white rounded hover:bg-red-700 duration-300"
+							>Hapus</a
 						>
 					</td>
 				</tr>

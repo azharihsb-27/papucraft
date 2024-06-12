@@ -12,7 +12,7 @@ const Gallery = {
                   <button class="px-2 py-1 border-2 border-primary rounded-full hover:bg-primary hover:text-white duration-300" id="alat-musik">Alat Musik</button>
                   <button class="px-2 py-1 border-2 border-primary rounded-full hover:bg-primary hover:text-white duration-300" id="makanan">Makanan</button>
                 </div>
-                <div class="mt-4">
+                <div class="my-2">
                   <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2" id="list-gallery">
                     
                     
