@@ -41,7 +41,6 @@ const editEventInitiator = {
             dataEvent.set('deskripsi', deskripsiValue)
             dataEvent.set('tanggal_mulai', tglMulaiValue)
             dataEvent.set('tanggal_selesai', tglSelesaiValue)
-            dataEvent.set('file', file[0])
             dataEvent.set('uid', author.uid)
             dataEvent.set('username', author.username)
             if(file.length){
