@@ -40,7 +40,6 @@ const editKebudayaanInitiator = {
             dataKebudayaan.set('source', sourceValue)
             dataKebudayaan.set('kategori', kategoriValue)
             dataKebudayaan.set('deskripsi', deskripsiValue)
-            dataKebudayaan.set('file', file[0])
             dataKebudayaan.set('uid', author.uid)
             dataKebudayaan.set('username', author.username)
 
