@@ -30,6 +30,7 @@ import AdminCourseEdit from '../views/pages/admin/admin-course-edit';
 import EditArticle from '../views/pages/edit-article';
 import EditEvent from '../views/pages/edit-event'
 import DetailEvent from '../views/pages/detail-event';
+import ProfileEdit from '../views/pages/profile-edit';
 
 const userRoutes = {
   '/': Home,
@@ -46,6 +47,7 @@ const userRoutes = {
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
   '/profile': UserProfile,
+  '/profileedit/:id': ProfileEdit,
   '/addarticle': AddArticle,
   '/addevent': AddEvent,
   '/event/:id': DetailEvent,
@@ -78,6 +80,7 @@ const adminRoutes = {
   '/article/:id': DetailArticle,
   '/course/:id': DetailCourse,
   '/profile': UserProfile,
+  '/profileedit/:id': ProfileEdit,
   '/gallery/:id': DetailGallery,
   '/admindashboard': AdminDashboard,
   '/adminuser': AdminUser,

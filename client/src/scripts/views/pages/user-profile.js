@@ -10,9 +10,14 @@ const UserProfile = {
                     <div class="w-full md:w-2/5 p-4 flex flex-col items-center shadow-lg gap-2 rounded-md mb-4">
                         <img class="w-[175px] h-[175px] rounded-full" id="profile-image" alt="profile image">
                         <h3 class="text-xl font-semibold" id="profile-name"></h3>
-                        <a href="#/admindashboard" id="btn-admin" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">
-                            Dashboard Admin
-                        </a>
+												<div class="flex gap-2">
+													<a href="#/admindashboard" id="btn-admin" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">
+															Dashboard Admin
+													</a>
+													<a href="#/profileedit/:id" class="flex items-center justify-center px-2 py-1 bg-blue-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-blue-400" cursor-pointer transition hidden">
+															Ubah Profil
+													</a>
+												</div>
                         <form class="w-full flex flex-col gap-2">
                             <p class="font-medium">Ubah Password</p>
                             <div class="w-full flex flex-col gap-2">
