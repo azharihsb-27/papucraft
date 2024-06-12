@@ -1,4 +1,5 @@
 import { getArtikelByAuthor, getUserProfile } from "../../utils/api"
+import { isAdmin } from "../../utils/session-check"
 
 const UserProfile = {
     async render(){
@@ -9,6 +10,21 @@ const UserProfile = {
                     <div class="w-full md:w-2/5 p-4 flex flex-col items-center shadow-lg gap-2 rounded-md mb-4">
                         <img class="w-[175px] h-[175px] rounded-full" id="profile-image" alt="profile image">
                         <h3 class="text-xl font-semibold" id="profile-name"></h3>
+                        <a href="#/admindashboard" id="btn-admin" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">
+                            Dashboard Admin
+                        </a>
+                        <form class="w-full flex flex-col gap-2">
+                            <p class="font-medium">Ubah Password</p>
+                            <div class="w-full flex flex-col gap-2">
+                                <label for="password-lama">Password Lama</label>
+                                <input type="text" class="border-2 border-primary outline-none px-2 py-1" placeholder="Password Lama" name="password-lama" id="password-lama" required/>
+                            </div>
+                            <div class="w-full flex flex-col gap-2">
+                                <label for="password-baru">Password Baru</label>
+                                <input type="text" class="border-2 border-primary outline-none px-2 py-1" placeholder="Password Baru" name="password-baru" id="password-baru" required/>
+                            </div>
+                            <button type="submit" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">Ubah Password</button>
+                        </form>
                     </div>
                     <div class="w-full md:w-2/5 flex flex-col shadow-lg gap-5 p-4 rounded-md">
                         <div class="flex w-full items-center">
@@ -37,6 +53,14 @@ const UserProfile = {
         const image = document.getElementById('profile-image')
         const name = document.getElementById('profile-name')
         const listArtikel = document.getElementById('artikel-anda')
+        const btnAdmin = document.getElementById('btn-admin')
+        const admin = await isAdmin()
+
+        if(admin){
+            btnAdmin.classList.remove('hidden')
+        }else{
+            btnAdmin.classList.add('hidden')
+        }
 
         const artikel = await getArtikelByAuthor(user.uid)
         const dataArtikel = artikel.data

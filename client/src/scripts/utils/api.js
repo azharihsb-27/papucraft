@@ -150,6 +150,42 @@ const getArtikelByAuthor = async (uid) =>{
   return responseJson
 }
 
+const editArtikel = async (id,data) =>{
+  const response = await fetch(`${baseURL}/artikel/${id}`,{
+    method: "PUT",
+    body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const editEvent = async (id,data) =>{
+  const response = await fetch(`${baseURL}/event/${id}`,{
+    method: "PUT",
+    body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const editKebudayaan = async (id,data) =>{
+  const response = await fetch(`${baseURL}/kebudayaan/${id}`,{
+    method: "PUT",
+    body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const editKelas = async (id,data) =>{
+  const response = await fetch(`${baseURL}/kelas/${id}`,{
+    method: "PUT",
+    body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
 module.exports = {
   getAllKebudayaan,
   getDetailKebudayaan,
@@ -169,4 +205,8 @@ module.exports = {
   getHighlight,
   addEvent,
   getArtikelByAuthor,
+  editArtikel,
+  editEvent,
+  editKebudayaan,
+  editKelas,
 };

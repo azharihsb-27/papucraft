@@ -1,18 +1,21 @@
-import {addArtikel,getUserProfile} from './api'
+import {editArtikel,getUserProfile} from './api'
 import {token} from './session-check'
 import {alertError, alertSuccess} from './show-alert'
 
 
-const addArtikelInitiator = {
-    init({form, judul, source, ringkasan, editorValue, thumbnail}){
-        const body = editorValue.innerHTML
+const editArtikelInitiator = {
+    init({form, judul, source, ringkasan, editorValue, thumbnail, id}){
         
         form.addEventListener('submit', async (ev)=>{
             ev.preventDefault()
+            const body = editorValue.innerHTML
             const judulValue = judul.value
             const sourceValue = source.value
             const ringkasanValue = ringkasan.value
-            const file = thumbnail.files
+            let file
+            if(thumbnail.files){
+                file = thumbnail.files
+            }
 
             let author
             if(token){
@@ -37,27 +40,28 @@ const addArtikelInitiator = {
             dataArtikel.set('source', sourceValue)
             dataArtikel.set('ringkasan', ringkasanValue)
             dataArtikel.set('body', body)
-            dataArtikel.set('file', file[0])
             dataArtikel.set('uid', author.uid)
             dataArtikel.set('username', author.username)
-
+            if(file.length){
+                dataArtikel.set('file', file[0])
+            }
 
             
             if(body.length < 1){
                 alertError('Mohon isi semua input!')
             }else{
-                this._addAritkel(dataArtikel)
+                this._editArtikel(id,dataArtikel)
             }
         })
     },
-    async _addAritkel(dataArtikel){
-        const {success, data, message} = await addArtikel(dataArtikel)
+    async _editArtikel(id,dataArtikel){
+        const {success, data, message} = await editArtikel(id,dataArtikel)
         if(success){
             alertSuccess(message)
-            setTimeout(()=> location.href = '#/article', 3000)
+            setTimeout(()=> location.href = `#/article/${id}`, 3000)
         }else{
             alertError(message)
         }
     }
 }
-export default addArtikelInitiator
+export default editArtikelInitiator

@@ -7,11 +7,11 @@ import SignIn from '../views/pages/sign-in';
 import SignUp from '../views/pages/sign-up';
 import DetailArticle from '../views/pages/detail-artikel';
 import AddArticle from '../views/pages/add-article';
-import AddKebudayaan from '../views/pages/add-kebudayaan';
+import AddKebudayaan from '../views/pages/admin/add-kebudayaan';
 import DetailCourse from '../views/pages/detail-course';
 import DetailGallery from '../views/pages/detail-gallery';
 import UserProfile from '../views/pages/user-profile';
-import AddKelas from '../views/pages/add-kelas';
+import AddKelas from '../views/pages/admin/add-kelas';
 import AddEvent from '../views/pages/add-event';
 import AdminArticle from '../views/pages/admin/admin-article';
 import AdminCourse from '../views/pages/admin/admin-course';
@@ -27,6 +27,9 @@ import AdminGalleryEdit from '../views/pages/admin/admin-gallery-edit';
 import AdminArticleEdit from '../views/pages/admin/admin-article-edit';
 import AdminEventEdit from '../views/pages/admin/admin-event-edit';
 import AdminCourseEdit from '../views/pages/admin/admin-course-edit';
+import EditArticle from '../views/pages/edit-article';
+import EditEvent from '../views/pages/edit-event'
+import DetailEvent from '../views/pages/detail-event';
 
 const userRoutes = {
   '/': Home,
@@ -34,15 +37,18 @@ const userRoutes = {
   '/gallery': Gallery,
   '/article': Article,
   '/event': Event,
+  '/editevent/:id': EditEvent,
   '/course': Course,
   '/signin': Home,
   '/signup': Home,
   '/article/:id': DetailArticle,
+  '/editarticle/:id': EditArticle,
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
   '/profile': UserProfile,
   '/addarticle': AddArticle,
   '/addevent': AddEvent,
+  '/event/:id': DetailEvent,
 };
 
 const noSessionRoutes = {
@@ -57,6 +63,7 @@ const noSessionRoutes = {
   '/article/:id': DetailArticle,
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
+  '/event/:id': DetailEvent
 };
 
 const adminRoutes = {
@@ -92,6 +99,10 @@ const adminRoutes = {
   '/addkebudayaan': AddKebudayaan,
   '/addkelas': AddKelas,
   '/addevent': AddEvent,
+  '/editarticle/:id': EditArticle,
+  '/editevent/:id': EditEvent,
+  '/event/:id': DetailEvent
+
 };
 
 export { userRoutes, noSessionRoutes, adminRoutes };
