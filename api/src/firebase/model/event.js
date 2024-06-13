@@ -153,6 +153,13 @@ const updateEventViews = async (id) => {
   }
 };
 
+const getEventByAuthorId = async (uid) =>{
+  const event = await getAllEvent()
+  const filtered = event.filter(art=> art.author.uid == uid)
+  return filtered
+}
+
+
 module.exports = {
   getAllEvent,
   getDetailEvent,
@@ -161,4 +168,5 @@ module.exports = {
   updateEventViews,
   updateEventNoImages,
   updateEventWithImages,
+  getEventByAuthorId,
 };

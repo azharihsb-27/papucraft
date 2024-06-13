@@ -8,6 +8,7 @@ const {
   updateEventViews,
   updateEventNoImages,
   updateEventWithImages,
+  getEventByAuthorId,
 } = require("../firebase/model/event");
 const { successResult, errorResult } = require("../result/result");
 
@@ -28,6 +29,20 @@ app.get("/api/event/:id", async (req, res) => {
     res.status(200).json(successResult(`Data ${id} ditampilkan`, updatedData));
   } else {
     res.status(400).json(errorResult("Data tidak ditemukan"));
+  }
+});
+
+app.get("/api/event/author/:uid", async (req, res) => {
+  const { uid } = req.params;
+  try{
+    const data = await getEventByAuthorId(uid)
+    if(data){
+      res.status(200).json(successResult(`Data event dengan author${uid} ditampilkan`, data));
+    }else{
+      res.status(400).json(errorResult("Data tidak ditemukan"));
+    }
+  }catch(err){
+    res.status(400).json(errorResult('Something Error'))
   }
 });
 

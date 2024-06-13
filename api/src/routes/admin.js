@@ -28,13 +28,13 @@ app.get("/api/admin/:id", async (req, res) => {
   }
 });
 
-app.get("/api/admin/user/:email", async (req,res)=>{
-  const {email} = req.params
-  const data = await getDetailUser(email)
+app.get("/api/admin/user/:uid", async (req,res)=>{
+  const {uid} = req.params
+  const data = await getDetailUser(uid)
   if(data){
-    res.status(200).json(successResult(`Data ${email} ditampilkan`,data));
+    res.status(200).json(successResult(`Data ${uid} ditampilkan`,data));
   }else{
-    res.status(400).json(errorResult(`Data ${email} tidak ada`));
+    res.status(400).json(errorResult(`Data ${uid} tidak ada`));
   }
 })
 
