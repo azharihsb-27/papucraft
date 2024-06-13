@@ -7,7 +7,7 @@ const {
   updateProfileWithImages,
 } = require("../firebase/model/user");
 const { successResult, errorResult } = require("../result/result");
-const { sendVerificationEmail, sendResetPassword } = require("../firebase/model/admin");
+const { sendResetPassword } = require("../firebase/model/admin");
 
 const app = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -39,12 +39,16 @@ app.post("/api/register", async (req, res) => {
 
 app.post("/api/resetpassword", async (req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
-  const {email} = req.body
-  const {link} = await sendResetPassword(email)
-  if(link){
-    return res.status(200).json(successResult('Link didapatkan', link))
-  }else{
-    return res.status(400).json(error('Link didapatkan', link))
+  try{
+    const {email} = req.body
+    const {link} = await sendResetPassword(email)
+    if(link){
+      return res.status(200).json(successResult('Link didapatkan', link))
+    }else{
+      return res.status(400).json(error('Link tidak didapatkan', link))
+    }
+  }catch(err){
+    res.status(400).json(errorResult("Something Error!"));
   }
 })
 
@@ -62,17 +66,16 @@ app.put("/api/user/:uid", upload.single("file"),async (req,res)=>{
       await updateProfileNoImages(body, uid)
       res.status(201).json(successResult(`Data ${uid} berhasil diupdate`));
     }else{
-      const thumbnail = req.file;
-      const { mimetype } = thumbnail;
+      const profile_image = req.file;
+      const { mimetype } = profile_image;
       const imageOnly = mimetype.split("/")[0];
       if (imageOnly !== "image") {
         res.status(400).json(errorResult("Image Only!"));
       } else {
-        await updateProfileWithImages({body, uid, thumbnail});
-        res.status(201).json(successResult(`Data ${id} berhasil diupdate`));
+        await updateProfileWithImages({body, uid, profile_image});
+        res.status(201).json(successResult(`Data ${uid} berhasil diupdate`));
       }
     }
-
   }catch(err){
     res.status(400).json(errorResult('Something Error!'));
   }

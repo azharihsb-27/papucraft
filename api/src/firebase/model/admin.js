@@ -4,6 +4,7 @@ const firebaseSDK = require("../firebase-sdk");
 const { getAllArtikel } = require("./artikel");
 const { getAllEvent } = require("./event");
 const { getAllKebudayaan } = require("./kebudayaan");
+const { getDetailUser } = require("./user");
 
 
 const database = getDatabase(firebaseSDK);
@@ -16,7 +17,7 @@ const getDetailAdmin = async (id) => {
 
 const getAnalytic = async (id) => {
   const dbGet = await get(child(rootReference, "admin/highlight"));
-  const {highlight} = dbGet.val()
+  const {views} = dbGet.val()
 
   const artikel = await getAllArtikel()
   const event = await getAllEvent()
@@ -24,13 +25,13 @@ const getAnalytic = async (id) => {
   const user = await getAllUser()
 
   const data = {
-    artikel: artikel.length, event: event.length, kebudayaan: kebudayaan.length, user: user.length, highlight
+    artikel: artikel.length, event: event.length, kebudayaan: kebudayaan.length, user: user.length, views
   }
   
   return data
 };
 
-const getDetailUser = async (id) => {
+const getDetailUserByAdmin = async (id) => {
   const getUser = (await admin.auth().getUser(id)).toJSON();
   const { uid, email, metadata } = getUser;
   const { lastSignInTime, creationTime } = metadata;
@@ -112,7 +113,7 @@ module.exports = {
   getDetailAdmin,
   getAnalytic,
   updateViewsPage,
-  getDetailUser,
+  getDetailUserByAdmin,
   getAllUser,
   deleteUser,
   isTokenValid,

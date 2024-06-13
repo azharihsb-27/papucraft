@@ -3,7 +3,7 @@ const { successResult, errorResult } = require("../result/result");
 const { getAllArtikel } = require("../firebase/model/artikel");
 const { getAllKebudayaan } = require("../firebase/model/kebudayaan");
 const { getAllEvent } = require("../firebase/model/event");
-const { getDetailAdmin, updateViewsPage, getDetailUser, getAllUser, deleteUser, isTokenValid, getAnalytic } = require("../firebase/model/admin");
+const { getDetailAdmin, updateViewsPage, getDetailUserByAdmin, getAllUser, deleteUser, isTokenValid, getAnalytic } = require("../firebase/model/admin");
 
 const app = Router();
 
@@ -47,7 +47,7 @@ app.get("/api/admin/:id", async (req, res) => {
 app.get("/api/admin/user/:uid", async (req,res)=>{
   const {uid} = req.params
   try{
-    const data = await getDetailUser(uid)
+    const data = await getDetailUserByAdmin(uid)
     if(data){
       res.status(200).json(successResult(`Data ${uid} ditampilkan`,data));
     }else{
@@ -74,7 +74,7 @@ app.get("/api/user", async (req,res)=>{
 app.delete("/api/admin/user/:id", async (req, res) => {
   const { id } = req.params;
   try{
-    const data = await getDetailUser(id);
+    const data = await getDetailUserByAdmin(id);
     if (data) {
       await deleteUser(id)
       res.status(200).json(successResult(`Data ${id} dihapus`));

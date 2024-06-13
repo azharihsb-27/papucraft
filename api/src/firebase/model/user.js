@@ -1,6 +1,6 @@
 const { ref, getDatabase, child, get, set } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
-const { getImageFromStorage, addImageToStorage } = require("../storage");
+const { getImageFromStorage, deleteImageFromStorage,addImageToStorage } = require("../storage");
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -84,11 +84,11 @@ const updateProfileNoImages = async (body, uid) => {
   }
 };
 
-const updateProfileWithImages = async ({ body, uid, thumbnail }) => {
-  await putProfile({ body, uid, thumbnail });
+const updateProfileWithImages = async ({ body, uid, profile_image }) => {
+  await putProfile({ body, uid, profile_image });
 };
 
-const putProfile = async ({ body, uid, thumbnail }) => {
+const putProfile = async ({ body, uid, profile_image }) => {
   const dbOld = child(rootReference, `user/${uid}`);
   const dbOldGet = await get(dbOld);
   const dbOldGetObject = dbOldGet.val();
@@ -98,14 +98,15 @@ const putProfile = async ({ body, uid, thumbnail }) => {
     const oldImage = dbOldGetObject.profile_image;
     const path = "user";
     const newData = {
-      ...data,
+      ...body,
       uid,
-      thumbnail: uid,
+      profile_image: uid,
     };
     if (oldImage != "profile.png") {
       await deleteImageFromStorage(path, oldImage);
     }
 
+    const thumbnail = profile_image
     const dbSet = await set(dbOld, newData);
     const name = `${uid}`;
     await addImageToStorage({ path, thumbnail, name });
