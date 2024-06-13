@@ -1,6 +1,10 @@
-const admin = require("../admin-sdk");
 const { ref, getDatabase, child, get, set } = require("firebase/database");
+const admin = require("../admin-sdk");
 const firebaseSDK = require("../firebase-sdk");
+const { getAllArtikel } = require("./artikel");
+const { getAllEvent } = require("./event");
+const { getAllKebudayaan } = require("./kebudayaan");
+
 
 const database = getDatabase(firebaseSDK);
 const rootReference = ref(database);
@@ -10,9 +14,20 @@ const getDetailAdmin = async (id) => {
   return dbGet.val();
 };
 
-const getHighlight = async (id) => {
+const getAnalytic = async (id) => {
   const dbGet = await get(child(rootReference, "admin/highlight"));
-  return dbGet.val();
+  const {highlight} = dbGet.val()
+
+  const artikel = await getAllArtikel()
+  const event = await getAllEvent()
+  const kebudayaan = await getAllKebudayaan()
+  const user = await getAllUser()
+
+  const data = {
+    artikel: artikel.length, event: event.length, kebudayaan: kebudayaan.length, user: user.length, highlight
+  }
+  
+  return data
 };
 
 const getDetailUser = async (id) => {
@@ -70,14 +85,36 @@ const updateViewsPage = async () => {
   return set(dbPath, { ...oldData, views: newViews });
 };
 
-const isTokenValid = async () => {
-  admin.auth().verifyIdToken();
+const isTokenValid = (token) => {
+  const isValid = admin.auth().verifyIdToken(token)
+    .then(decodedToken=>{
+      const uid = decodedToken.uid
+      return {valid: true}
+    }).catch((error)=>{
+      if(error.code == 'auth/id-token-expired'){
+        return 'Mohon Login Ulang'
+      }
+      return {valid:false}
+    })
+  return isValid
 };
+
+const sendResetPassword = async (email) =>{
+  const response = admin.auth().generatePasswordResetLink(email).then(res=>{
+    return {link :res}
+  }).catch(err=>{
+    return err
+  })
+  return response
+}
 
 module.exports = {
   getDetailAdmin,
+  getAnalytic,
   updateViewsPage,
   getDetailUser,
   getAllUser,
   deleteUser,
+  isTokenValid,
+  sendResetPassword,
 };

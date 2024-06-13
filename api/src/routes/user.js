@@ -7,6 +7,7 @@ const {
   updateProfileWithImages,
 } = require("../firebase/model/user");
 const { successResult, errorResult } = require("../result/result");
+const { sendVerificationEmail, sendResetPassword } = require("../firebase/model/admin");
 
 const app = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -35,10 +36,16 @@ app.post("/api/register", async (req, res) => {
   }
 });
 
-app.post("/api/verifikasi", async (req,res)=>{
+
+app.post("/api/resetpassword", async (req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
-  console.log(req.body)
-  res.json('tess')
+  const {email} = req.body
+  const {link} = await sendResetPassword(email)
+  if(link){
+    return res.status(200).json(successResult('Link didapatkan', link))
+  }else{
+    return res.status(400).json(error('Link didapatkan', link))
+  }
 })
 
 app.put("/api/user/:uid", upload.single("file"),async (req,res)=>{

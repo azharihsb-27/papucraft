@@ -113,6 +113,8 @@ const putProfile = async ({ body, uid, thumbnail }) => {
   }
 };
 
+
+
 module.exports = {
   getDetailUser,
   addUser,
