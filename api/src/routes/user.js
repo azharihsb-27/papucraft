@@ -7,7 +7,7 @@ const {
   updateProfileWithImages,
 } = require("../firebase/model/user");
 const { successResult, errorResult } = require("../result/result");
-const { sendResetPassword } = require("../firebase/model/admin");
+const { sendResetPassword, getToken } = require("../firebase/model/admin");
 
 const app = Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -40,6 +40,12 @@ app.post("/api/register", async (req, res) => {
 app.post("/api/resetpassword", async (req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
   try{
+    const bearerHeader = req.headers['authorization']
+    const {valid} = await getToken(bearerHeader)
+    if(!valid){
+      return res.status(403).json('Unauthorized Access')
+    }
+
     const {email} = req.body
     const {link} = await sendResetPassword(email)
     if(link){
@@ -54,6 +60,12 @@ app.post("/api/resetpassword", async (req,res)=>{
 
 app.put("/api/user/:uid", upload.single("file"),async (req,res)=>{
   try{
+    const bearerHeader = req.headers['authorization']
+    const {valid} = await getToken(bearerHeader)
+    if(!valid){
+      return res.status(403).json('Unauthorized Access')
+    }
+
     const {uid} = req.params
     const isExist = await getDetailUser(uid)
     const body = req.body

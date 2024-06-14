@@ -4,7 +4,7 @@ const firebaseSDK = require("../firebase-sdk");
 const { getAllArtikel } = require("./artikel");
 const { getAllEvent } = require("./event");
 const { getAllKebudayaan } = require("./kebudayaan");
-const { getDetailUser, deleteUserFromDb } = require("./user");
+const { getDetailUser } = require("./user");
 const { getAllKelas } = require("./kelas");
 
 
@@ -71,7 +71,6 @@ const deleteUser = async (uid) => {
       .auth()
       .deleteUser(uid)
       .then(async () => {
-        await deleteUserFromDb(uid)
         return true;
       })
       .catch((err) => {
@@ -88,6 +87,12 @@ const updateViewsPage = async () => {
   const newViews = oldData.views + 1;
   return set(dbPath, { ...oldData, views: newViews });
 };
+
+const getToken = (bearerHeader) =>{
+  const bearer = bearerHeader.split(' ')
+  const bearerToken = bearer[1]
+  return isTokenValid(bearerToken)
+}
 
 const isTokenValid = (token) => {
   const isValid = admin.auth().verifyIdToken(token)
@@ -119,6 +124,6 @@ module.exports = {
   getDetailUserByAdmin,
   getAllUser,
   deleteUser,
-  isTokenValid,
+  getToken,
   sendResetPassword,
 };

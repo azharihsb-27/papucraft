@@ -59,7 +59,7 @@ const addUser = async (body) => {
     const data = {
       username,
       email,
-      profile_image: "profile.jpg",
+      profile_image: "profile.png",
       uid,
     };
     await set(reference, data);
@@ -137,4 +137,5 @@ module.exports = {
   getAllUser,
   updateProfileNoImages,
   updateProfileWithImages,
+  deleteUserFromDb,
 };
