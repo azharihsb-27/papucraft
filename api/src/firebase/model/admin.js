@@ -4,7 +4,7 @@ const firebaseSDK = require("../firebase-sdk");
 const { getAllArtikel } = require("./artikel");
 const { getAllEvent } = require("./event");
 const { getAllKebudayaan } = require("./kebudayaan");
-const { getDetailUser } = require("./user");
+const { getDetailUser, deleteUserFromDb } = require("./user");
 const { getAllKelas } = require("./kelas");
 
 
@@ -71,7 +71,7 @@ const deleteUser = async (uid) => {
       .auth()
       .deleteUser(uid)
       .then(async () => {
-        await
+        await deleteUserFromDb(uid)
         return true;
       })
       .catch((err) => {
