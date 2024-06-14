@@ -1,4 +1,5 @@
 const baseURL = 'http://localhost:3000/api';
+const token = sessionStorage.getItem('token')
 
 const getAllKebudayaan = async () => {
   const response = await fetch(`${baseURL}/kebudayaan`);
@@ -93,6 +94,9 @@ const addUser = async (data) => {
 const addArtikel = async (data) => {
   const response = await fetch(`${baseURL}/artikel`, {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data,
   });
   const responseJson = await response.json();
@@ -102,6 +106,9 @@ const addArtikel = async (data) => {
 const addKebudayaan = async (data) => {
   const response = await fetch(`${baseURL}/kebudayaan`, {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data,
   });
   const responseJson = await response.json();
@@ -111,6 +118,9 @@ const addKebudayaan = async (data) => {
 const addKelas = async (data) => {
   const response = await fetch(`${baseURL}/kelas`, {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data,
   });
   const responseJson = await response.json(); 
@@ -120,6 +130,9 @@ const addKelas = async (data) => {
 const addEvent = async (data) => {
   const response = await fetch(`${baseURL}/event`, {
     method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data,
   });
   const responseJson = await response.json(); 
@@ -153,6 +166,9 @@ const getArtikelByAuthor = async (uid) =>{
 const editArtikel = async (id,data) =>{
   const response = await fetch(`${baseURL}/artikel/${id}`,{
     method: "PUT",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data
   })
   const responseJson = response.json()
@@ -162,6 +178,9 @@ const editArtikel = async (id,data) =>{
 const editEvent = async (id,data) =>{
   const response = await fetch(`${baseURL}/event/${id}`,{
     method: "PUT",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data
   })
   const responseJson = response.json()
@@ -171,6 +190,9 @@ const editEvent = async (id,data) =>{
 const editKebudayaan = async (id,data) =>{
   const response = await fetch(`${baseURL}/kebudayaan/${id}`,{
     method: "PUT",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data
   })
   const responseJson = response.json()
@@ -180,7 +202,59 @@ const editKebudayaan = async (id,data) =>{
 const editKelas = async (id,data) =>{
   const response = await fetch(`${baseURL}/kelas/${id}`,{
     method: "PUT",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
     body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const updateUserProfile = async (id,data) =>{
+  const response = await fetch(`${baseURL}/user/${id}`,{
+    method: "PUT",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+    body: data
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const getEventByAuthor = async (id) =>{
+  const response = await fetch(`${baseURL}/event/author/${id}`)
+  const responseJson = response.json()
+  return responseJson
+}
+
+const sendResetPassword = async (email) =>{
+  const data = {email}
+  const response = await fetch(`${baseURL}/resetpassword`, {
+    method: "POST",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const getAnalytic = async () =>{
+  const response = await fetch(`${baseURL}/analytic`)
+  const responseJson = response.json()
+  return responseJson
+}
+
+const deleteUser = async (uid) =>{
+  const response = await fetch(`${baseURL}/admin/user/${uid}`, {
+    method: "DELETE",
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
   })
   const responseJson = response.json()
   return responseJson
@@ -209,4 +283,9 @@ module.exports = {
   editEvent,
   editKebudayaan,
   editKelas,
+  updateUserProfile,
+  getEventByAuthor,
+  sendResetPassword,
+  getAnalytic,
+  deleteUser,
 };

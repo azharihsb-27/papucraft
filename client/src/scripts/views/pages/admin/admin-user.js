@@ -1,4 +1,6 @@
 import { getAllUser } from '../../../utils/api';
+import deleteUserInitiator from '../../../utils/delete-user-initiator';
+
 
 const AdminUser = {
   async render() {
@@ -30,30 +32,41 @@ const AdminUser = {
   async afterRender() {
     const userListContainer = document.querySelector('#user-list');
     const { data } = await getAllUser();
+	const RENDER_EVENT = 'render'
 
-    userListContainer.innerHTML = data
-      .map(({ email, createdAt, lastLogin }, index) => {
-        return `
-			<tr>
-				<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
-				<td class="border-2 p-2 whitespace-nowrap">${email}</td>
-				<td class="border-2 p-2 whitespace-nowrap">${createdAt}</td>
-				<td class="border-2 p-2 whitespace-nowrap">${lastLogin}</td>
-				<td class="border-2 p-2 whitespace-nowrap text-center">
-					<a
-						href="#"
-						class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
-						>Ubah</a
-					>
-					<a
-							class="block w-full px-4 my-1 py-2 bg-primary text-white rounded hover:bg-red-700 duration-300"
-							>Hapus</a
+	document.addEventListener(RENDER_EVENT, ()=>{
+		userListContainer.innerHTML = data
+		  .map(({ email, createdAt, lastLogin, uid }, index) => {
+			return `
+				<tr>
+					<td class="border-2 p-2 whitespace-nowrap text-center">${index + 1}</td>
+					<td class="border-2 p-2 whitespace-nowrap">${email}</td>
+					<td class="border-2 p-2 whitespace-nowrap">${new Date(createdAt).toLocaleString('id-ID')}</td>
+					<td class="border-2 p-2 whitespace-nowrap">${new Date(lastLogin).toLocaleString('id-ID')}</td>
+					<td class="border-2 p-2 whitespace-nowrap text-center">
+						<a
+							href="#"
+							class="block w-full px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 duration-300"
+							>Ubah</a
 						>
-				</td>
-			</tr>
-		`;
-      })
-      .join('');
+						<button
+								id="btn-delete"
+								class="block w-full px-4 my-1 py-2 bg-primary text-white rounded hover:bg-red-700 duration-300 cursor-pointer"
+								data-uid=${uid}
+								>Hapus</button
+							>
+					</td>
+				</tr>
+			`;
+		  })
+		  .join('');
+	})
+
+	document.dispatchEvent(new Event(RENDER_EVENT))
+
+	const btnDelete = document.querySelectorAll('#btn-delete')
+
+	deleteUserInitiator.init({btnDelete, event: RENDER_EVENT})
   },
 };
 

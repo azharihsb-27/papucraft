@@ -9,7 +9,7 @@ const AdminCourseEdit = {
     return `
 			<div class="p-6 pt-24 md:pt-32 md:pl-72 md:pr-10">
 				<h1 class="text-2xl py-2 font-semibold text-red-500">Edit Kelas</h1>
-        <form id="wrapper" class="mt-8 xl:pr-96 flex flex-col justify-center items-start gap-4">
+        <form id="wrapper" class="mt-8 xl:pr-96 flex flex-col justify-center items-start gap-4" method="put">
           <div class="flex flex-col gap-2 w-full">
             <label for="nama-kelas" class="inline-block">Nama Kelas</label>
             <input type="text" id="nama-kelas" name="nama-kelas" class="border-2 border-primary outline-none p-2" required />

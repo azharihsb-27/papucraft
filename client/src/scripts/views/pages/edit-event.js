@@ -16,7 +16,7 @@ const EditEvent = {
                     <img src="/img/preview.png" class="w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
                </div> 
                <div class="w-full md:w-[70%] px-[2rem] py-[1rem]">
-                <form class="flex flex-col gap-2">
+                <form class="flex flex-col gap-2"  method="put">
                     <div class="flex flex-col gap-2">
                         <label for="nama-acara">Nama Acara<span class="text-red-500 text-sm">*</span></label>
                         <input type="text" class="border-2 border-primary outline-none px-2 py-1" placeholder="Nama Acara" name="nama-acara" id="nama-acara" required/>
