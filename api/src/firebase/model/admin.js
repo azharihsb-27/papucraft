@@ -5,6 +5,7 @@ const { getAllArtikel } = require("./artikel");
 const { getAllEvent } = require("./event");
 const { getAllKebudayaan } = require("./kebudayaan");
 const { getDetailUser } = require("./user");
+const { getAllKelas } = require("./kelas");
 
 
 const database = getDatabase(firebaseSDK);
@@ -21,11 +22,12 @@ const getAnalytic = async (id) => {
 
   const artikel = await getAllArtikel()
   const event = await getAllEvent()
+  const kelas = await getAllKelas()
   const kebudayaan = await getAllKebudayaan()
   const user = await getAllUser()
 
   const data = {
-    artikel: artikel.length, event: event.length, kebudayaan: kebudayaan.length, user: user.length, views
+    artikel: artikel.length, event: event.length, kebudayaan: kebudayaan.length, kelas: kelas.length,user: user.length, views
   }
   
   return data
@@ -68,7 +70,8 @@ const deleteUser = async (uid) => {
     const response = admin
       .auth()
       .deleteUser(uid)
-      .then(() => {
+      .then(async () => {
+        await
         return true;
       })
       .catch((err) => {

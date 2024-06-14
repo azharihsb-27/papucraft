@@ -1,4 +1,4 @@
-const { ref, getDatabase, child, get, set } = require("firebase/database");
+const { ref, getDatabase, child, get, set, remove } = require("firebase/database");
 const firebaseSDK = require("../firebase-sdk");
 const { getImageFromStorage, deleteImageFromStorage,addImageToStorage } = require("../storage");
 
@@ -113,6 +113,21 @@ const putProfile = async ({ body, uid, profile_image }) => {
     return dbSet;
   }
 };
+
+const deleteUserFromDb = async (uid) =>{
+  const dbOld = child(rootReference, `user/${uid}`);
+  const dbOldGet = await get(dbOld);
+  const dbOldGetObject = dbOldGet.val();
+  if (!dbOldGetObject) {
+    return false;
+  } else {
+    const oldImage = dbOldGetObject.profile_image;
+    if(oldImage != 'profile.png'){
+      await deleteImageFromStorage('user', oldImage)
+    }
+    remove(dbOld)
+  }
+}
 
 
 
