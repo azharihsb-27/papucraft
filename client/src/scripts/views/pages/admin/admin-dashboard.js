@@ -1,3 +1,5 @@
+import {getAnalytic} from '../../../utils/api'
+
 const AdminDashboard = {
   async render() {
     return `
@@ -8,12 +10,24 @@ const AdminDashboard = {
 						class="flex flex-col gap-4 bg-gray-100 p-4 rounded-lg shadow-md hover:bg-gray-200"
 					>
 						<div class="flex items-center gap-4 text-red-500">
+							<i class="fas fa-eye"></i>
+							<a class="font-semibold">Pengunjung</a>
+						</div>
+						<div class="flex justify-between items-center">
+							<p class="text-gray-500 font-semibold">Jumlah Pengunjung :</p>
+							<span class="text-4xl font-bold text-red-500" id="jml-views">-</span>
+						</div>
+					</div>
+					<div
+						class="flex flex-col gap-4 bg-gray-100 p-4 rounded-lg shadow-md hover:bg-gray-200"
+					>
+						<div class="flex items-center gap-4 text-red-500">
 							<i class="fas fa-user"></i>
 							<a href="#/adminuser" class="font-semibold">Pengguna</a>
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Pengguna :</p>
-							<span class="text-4xl font-bold text-red-500">10</span>
+							<span class="text-4xl font-bold text-red-500" id="jml-user">-</span>
 						</div>
 					</div>
 					<div
@@ -25,7 +39,7 @@ const AdminDashboard = {
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Galeri :</p>
-							<span class="text-4xl font-bold text-red-500">10</span>
+							<span class="text-4xl font-bold text-red-500" id="jml-galeri">-</span>
 						</div>
 					</div>
 					<div
@@ -37,7 +51,7 @@ const AdminDashboard = {
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Artikel :</p>
-							<span class="text-4xl font-bold text-red-500">10</span>
+							<span class="text-4xl font-bold text-red-500" id="jml-artikel">-</span>
 						</div>
 					</div>
 					<div
@@ -49,7 +63,7 @@ const AdminDashboard = {
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Acara :</p>
-							<span class="text-4xl font-bold text-red-500">10</span>
+							<span class="text-4xl font-bold text-red-500" id="jml-acara">-</span>
 						</div>
 					</div>
 					<div
@@ -61,7 +75,7 @@ const AdminDashboard = {
 						</div>
 						<div class="flex justify-between items-center">
 							<p class="text-gray-500 font-semibold">Jumlah Kelas :</p>
-							<span class="text-4xl font-bold text-red-500">10</span>
+							<span class="text-4xl font-bold text-red-500" id="jml-kelas">-</span>
 						</div>
 					</div>
 				</div>
@@ -69,7 +83,23 @@ const AdminDashboard = {
     `;
   },
 
-  async afterRender() {},
+  async afterRender() {
+	const jmlViews= document.getElementById('jml-views')
+	const jmlUser= document.getElementById('jml-user')
+	const jmlGallery= document.getElementById('jml-galeri')
+	const jmlArtikel= document.getElementById('jml-artikel')
+	const jmlAcara= document.getElementById('jml-acara')
+	const jmlKelas= document.getElementById('jml-kelas')
+
+	const {data} = await getAnalytic()
+	jmlViews.textContent = data.views
+	jmlUser.textContent = data.user
+	jmlGallery.textContent = data.kebudayaan
+	jmlAcara.textContent = data.event
+	jmlArtikel.textContent = data.artikel
+	jmlKelas.textContent = data.kelas
+
+  },
 };
 
 export default AdminDashboard;

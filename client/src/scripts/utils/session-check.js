@@ -41,8 +41,8 @@ const getSession = () =>{
                 sessionStorage.setItem("user", JSON.stringify(userProfile));
                 sessionStorage.setItem("loginMethod",'google');
             }else{
-                const {accessToken,uid} = user;
-                const userProfile = {accessToken, uid}
+                const {accessToken,uid,email, emailVerified} = user;
+                const userProfile = {accessToken, uid, email, emailVerified}
                 sessionStorage.setItem("token", accessToken);
                 sessionStorage.setItem("user", JSON.stringify(userProfile));
                 sessionStorage.setItem("loginMethod",'non-google');

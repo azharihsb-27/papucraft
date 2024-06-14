@@ -19,7 +19,7 @@ const SignIn = {
           <div class="w-full flex flex-col min-h-[70%] md:h-[60%] justify-center backdrop-blur-md rounded-md">
             <h2 class="text-3xl mb-2 text-primary mx-auto font-bold">Sign In</h2>
             <p class="mx-auto -mt-2">Let's start with your account</p>
-            <form class="flex flex-col gap-2 px-4 py-[1rem] ">
+            <form class="flex flex-col gap-2 px-4 py-[1rem]"  method="post">
               <div class="flex flex-col gap-2">
                 <label for="email">Email</label>
                 <input type="email" placeholder="Enter your email" class="border-2 border-primary outline-none px-2 py-1" name="email" id="email"/>

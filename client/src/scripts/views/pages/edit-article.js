@@ -10,7 +10,7 @@ const EditArticle = {
         return `
             <div class="content p-7 lg:p-14">
               <h2 class="text-primary text-xl lg:text-2xl font-medium">Ubah Artikel</h2>
-              <form class="mt-2 flex flex-col gap-3">
+              <form class="mt-2 flex flex-col gap-3" method="put">
                 <div class="flex flex-col gap-2">
                     <label for="judul">Judul<span class="text-red-500 text-sm">*</span></label>
                     <input type="text" id="judul" name="judul" class="border-2 border-primary outline-none px-2 py-1" required/>
