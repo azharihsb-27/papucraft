@@ -1,5 +1,4 @@
-import { editKelas,getUserProfile } from "./api";
-import { token } from "./session-check";
+import { editKelas } from "./api";
 import { alertError, alertSuccess } from "./show-alert";
 
 const editKelasInitiator = {
@@ -14,23 +13,6 @@ const editKelasInitiator = {
                 file = thumbnail.files
             }
 
-            let author
-            if(token){
-                const user = JSON.parse(sessionStorage.getItem('user'))
-                const loginMethod = sessionStorage.getItem('loginMethod')
-                if(loginMethod == 'google'){
-                    const {uid, displayName} = user
-                    author = {
-                        uid, username: displayName
-                    }
-                }else{
-                    const userData = await getUserProfile(user.uid)
-                    const {username, uid} = userData.data
-                    author = {
-                        uid, username
-                    }
-                }
-            }
 
             const dataKelas = new FormData()
             dataKelas.set('nama_kelas', namaValue)

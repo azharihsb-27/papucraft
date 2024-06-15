@@ -56,7 +56,7 @@ const Event = {
 				</div>
 			</div>
 			`
-		})
+		}).join('')
 		
 	},
 };
