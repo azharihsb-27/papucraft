@@ -109,20 +109,12 @@ const addKebudayaan = async (path, data, thumbnail) => {
 
 const pushKebudayaan = async ({ path, data, thumbnail }) => {
   const dbRef = child(rootReference, "kebudayaan");
-
   const id = push(dbRef).key;
-  const {asal_daerah,deskripsi,views,kategori,nama, uid, username, source} = data
-
-  const result = { asal_daerah,deskripsi,views,kategori,nama,thumbnail: id, id, source};
+  const result = { ...data, thumbnail: id, id };
   const dbPath = child(rootReference, `${path}/${id}`);
-
+  const { mimetype } = thumbnail;
+  const ext = mimetype.split("/")[1];
   const dbSet = await set(dbPath, result);
-  const refAuthorId = child(rootReference, `${path}/${id}/` + 'author/uid');
-  const refAuthorUsername = child(rootReference, `${path}/${id}/` + 'author/username');
-
-  const uidSet = await(set(refAuthorId, uid))
-  const usernameSet = await(set(refAuthorUsername, username))
-
   const name = `${id}`;
   await addImageToStorage({ path, thumbnail, name });
   return dbSet;

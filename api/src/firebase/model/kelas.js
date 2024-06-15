@@ -66,7 +66,6 @@ const updateKelasNoImages = async (data, id) => {
     const newData = {
       ...data,
       thumbnail: dbOldGetObject.thumbnail,
-      author: dbOldGetObject.author,
       views: dbOldGetObject.views,
       id,
     };
@@ -90,7 +89,6 @@ const putKelas = async ({ data, id, thumbnail }) => {
     const newData = {
       ...data,
       thumbnail: id,
-      author: dbOldGetObject.author,
       views: dbOldGetObject.views,
       id
     };

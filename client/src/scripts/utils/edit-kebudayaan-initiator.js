@@ -1,5 +1,4 @@
-import { editKebudayaan , getUserProfile} from "./api";
-import {token} from './session-check'
+import { editKebudayaan} from "./api";
 import {alertError, alertSuccess} from './show-alert'
 
 const editKebudayaanInitiator = {
@@ -16,32 +15,13 @@ const editKebudayaanInitiator = {
                 file = thumbnail.files
             }
 
-            let author
-            if(token){
-                const user = JSON.parse(sessionStorage.getItem('user'))
-                const loginMethod = sessionStorage.getItem('loginMethod')
-                if(loginMethod == 'google'){
-                    const {uid, displayName} = user
-                    author = {
-                        uid, username: displayName
-                    }
-                }else{
-                    const userData = await getUserProfile(user.uid)
-                    const {username, uid} = userData.data
-                    author = {
-                        uid, username
-                    }
-                }
-            }
-
+          
             const dataKebudayaan = new FormData()
             dataKebudayaan.set('nama', namaValue)
             dataKebudayaan.set('asal_daerah', asalDaerahValue)
             dataKebudayaan.set('source', sourceValue)
             dataKebudayaan.set('kategori', kategoriValue)
             dataKebudayaan.set('deskripsi', deskripsiValue)
-            dataKebudayaan.set('uid', author.uid)
-            dataKebudayaan.set('username', author.username)
 
             if(file.length){
                 dataKebudayaan.set('file', file[0])

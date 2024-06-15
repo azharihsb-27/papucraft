@@ -1,7 +1,6 @@
 import {addKebudayaan, getUserProfile} from './api'
 import {token} from './session-check'
 import {alertError, alertSuccess} from './show-alert'
-let author
 
 
 const addKebudayaanInitiator = {
@@ -15,23 +14,6 @@ const addKebudayaanInitiator = {
             const deskripsiValue = deskripsi.value
             const file = thumbnail.files
 
-            if(token){
-                const user = JSON.parse(sessionStorage.getItem('user'))
-                const loginMethod = sessionStorage.getItem('loginMethod')
-                if(loginMethod == 'google'){
-                    const {uid, displayName} = user
-                    author = {
-                        uid, username: displayName
-                    }
-                }else{
-                    const userData = await getUserProfile(user.uid)
-                    const {username, uid} = userData.data
-                    author = {
-                        uid, username
-                    }
-                }
-            }
-
             const dataKebudayaan = new FormData()
             dataKebudayaan.set('nama', namaValue)
             dataKebudayaan.set('asal_daerah', asalDaerahValue)
@@ -39,8 +21,6 @@ const addKebudayaanInitiator = {
             dataKebudayaan.set('kategori', kategoriValue)
             dataKebudayaan.set('deskripsi', deskripsiValue)
             dataKebudayaan.set('file', file[0])
-            dataKebudayaan.set('uid', author.uid)
-            dataKebudayaan.set('username', author.username)
 
             this._addKebudayaan(dataKebudayaan)
 
