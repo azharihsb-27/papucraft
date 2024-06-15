@@ -1,4 +1,4 @@
-import { getAllKebudayaan } from "../../utils/api";
+import { getAllKebudayaan } from '../../utils/api';
 
 const Gallery = {
   async render() {
@@ -25,15 +25,14 @@ const Gallery = {
 
   async afterRender() {
     const { success, data, message } = await getAllKebudayaan();
-    const wrapper = document.getElementById("list-gallery");
-    const button = document.querySelectorAll("#switch-wrapper button");
-    const musikData = data.filter((data) => data.kategori == "Alat Musik");
-    const makananData = data.filter((data) => data.kategori == "Makanan");
-    const tarianData = data.filter((data) => data.kategori == "Tarian");
+    const wrapper = document.getElementById('list-gallery');
+    const button = document.querySelectorAll('#switch-wrapper button');
+    const musikData = data.filter((data) => data.kategori == 'Alat Musik');
+    const makananData = data.filter((data) => data.kategori == 'Makanan');
+    const tarianData = data.filter((data) => data.kategori == 'Tarian');
 
     const renderKebudayaan = (data) => {
-      wrapper.innerHTML = "";
-      console.log(data);
+      wrapper.innerHTML = '';
       wrapper.innerHTML += data
         .map((budaya) => {
           console.log(budaya.id);
@@ -49,17 +48,17 @@ const Gallery = {
           </a>
         </div>`;
         })
-        .join("");
+        .join('');
     };
 
     button.forEach((btn) => {
-      btn.addEventListener("click", (ev) => {
+      btn.addEventListener('click', (ev) => {
         ev.preventDefault();
-        if (btn.getAttribute("id") == "tarian") {
+        if (btn.getAttribute('id') == 'tarian') {
           renderKebudayaan(tarianData);
-        } else if (btn.getAttribute("id") == "alat-musik") {
+        } else if (btn.getAttribute('id') == 'alat-musik') {
           renderKebudayaan(musikData);
-        } else if (btn.getAttribute("id") == "makanan") {
+        } else if (btn.getAttribute('id') == 'makanan') {
           renderKebudayaan(makananData);
         } else {
           renderKebudayaan(data);

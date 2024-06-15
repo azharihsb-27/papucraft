@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
+    "serve": "http-server dist --port 9000",
     "tailwind": "concurrently \"tailwindcss -i src/styles/style.css -o src/styles/tw.css --watch\" \"twlit --input src/styles/tw.css --output src/styles/tw.js\"",
     "lint": "eslint ./src --fix"
   },
@@ -25,6 +26,7 @@
     "eslint": "^9.3.0",
     "globals": "^15.3.0",
     "html-webpack-plugin": "^5.6.0",
+    "http-server": "^14.1.1",
     "postcss": "^8.4.38",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.5.14",
@@ -34,7 +36,8 @@
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^5.10.0",
+    "workbox-webpack-plugin": "^7.1.0"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
@@ -42,6 +45,7 @@
     "lit": "^3.1.3",
     "quill": "^2.0.2",
     "regenerator-runtime": "^0.14.1",
-    "sweetalert2": "^11.11.0"
+    "sweetalert2": "^11.11.0",
+    "workbox-window": "^7.1.0"
   }
 }

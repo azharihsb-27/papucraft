@@ -2,7 +2,8 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: {
@@ -39,6 +40,22 @@ module.exports = {
       ],
     }),
 
-    new Dotenv()
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: './sw.bundle.js',
+      runtimeCaching: [
+        {
+          urlPattern: ({ url }) =>
+            url.href.startsWith(
+              'https://papucrafts-default-rtdb.asia-southeast1.firebasedatabase.app'
+            ),
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'papucraft-cache',
+          },
+        },
+      ],
+    }),
+
+    new Dotenv(),
   ],
 };
