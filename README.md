@@ -17,3 +17,6 @@
 - npm install to install all dependencies
 - npm tailwind to enable tailwindcss styling
 - npm run dev to run development server in local machine
+
+## Deployment Link
+* <a href="https://papucraft-server.vercel.app/"> API Server </a> - https://papucraft-server.vercel.app/
