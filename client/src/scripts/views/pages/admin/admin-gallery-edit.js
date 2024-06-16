@@ -1,8 +1,8 @@
-import UrlParser from "../../../routes/url-parser";
-import { getDetailKebudayaan } from "../../../utils/api";
-import { token } from "../../../utils/session-check";
-import { alertError } from "../../../utils/show-alert";
-import editKebudayaanInitiator from "../../../utils/edit-kebudayaan-initiator";
+import UrlParser from '../../../routes/url-parser';
+import { getDetailKebudayaan } from '../../../utils/api';
+import { token } from '../../../utils/session-check';
+import { alertError } from '../../../utils/show-alert';
+import editKebudayaanInitiator from '../../../utils/edit-kebudayaan-initiator';
 
 const AdminGalleryEdit = {
   async render() {

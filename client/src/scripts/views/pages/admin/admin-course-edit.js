@@ -1,8 +1,8 @@
-import UrlParser from "../../../routes/url-parser";
-import { getDetailKelas } from "../../../utils/api";
-import editKelasInitiator from "../../../utils/edit-kelas-initiator";
-import { token } from "../../../utils/session-check";
-import { alertError } from "../../../utils/show-alert";
+import UrlParser from '../../../routes/url-parser';
+import { getDetailKelas } from '../../../utils/api';
+import editKelasInitiator from '../../../utils/edit-kelas-initiator';
+import { token } from '../../../utils/session-check';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminCourseEdit = {
   async render() {

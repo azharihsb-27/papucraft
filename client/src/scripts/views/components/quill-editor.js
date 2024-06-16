@@ -1,5 +1,5 @@
-import "quill/dist/quill.snow.css";
-import Quill from "quill"
+import 'quill/dist/quill.snow.css';
+import Quill from 'quill'
 
 class QuillEditor extends HTMLElement{
     constructor(){

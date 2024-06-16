@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailKelas } from '../../../utils/api';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminCourseDetail = {
   async render() {
@@ -14,12 +15,8 @@ const AdminCourseDetail = {
   async afterRender() {
     const wrapper = document.querySelector('div#wrapper');
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const {
-      success,
-      data,
-      message,
-    } = await getDetailKelas(id);
-    console.log(data)
+    const { success, data, message } = await getDetailKelas(id);
+    console.log(data);
     if (!success) {
       alertError(message);
     } else {

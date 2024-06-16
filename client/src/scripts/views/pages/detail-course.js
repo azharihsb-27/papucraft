@@ -5,7 +5,7 @@ const DetailCourse = {
         <article>
             <h1 class="text-2xl font-bold text-red-600">Course Detail</h1>
             <div class="mt-4">
-            <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
+            <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover h-full w-full"/>
                 <h2 class="mt-4 text-xl font-semibold text-primary">Nama Kelas</h2>
                 <p class="mt-2 text-gray-600">Lorem ipsum dolor sit amet consectetur. Nulla augue eget augue hendrerit morbi urna. Leo vestibulum venenatis sed eu iaculis lobortis faucibus sit. Aliquam arcu nisl massa donec duis nibh amet. Amet amet faucibus magna gravida arcu. At natoque erat fames arcu aliquam mattis lacus. Netus at et at quis velit.</p>
             </div>
@@ -18,7 +18,7 @@ const DetailCourse = {
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <a href="#/course">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover w-full"/>
+                    <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover w-full"/>
                     <div class="p-4">
                         <h3 class="font-semibold text-primary"><a href="#/course/:id">Nama Kelas</a></h3>
                     </div>
@@ -26,7 +26,7 @@ const DetailCourse = {
                 </div>
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <a href="#/course">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover w-full"/>
+                    <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover w-full"/>
                     <div class="p-4">
                         <h3 class="font-semibold text-primary"><a href="#/course/:id">Nama Kelas</a></h3>
                     </div>
@@ -34,7 +34,7 @@ const DetailCourse = {
                 </div>
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <a href="#/course">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover w-full"/>
+                    <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover w-full"/>
                     <div class="p-4">
                         <h3 class="font-semibold text-primary">Nama Kelas</h3>
                     </div>
@@ -42,7 +42,7 @@ const DetailCourse = {
                 </div>
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <a href="#/course">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover w-full"/>
+                    <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover w-full"/>
                     <div class="p-4">
                         <h3 class="font-semibold text-primary"><a href="#/course/:id">Nama Kelas</a></h3>
                     </div>

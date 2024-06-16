@@ -1,5 +1,7 @@
 import 'regenerator-runtime';
 import '../styles/style.css';
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import App from './views/app';
 import { sessionButton, logout, getSession } from './utils/session-check';
 import { unShowShell, showShell } from './utils/app-shell';

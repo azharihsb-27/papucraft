@@ -1,5 +1,4 @@
-import { getAllArtikel } from "../../utils/api";
-import { alertError } from "../../utils/show-alert";
+import { getAllArtikel } from '../../utils/api';
 
 const Article = {
   async render() {
@@ -36,63 +35,86 @@ const Article = {
   },
 
   async afterRender() {
-    const wrapperAllArtikel = document.getElementById('all-artikel')
-    const wrapperNewArtikel = document.getElementById('new-artikel')
-    const wrapperRecomArtikel = document.getElementById('recom-artikel')
-    const {success,data,message} = await getAllArtikel()
-    const newestArtikel = [...data].slice(0,3)
-    newestArtikel.reverse()
+    const wrapperAllArtikel = document.getElementById('all-artikel');
+    const wrapperNewArtikel = document.getElementById('new-artikel');
+    const wrapperRecomArtikel = document.getElementById('recom-artikel');
+    const { data } = await getAllArtikel();
+    const newestArtikel = [...data].slice(0, 3);
+    newestArtikel.reverse();
 
-    if(wrapperNewArtikel){
-      wrapperNewArtikel.innerHTML += newestArtikel.map(artikel=>{
-        return`
+    if (wrapperNewArtikel) {
+      wrapperNewArtikel.innerHTML += newestArtikel
+        .map((artikel) => {
+          return `
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
             <a href="#/article/${artikel.id}">
-            <img src="${artikel.thumbnail}" class="rounded-md max-h-[90%]">
+            <img data-src="${
+              artikel.thumbnail
+            }" class="lazyload rounded-md max-h-[90%]">
               <div class="py-2">
-                <h3 class="text-xl text-primary font-semibold">${artikel.judul}</h3>
-                <p class="mt-2">${artikel.author ? artikel.author.username : 'Internet'} </p>
+                <h3 class="text-xl text-primary font-semibold">${
+                  artikel.judul
+                }</h3>
+                <p class="mt-2">${
+                  artikel.author ? artikel.author.username : 'Internet'
+                } </p>
               </div>
             </a>
           </div>
-        `
-      }).join('')
+        `;
+        })
+        .join('');
     }
 
-
-    if(wrapperAllArtikel){
-      wrapperAllArtikel.innerHTML += data.map(artikel=>{
-        return`
+    if (wrapperAllArtikel) {
+      wrapperAllArtikel.innerHTML += data
+        .map((artikel) => {
+          return `
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
             <a href="#/article/${artikel.id}">
-            <img src="${artikel.thumbnail}" class="rounded-md max-h-[90%]">
+            <img data-src="${
+              artikel.thumbnail
+            }" class="lazyload rounded-md max-h-[90%]">
               <div class="py-2">
-                <h3 class="text-xl text-primary font-semibold">${artikel.judul}</h3>
-                <p class="mt-2">${artikel.author ? artikel.author.username : 'Internet'} </p>
+                <h3 class="text-xl text-primary font-semibold">${
+                  artikel.judul
+                }</h3>
+                <p class="mt-2">${
+                  artikel.author ? artikel.author.username : 'Internet'
+                } </p>
               </div>
             </a>
           </div>
-        `
-      }).join('')
+        `;
+        })
+        .join('');
     }
 
-    if(wrapperRecomArtikel){
-      wrapperRecomArtikel.innerHTML += data.slice(0,3).map(artikel=>{
-        return`
+    if (wrapperRecomArtikel) {
+      wrapperRecomArtikel.innerHTML += data
+        .slice(0, 3)
+        .map((artikel) => {
+          return `
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
             <a href="#/article/${artikel.id}">
-            <img src="${artikel.thumbnail}" class="rounded-md max-h-[90%]">
+            <img data-src="${
+              artikel.thumbnail
+            }" class="lazyload rounded-md max-h-[90%]">
               <div class="py-2">
-                <h3 class="text-xl text-primary font-semibold">${artikel.judul}</h3>
-                <p class="mt-2">${artikel.author ? artikel.author.username : 'Internet'} </p>
+                <h3 class="text-xl text-primary font-semibold">${
+                  artikel.judul
+                }</h3>
+                <p class="mt-2">${
+                  artikel.author ? artikel.author.username : 'Internet'
+                } </p>
               </div>
             </a>
           </div>
-        `
-      }).join('')
+        `;
+        })
+        .join('');
     }
   },
-
 };
 
 export default Article;

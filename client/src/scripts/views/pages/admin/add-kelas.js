@@ -1,15 +1,15 @@
-import addKelasInitiator from "../../../utils/add-kelas-initiator"
-const user = JSON.parse(sessionStorage.getItem('user'))
+import addKelasInitiator from '../../../utils/add-kelas-initiator';
+const user = JSON.parse(sessionStorage.getItem('user'));
 
 const AddKelas = {
-    async render(){
-        return `
+  async render() {
+    return `
             <div class="content p-7 lg:p-14">
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Kelas</h2>
                 <div class="flex flex-col md:flex-row w-full mt-2 justify-center bg-gray-100 shadow-xl rounded-lg">
                    <div class="w-full md:w-[30%] flex flex-col justify-center items-center md:py-0 py-2 px-2 gap-1">
                         <p>Preview Thumbnail</p>
-                        <img src="/img/preview.png" class="w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
+                        <img data-src="/img/preview.png" class="lazyload w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
                    </div> 
                    <div class="w-full md:w-[70%] px-[2rem] py-[1rem]">
                     <form class="flex flex-col gap-2" method="post">
@@ -34,27 +34,26 @@ const AddKelas = {
                    </div>
                 </div>
             </div>
-        `
-    },
-    async afterRender(){
-        const form = document.querySelector('form')
-        const nama = document.getElementById('nama-tempat')
-        const alamat = document.getElementById('alamat')
-        const deskripsi = document.getElementById('deskripsi')
-        const thumbnail = document.getElementById('thumbnail')
+        `;
+  },
+  async afterRender() {
+    const form = document.querySelector('form');
+    const nama = document.getElementById('nama-tempat');
+    const alamat = document.getElementById('alamat');
+    const deskripsi = document.getElementById('deskripsi');
+    const thumbnail = document.getElementById('thumbnail');
 
-        console.log(user)
+    console.log(user);
 
-        const preview = document.getElementById('preview-thumbnail')
-        thumbnail.onchange = (ev) =>{
-            const [file] = thumbnail.files
-            if(file){
-                preview.src = URL.createObjectURL(file)
-            }
-        }
-        addKelasInitiator.init({form,nama,alamat,deskripsi,thumbnail})
-    }
-    
-} 
+    const preview = document.getElementById('preview-thumbnail');
+    thumbnail.onchange = () => {
+      const [file] = thumbnail.files;
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+      }
+    };
+    addKelasInitiator.init({ form, nama, alamat, deskripsi, thumbnail });
+  },
+};
 
-export default AddKelas
+export default AddKelas;

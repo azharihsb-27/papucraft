@@ -1,4 +1,4 @@
-import { getAllArtikel, getAllEvent } from '../../../utils/api';
+import { getAllEvent } from '../../../utils/api';
 
 const AdminEvent = {
   async render() {

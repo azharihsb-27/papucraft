@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailKebudayaan } from '../../../utils/api';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminGalleryDetail = {
   async render() {
@@ -14,11 +15,7 @@ const AdminGalleryDetail = {
   async afterRender() {
     const wrapper = document.querySelector('div#wrapper');
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const {
-      success,
-      data,
-      message,
-    } = await getDetailKebudayaan(id);
+    const { success, data, message } = await getDetailKebudayaan(id);
     if (!success) {
       alertError(message);
     } else {

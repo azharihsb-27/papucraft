@@ -1,9 +1,8 @@
-import UrlParser from "../../../routes/url-parser";
-import { getDetailArtikel } from "../../../utils/api";
-import editArtikelInitiator from "../../../utils/edit-artikel-initiator";
-import { token } from "../../../utils/session-check";
-import { alertError } from "../../../utils/show-alert";
-import QuilEditor from '../../components/quill-editor'
+import UrlParser from '../../../routes/url-parser';
+import { getDetailArtikel } from '../../../utils/api';
+import editArtikelInitiator from '../../../utils/edit-artikel-initiator';
+import { token } from '../../../utils/session-check';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminArticleEdit = {
   async render() {
@@ -40,38 +39,45 @@ const AdminArticleEdit = {
   },
   async afterRender() {
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const {data} = await getDetailArtikel(id)
-    const quillEditor = document.querySelector('quill-editor')
-    const editor = quillEditor.querySelector('#editor')
-    const editorValue = editor.querySelector('.ql-editor')
-    const form = document.querySelector('form')
-    const judul = document.getElementById('judul')
-    const source = document.getElementById('source')
-    const ringkasan = document.getElementById('ringkasan')
-    const thumbnail = document.getElementById('thumbnail')
+    const { data } = await getDetailArtikel(id);
+    const quillEditor = document.querySelector('quill-editor');
+    const editor = quillEditor.querySelector('#editor');
+    const editorValue = editor.querySelector('.ql-editor');
+    const form = document.querySelector('form');
+    const judul = document.getElementById('judul');
+    const source = document.getElementById('source');
+    const ringkasan = document.getElementById('ringkasan');
+    const thumbnail = document.getElementById('thumbnail');
 
-    if(token){ 
-        const uid = JSON.parse(sessionStorage.getItem('user')).uid
-        if(uid === data.author.uid){
-            editorValue.innerHTML += data.body
-            judul.value = data.judul
-            source.value = data.source
-            ringkasan.value = data.ringkasan
-        }else{
-            alertError('Something Error')
-            setTimeout(() => {
-                location.href = '#/article'
-            }, 3000);
-        }
-    }else{
-        alertError('Something Error')
+    if (token) {
+      const uid = JSON.parse(sessionStorage.getItem('user')).uid;
+      if (uid === data.author.uid) {
+        editorValue.innerHTML += data.body;
+        judul.value = data.judul;
+        source.value = data.source;
+        ringkasan.value = data.ringkasan;
+      } else {
+        alertError('Something Error');
         setTimeout(() => {
-            location.href = '#/article'
+          location.href = '#/article';
         }, 3000);
+      }
+    } else {
+      alertError('Something Error');
+      setTimeout(() => {
+        location.href = '#/article';
+      }, 3000);
     }
 
-    editArtikelInitiator.init({form, judul, source, ringkasan, editorValue, thumbnail,id})
-
+    editArtikelInitiator.init({
+      form,
+      judul,
+      source,
+      ringkasan,
+      editorValue,
+      thumbnail,
+      id,
+    });
   },
 };
 
