@@ -1,15 +1,14 @@
-import addEventInitiator from "../../utils/add-event-initiator"
-
+import addEventInitiator from '../../utils/add-event-initiator';
 
 const AddEvent = {
-    async render(){
-        return `
+  async render() {
+    return `
         <div class="content p-7 lg:p-14">
             <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Event</h2>
             <div class="flex flex-col md:flex-row w-full mt-2 justify-center bg-gray-100 shadow-xl rounded-lg">
                <div class="w-full md:w-[30%] flex flex-col justify-center items-center md:py-0 py-2 px-2 gap-1">
                     <p>Preview Thumbnail</p>
-                    <img src="/img/preview.png" class="w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
+                    <img data-src="./img/preview.png" class="lazyload w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
                </div> 
                <div class="w-full md:w-[70%] px-[2rem] py-[1rem]">
                 <form class="flex flex-col gap-2">
@@ -44,26 +43,34 @@ const AddEvent = {
                </div>
             </div>
         </div>
-    `
-    },
-    async afterRender(){
-        const form = document.querySelector('form')
-        const nama = document.getElementById('nama-acara')
-        const lokasi = document.getElementById('lokasi')
-        const deskripsi = document.getElementById('deskripsi')
-        const tglMulai = document.getElementById('tanggal-mulai')
-        const tglSelesai = document.getElementById('tanggal-selesai')
-        const thumbnail = document.getElementById('thumbnail')
+    `;
+  },
+  async afterRender() {
+    const form = document.querySelector('form');
+    const nama = document.getElementById('nama-acara');
+    const lokasi = document.getElementById('lokasi');
+    const deskripsi = document.getElementById('deskripsi');
+    const tglMulai = document.getElementById('tanggal-mulai');
+    const tglSelesai = document.getElementById('tanggal-selesai');
+    const thumbnail = document.getElementById('thumbnail');
 
-        const preview = document.getElementById('preview-thumbnail')
-        thumbnail.onchange = (ev) =>{
-            const [file] = thumbnail.files
-            if(file){
-                preview.src = URL.createObjectURL(file)
-            }
-        }
+    const preview = document.getElementById('preview-thumbnail');
+    thumbnail.onchange = () => {
+      const [file] = thumbnail.files;
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+      }
+    };
 
-        addEventInitiator.init({form, nama, lokasi, deskripsi, tglMulai, tglSelesai, thumbnail})
-    }
-}
-export default AddEvent
+    addEventInitiator.init({
+      form,
+      nama,
+      lokasi,
+      deskripsi,
+      tglMulai,
+      tglSelesai,
+      thumbnail,
+    });
+  },
+};
+export default AddEvent;

@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailArtikel } from '../../../utils/api';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminArticleDetail = {
   async render() {
@@ -14,11 +15,7 @@ const AdminArticleDetail = {
   async afterRender() {
     const wrapper = document.querySelector('div#wrapper');
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const {
-      success,
-      data,
-      message,
-    } = await getDetailArtikel(id);
+    const { success, data, message } = await getDetailArtikel(id);
     if (!success) {
       alertError(message);
     } else {

@@ -165,7 +165,7 @@ const getArtikelByAuthor = async (uid) =>{
 
 const editArtikel = async (id,data) =>{
   const response = await fetch(`${baseURL}/artikel/${id}`,{
-    method: "PUT",
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -177,7 +177,7 @@ const editArtikel = async (id,data) =>{
 
 const editEvent = async (id,data) =>{
   const response = await fetch(`${baseURL}/event/${id}`,{
-    method: "PUT",
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -189,7 +189,7 @@ const editEvent = async (id,data) =>{
 
 const editKebudayaan = async (id,data) =>{
   const response = await fetch(`${baseURL}/kebudayaan/${id}`,{
-    method: "PUT",
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -201,7 +201,7 @@ const editKebudayaan = async (id,data) =>{
 
 const editKelas = async (id,data) =>{
   const response = await fetch(`${baseURL}/kelas/${id}`,{
-    method: "PUT",
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -213,7 +213,7 @@ const editKelas = async (id,data) =>{
 
 const updateUserProfile = async (id,data) =>{
   const response = await fetch(`${baseURL}/user/${id}`,{
-    method: "PUT",
+    method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
     },
@@ -232,7 +232,7 @@ const getEventByAuthor = async (id) =>{
 const sendResetPassword = async (email) =>{
   const data = {email}
   const response = await fetch(`${baseURL}/resetpassword`, {
-    method: "POST",
+    method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -251,7 +251,7 @@ const getAnalytic = async () =>{
 
 const deleteUser = async (uid) =>{
   const response = await fetch(`${baseURL}/admin/user/${uid}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
     },

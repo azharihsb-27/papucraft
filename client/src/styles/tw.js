@@ -1,5 +1,5 @@
 
-    import { css } from "lit";
+    import { css } from 'lit';
     export const TWStyles = css` /*
 ! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */

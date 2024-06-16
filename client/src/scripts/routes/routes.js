@@ -28,7 +28,7 @@ import AdminArticleEdit from '../views/pages/admin/admin-article-edit';
 import AdminEventEdit from '../views/pages/admin/admin-event-edit';
 import AdminCourseEdit from '../views/pages/admin/admin-course-edit';
 import EditArticle from '../views/pages/edit-article';
-import EditEvent from '../views/pages/edit-event'
+import EditEvent from '../views/pages/edit-event';
 import DetailEvent from '../views/pages/detail-event';
 import ProfileEdit from '../views/pages/profile-edit';
 
@@ -65,7 +65,7 @@ const noSessionRoutes = {
   '/article/:id': DetailArticle,
   '/course/:id': DetailCourse,
   '/gallery/:id': DetailGallery,
-  '/event/:id': DetailEvent
+  '/event/:id': DetailEvent,
 };
 
 const adminRoutes = {
@@ -88,8 +88,6 @@ const adminRoutes = {
   '/admingallerydetail/:id': AdminGalleryDetail,
   '/admingalleryedit/:id': AdminGalleryEdit,
   '/addarticle': AddArticle,
-  '/addevent': AddEvent,
-  '/addkelas': AddKelas,
   '/adminarticle': AdminArticle,
   '/adminarticledetail/:id': AdminArticleDetail,
   '/adminarticleedit/:id': AdminArticleEdit,
@@ -104,8 +102,7 @@ const adminRoutes = {
   '/addevent': AddEvent,
   '/editarticle/:id': EditArticle,
   '/editevent/:id': EditEvent,
-  '/event/:id': DetailEvent
-
+  '/event/:id': DetailEvent,
 };
 
 export { userRoutes, noSessionRoutes, adminRoutes };

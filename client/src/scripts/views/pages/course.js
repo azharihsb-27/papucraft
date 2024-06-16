@@ -1,4 +1,4 @@
-import { getAllKelas } from "../../utils/api";
+import { getAllKelas } from '../../utils/api';
 
 const Course = {
   async render() {
@@ -10,7 +10,7 @@ const Course = {
             <h2 class="text-xl font-semibold mb-2 pb-5 text-primary">Kelas Populer</h2>
             <div class="flex items-center bg-white shadow-lg rounded-lg p-4 mb-6">
                 <div class="w-1/2 bg-gray-300 h-100 flex justify-center items-center overflow-hidden">
-                    <img src="/img/bg.jpg" alt="Kelas Populer" class="object-cover h-full w-full"/>
+                    <img data-src="/img/bg.jpg" alt="Kelas Populer" class="lazyload object-cover h-full w-full"/>
                 </div>
                 <div class="w-2/3 px-10">
                     <h3 class="text-lg font-bold text-primary pb-2" >Nama Kelas</h3>
@@ -33,8 +33,8 @@ const Course = {
   },
 
   async afterRender() {
-    const container = document.getElementById("semuaKelas");
-    const { success, data, message } = await getAllKelas();
+    const container = document.getElementById('semuaKelas');
+    const { data } = await getAllKelas();
     console.log(data);
     if (container) {
       container.innerHTML += data
@@ -42,7 +42,7 @@ const Course = {
           return `
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="bg-gray-300 h-54 flex justify-center items-center">
-                <img src="${kelas.thumbnail}" alt="Kelas Populer" class="object-cover h-80 w-full"/>
+                <img data-src="${kelas.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-80 w-full"/>
             </div>
             <div class="p-4">
             <h3 class="text-lg font-bold text-primary pb-3">Kelas ${kelas.nama_kelas}</h3>
@@ -52,7 +52,7 @@ const Course = {
         </div>
             `;
         })
-        .join("");
+        .join('');
     }
   },
 };

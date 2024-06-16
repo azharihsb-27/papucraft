@@ -24,7 +24,7 @@ const Gallery = {
   },
 
   async afterRender() {
-    const { success, data, message } = await getAllKebudayaan();
+    const { data } = await getAllKebudayaan();
     const wrapper = document.getElementById('list-gallery');
     const button = document.querySelectorAll('#switch-wrapper button');
     const musikData = data.filter((data) => data.kategori == 'Alat Musik');
@@ -40,7 +40,7 @@ const Gallery = {
         <div class="group rounded-md">
           <a href="#/gallery/${budaya.id}" class="relative">
             <img
-              src="${budaya.thumbnail}" class="w-full h-full block m-auto rounded-md bg-cover bg-center object-fit"
+              data-src="${budaya.thumbnail}" class="lazyload w-full h-full block m-auto rounded-md bg-cover bg-center object-fit"
             />
             <div class="w-full h-full top-0 left-0 absolute bg-black/30 opacity-0 duration-300 rounded-md group-hover:opacity-100">
               <h3 class="text-white text-xl inset-4 absolute">${budaya.nama}</h3>

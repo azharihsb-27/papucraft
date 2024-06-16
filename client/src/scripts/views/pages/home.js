@@ -1,13 +1,15 @@
-import { getHighlight} from '../../utils/api';
+import { getHighlight } from '../../utils/api';
 
 const Home = {
   async render() {
     return `
         <div class="content">
           <article id="hero" class="w-full h-screen">
-            <img src="/img/bg.jpg" alt="Hero Image"
-              class="w-full h-full object-cover"
+          <picture>
+            <source class="lazyload w-full h-full object-cover" media="(max-width: 680px)" data-srcset="./bg-img/bg-small.jpg" />
+            <img class="lazyload w-full h-full object-cover" data-src="./bg-img/bg-large.jpg" alt="Hero Image"
             />
+          </picture>
           </article>
 
           <article id="gallery" class="p-7 lg:p-14">
@@ -41,15 +43,16 @@ const Home = {
 
   async afterRender() {
     const listKebudayaan = document.getElementById('list-kebudayaan');
-    const {data} = await getHighlight()
-    const {kebudayaan, artikel, event} = data
-    listKebudayaan.innerHTML += kebudayaan.map(budaya=>{
-      return `
+    const { data } = await getHighlight();
+    const { kebudayaan, artikel, event } = data;
+    listKebudayaan.innerHTML += kebudayaan
+      .map((budaya) => {
+        return `
         <div class="shadow-xl px-2 py-1 rounded-lg">
           <a href=#/gallery/${budaya.id}>
             <img
-              src=${budaya.thumbnail}
-              class="rounded-xl h-[170px] w-full object-fit object-center"
+              data-src=${budaya.thumbnail}
+              class="lazyload rounded-xl h-[170px] w-full object-fit object-center"
               alt=${budaya.nama}
             />
             <div class="py-2">
@@ -59,10 +62,11 @@ const Home = {
           </a>
         </div>
         `;
-    }).join('')
+      })
+      .join('');
 
-    const articleWrapper = document.querySelector('article#article')
-    if(articleWrapper){
+    const articleWrapper = document.querySelector('article#article');
+    if (articleWrapper) {
       articleWrapper.innerHTML += `
         <div class="flex justify-between items-center text-primary">
           <h2 class="text-xl lg:text-2xl font-medium">Artikel Baru</h2>
@@ -70,7 +74,7 @@ const Home = {
         </div>
         <div class="py-2 lg:py-9 grid md:grid-cols-2 gap-6">
           <img 
-            src="${artikel.thumbnail}"
+            data-src="${artikel.thumbnail}" class="lazyload"
           />
           <div class="flex flex-col justify-center gap-4">
             <h3 class="font-semibold text-primary text-xl xl:text-2xl">${artikel.judul}</h3>
@@ -80,10 +84,10 @@ const Home = {
             <a href="#/article/${artikel.id}" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
           </div>
         </div>
-      `
+      `;
     }
-    const acaraWrapper = document.querySelector('#acara-baru')
-    if(acaraWrapper){
+    const acaraWrapper = document.querySelector('#acara-baru');
+    if (acaraWrapper) {
       acaraWrapper.innerHTML += `
       <div class="flex flex-col justify-center gap-4">
           <h3 class="font-semibold text-primary text-xl xl:text-2xl">${event.nama}</h3>
@@ -93,15 +97,12 @@ const Home = {
           <a href="#/event/${event.id}" class="w-max px-3 py-[10.4px] text-white bg-primary border border-white hover:bg-primary_dark duration-300">Lihat Selengkapnya</a>
         </div>
         <img 
-          src=${event.thumbnail}
-          class="order-first md:order-last"
+          data-src=${event.thumbnail}
+          class="lazyload order-first md:order-last"
         />
       </div>
-      `
+      `;
     }
-
- 
-
   },
 };
 

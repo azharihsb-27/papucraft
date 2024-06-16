@@ -1,5 +1,5 @@
-import { errorResult } from "../../../../api/src/result/result"
-import { sendResetPassword } from "./api"
+import { errorResult } from '../../../../api/src/result/result'
+import { sendResetPassword } from './api'
 
 const resetPasswordInitiator = {
     init({btnReset, linkReset, email}){

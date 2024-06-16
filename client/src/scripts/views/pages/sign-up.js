@@ -5,16 +5,21 @@ const SignUp = {
     return `
     <div class="md:flex w-full h-screen">
       <div class="hidden md:flex md:order-last relative w-1/2">
-        <img src="/img/bg.jpg" alt="Hero Image"
-              class="w-full h-full object-cover"
-        />
+        <picture>
+          <source class="w-full h-full object-cover" media="(max-width: 680px)" srcset="./bg-img/bg-small.jpg" />
+          <img class="lazyload w-full h-full object-cover" data-src="./bg-img/bg-large.jpg" alt="Hero Image"
+          />
+        </picture>
         <a href="#/" class="text-primary text-2xl font-bold top-[2rem] right-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
       </div>
         <a href="#/" class="md:hidden text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
       <div class="md:w-1/2 h-screen flex my-auto justify-center relative flex-col px-5 py-[2rem] gap-2">
-        <img src="/img/bg.jpg" alt="Hero Image"
-                class="md:hidden w-full left-0 -z-10 absolute h-full object-cover"
+        <picture>
+          <source class="w-full h-full object-cover" media="(max-width: 680px)" srcset="./bg-img/bg-small.jpg" />
+          <img data-src="./bg-img/bg-large.jpg"" alt="Hero Image"
+            class="lazyload md:hidden w-full left-0 -z-10 absolute h-full object-cover"
           />
+        </picture>
         <div class="w-full flex flex-col h-[screen] justify-center backdrop-blur-md rounded-md">
           <h2 class="text-3xl mb-2 text-primary mx-auto font-bold">Sign Up</h2>
           <p class="mx-auto -mt-2">Let's start with your account</p>
@@ -46,12 +51,12 @@ const SignUp = {
   },
 
   async afterRender() {
-    const form = document.querySelector('#form-register')
-    const username = document.querySelector('input#username')
-    const email = document.querySelector('input#email')
-    const password = document.querySelector('input#password')
-    const confirm = document.querySelector('input#confirm')
-    registerInitiator.init({form,username,email,password,confirm});
+    const form = document.querySelector('#form-register');
+    const username = document.querySelector('input#username');
+    const email = document.querySelector('input#email');
+    const password = document.querySelector('input#password');
+    const confirm = document.querySelector('input#confirm');
+    registerInitiator.init({ form, username, email, password, confirm });
   },
 };
 

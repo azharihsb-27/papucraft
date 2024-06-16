@@ -1,8 +1,8 @@
-import UrlParser from "../../../routes/url-parser";
-import { getDetailEvent } from "../../../utils/api";
-import editEventInitiator from "../../../utils/edit-event-initiator";
-import { token } from "../../../utils/session-check";
-import { alertError } from "../../../utils/show-alert";
+import UrlParser from '../../../routes/url-parser';
+import { getDetailEvent } from '../../../utils/api';
+import editEventInitiator from '../../../utils/edit-event-initiator';
+import { token } from '../../../utils/session-check';
+import { alertError } from '../../../utils/show-alert';
 
 const AdminEventEdit = {
   async render() {
