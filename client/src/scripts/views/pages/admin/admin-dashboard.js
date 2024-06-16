@@ -1,9 +1,9 @@
-import {getAnalytic} from '../../../utils/api'
+import { getAnalytic } from '../../../utils/api';
 
 const AdminDashboard = {
   async render() {
     return `
-      <div class="p-6 pt-24 md:pt-32 md:pl-72 md:pr-10">
+      <div class="p-6 md:pl-72 md:pr-10">
 				<h1 class="text-2xl py-2 font-semibold text-red-500">Menu Utama</h1>
 				<div class="mt-8 grid md:grid-cols-3 gap-6 md:gap-10">
 					<div
@@ -84,21 +84,20 @@ const AdminDashboard = {
   },
 
   async afterRender() {
-	const jmlViews= document.getElementById('jml-views')
-	const jmlUser= document.getElementById('jml-user')
-	const jmlGallery= document.getElementById('jml-galeri')
-	const jmlArtikel= document.getElementById('jml-artikel')
-	const jmlAcara= document.getElementById('jml-acara')
-	const jmlKelas= document.getElementById('jml-kelas')
+    const jmlViews = document.getElementById('jml-views');
+    const jmlUser = document.getElementById('jml-user');
+    const jmlGallery = document.getElementById('jml-galeri');
+    const jmlArtikel = document.getElementById('jml-artikel');
+    const jmlAcara = document.getElementById('jml-acara');
+    const jmlKelas = document.getElementById('jml-kelas');
 
-	const {data} = await getAnalytic()
-	jmlViews.textContent = data.views
-	jmlUser.textContent = data.user
-	jmlGallery.textContent = data.kebudayaan
-	jmlAcara.textContent = data.event
-	jmlArtikel.textContent = data.artikel
-	jmlKelas.textContent = data.kelas
-
+    const { data } = await getAnalytic();
+    jmlViews.textContent = data.views;
+    jmlUser.textContent = data.user;
+    jmlGallery.textContent = data.kebudayaan;
+    jmlAcara.textContent = data.event;
+    jmlArtikel.textContent = data.artikel;
+    jmlKelas.textContent = data.kelas;
   },
 };
 
