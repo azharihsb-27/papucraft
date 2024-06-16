@@ -3,7 +3,7 @@ import { getAllArtikel } from '../../../utils/api';
 const AdminArticle = {
   async render() {
     return `
-      <div class="p-6 pt-24 md:pt-32 md:pl-72 md:pr-10">
+      <div class="p-6 md:pl-72 md:pr-10">
         <h1 class="text-2xl py-2 font-semibold text-red-500">Daftar Artikel</h1>
 				<div class="mt-8 overflow-auto rounded-lg shadow">
 					<table class="w-full">
