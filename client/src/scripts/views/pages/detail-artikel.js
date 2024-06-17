@@ -1,7 +1,9 @@
 import UrlParser from '../../routes/url-parser';
 import { getDetailArtikel } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
+
 const DetailArticle = {
   async render() {
     return `
@@ -22,6 +24,7 @@ const DetailArticle = {
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`${data.judul} - PapuCraft`)
       wrapper.innerHTML += `
             <article class="mx-auto mt-5 mb-2 flex flex-col w-[90%] h-full">
                 <div class="flex flex-col gap-2 h-[20%]">

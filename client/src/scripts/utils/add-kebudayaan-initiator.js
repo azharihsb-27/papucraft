@@ -27,7 +27,7 @@ const addKebudayaanInitiator = {
     const { success, message } = await addKebudayaan(dataKebudayaan);
     if (success) {
       alertSuccess(message);
-      setTimeout(() => (location.href = '#/gallery'), 3000);
+      setTimeout(() => (location.href = '#/admingallery'), 3000);
     } else {
       alertError(message);
     }

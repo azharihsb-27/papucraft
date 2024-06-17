@@ -5,6 +5,7 @@ import {
 } from '../../utils/api';
 import { isAdmin } from '../../utils/session-check';
 import resetPasswordInitiator from '../../utils/reset-password-initiator';
+import { setTitle } from '../../utils/app-shell';
 
 const UserProfile = {
   async render() {
@@ -25,7 +26,7 @@ const UserProfile = {
                         </div>
                         <div class="w-full flex justify-center flex-col gap-2">
                             <p class="font-medium">Reset Password</p>
-                            <button id="btn-reset" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition ">Kirim Email Reset Password</button>
+                            <button id="btn-reset" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition ">Generate Link Reset Password</button>
                             <a href="" class="underline hidden" id="link-reset">reset password</a>
                         </div>
                         
@@ -111,6 +112,7 @@ const UserProfile = {
     if (loginMethod === 'google') {
       image.setAttribute('src', user.photoURL);
       name.textContent = user.displayName;
+      setTitle(`${user.displayName} - PapuCraft`)
       btnEditProfile.classList.add('hidden');
       form.classList.add('hidden');
     } else {
@@ -120,6 +122,7 @@ const UserProfile = {
         btnReset.classList.remove('hidden');
         const { data } = await getUserProfile(user.uid);
         name.textContent = data.username;
+        setTitle(`${data.username} - PapuCraft`)
         image.setAttribute('src', data.profile_image);
         btnEditProfile.classList.remove('hidden');
       }

@@ -1,4 +1,5 @@
 import { getAllKebudayaan } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 
 const Gallery = {
   async render() {
@@ -24,6 +25,7 @@ const Gallery = {
   },
 
   async afterRender() {
+    setTitle('Galeri Kebudayaan - PapuCraft')
     const { data } = await getAllKebudayaan();
     const wrapper = document.getElementById('list-gallery');
     const button = document.querySelectorAll('#switch-wrapper button');

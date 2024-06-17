@@ -1,4 +1,5 @@
-import { getAllKelas } from "../../utils/api";
+import { getAllKelas } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 
 const Course = {
   async render() {
@@ -25,8 +26,9 @@ const Course = {
   },
 
   async afterRender() {
-    const container = document.getElementById("semuaKelas");
-    const populer = document.getElementById("kelas-populer");
+    setTitle('Course - PapuCraft')
+    const container = document.getElementById('semuaKelas');
+    const populer = document.getElementById('kelas-populer');
     const { data } = await getAllKelas();
     console.log(data);
     const kelasPopuler = data.sort((a, b) => {
@@ -65,7 +67,7 @@ const Course = {
         </div>
             `;
         })
-        .join("");
+        .join('');
     }
   },
 };

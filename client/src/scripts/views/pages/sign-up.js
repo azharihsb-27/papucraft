@@ -1,4 +1,5 @@
 import registerInitiator from '../../utils/register-initiator';
+import { setTitle } from '../../utils/app-shell';
 
 const SignUp = {
   async render() {
@@ -51,6 +52,7 @@ const SignUp = {
   },
 
   async afterRender() {
+    setTitle('SignUp - PapuCraft')
     const form = document.querySelector('#form-register');
     const username = document.querySelector('input#username');
     const email = document.querySelector('input#email');

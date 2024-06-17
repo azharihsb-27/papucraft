@@ -1,29 +1,29 @@
 import Swal from 'sweetalert2';
-import { deleteUser } from './api';
+import { deleteKelas } from './api';
 import { alertError } from './show-alert';
 
-const deleteUserInitiator = {
+const deleteKelasInitiator = {
   init({ btnDelete }) {
     btnDelete.forEach((btn) => {
-      const uid = btn.dataset.uid;
+      const id = btn.dataset.id;
       btn.addEventListener('click', async (ev) => {
         ev.preventDefault();
         Swal.fire({
-          title: 'Apa yakin akan menghapus user?',
+          title: 'Apa yakin akan menghapus kelas?',
           showDenyButton: true,
           confirmButtonText: 'Delete',
           denyButtonText: 'Cancel',
         }).then((result) => {
           if (result.isConfirmed) {
-            this._deleteUser(uid);
-            Swal.fire('User terhapus!', '', 'success');
+            this._deleteKelas(id);
+            Swal.fire('Kelas terhapus!', '', 'success');
           }
         });
       });
     });
   },
-  async _deleteUser(uid) {
-    const { success, message } = await deleteUser(uid);
+  async _deleteKelas(id) {
+    const { success, message } = await deleteKelas(id);
     if (success) {
       location.reload()
     } else {
@@ -32,4 +32,4 @@ const deleteUserInitiator = {
   },
 };
 
-export default deleteUserInitiator;
+export default deleteKelasInitiator;

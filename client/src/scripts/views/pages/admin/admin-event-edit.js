@@ -1,9 +1,9 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailEvent } from '../../../utils/api';
+import { setTitle } from '../../../utils/app-shell';
 import editEventInitiator from '../../../utils/edit-event-initiator';
 import { token } from '../../../utils/session-check';
 import { alertError } from '../../../utils/show-alert';
-
 const AdminEventEdit = {
   async render() {
     return `
@@ -45,6 +45,7 @@ const AdminEventEdit = {
 		`;
   },
   async afterRender() {
+    setTitle('Admin | Edit Event - PapuCraft')
     const {id} = UrlParser.parseActiveUrlWithoutCombiner()
     const {data} = await getDetailEvent(id)
     const form = document.querySelector('form')

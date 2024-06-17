@@ -1,4 +1,5 @@
 import addEventInitiator from '../../utils/add-event-initiator';
+import {setTitle} from '../../utils/app-shell'
 
 const AddEvent = {
   async render() {
@@ -46,6 +47,7 @@ const AddEvent = {
     `;
   },
   async afterRender() {
+    setTitle('Tambah Event - PapuCraft')
     const form = document.querySelector('form');
     const nama = document.getElementById('nama-acara');
     const lokasi = document.getElementById('lokasi');

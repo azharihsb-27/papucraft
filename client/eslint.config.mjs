@@ -11,6 +11,7 @@ export default [
       'no-underscore-dangle': 0,
       'no-restricted-globals': 0,
       'linebreak-style': 0,
+      'no-unused-vars': 0,
       quotes: [1, 'single', { avoidEscape: true }],
     },
   },
