@@ -1,6 +1,6 @@
-import UrlParser from '../../routes/url-parser';
-import { getDetailKebudayaan, getAllKebudayaan } from '../../utils/api';
-import { alertError } from '../../utils/show-alert';
+import UrlParser from "../../routes/url-parser";
+import { getDetailKebudayaan, getAllKebudayaan } from "../../utils/api";
+import { alertError } from "../../utils/show-alert";
 
 const DetailGallery = {
   async render() {
@@ -16,13 +16,13 @@ const DetailGallery = {
     const kebudayaan = await getAllKebudayaan();
 
     console.log(kebudayaan.data);
-    const wrapper = document.querySelector('div#detail');
-    const tarian = kebudayaan.data.filter((tari) => tari.kategori === 'Tarian');
+    const wrapper = document.querySelector("div#detail");
+    const tarian = kebudayaan.data.filter((tari) => tari.kategori === "Tarian");
     const musik = kebudayaan.data.filter(
-      (musik) => musik.kategori === 'Alat Musik'
+      (musik) => musik.kategori === "Alat Musik"
     );
     const makanan = kebudayaan.data.filter(
-      (makanan) => makanan.kategori === 'Makanan'
+      (makanan) => makanan.kategori === "Makanan"
     );
     console.log(tarian);
     if (!success) {
@@ -40,11 +40,11 @@ const DetailGallery = {
             </div>
         </article>
         <article class="mt-8" id="other">
-        </article
+        </article>
         `;
     }
-    const other = document.getElementById('other');
-    if (data.kategori == 'Tarian') {
+    const other = document.getElementById("other");
+    if (data.kategori == "Tarian") {
       other.innerHTML += `
       <div class="flex justify-between items-center">
         <h2 class="text-lg font-semibold text-primary">Tarian Lainnya</h2>
@@ -52,7 +52,7 @@ const DetailGallery = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4" id="cardDetail">
       </div>`;
-      const cardDetail = document.getElementById('cardDetail');
+      const cardDetail = document.getElementById("cardDetail");
       cardDetail.innerHTML += tarian
         .filter((tarian) => tarian.id !== id)
         .slice(0, 4)
@@ -66,8 +66,8 @@ const DetailGallery = {
             </div>
           `;
         })
-        .join('');
-    } else if (data.kategori === 'Alat Musik') {
+        .join("");
+    } else if (data.kategori === "Alat Musik") {
       other.innerHTML += `
       <div class="flex justify-between items-center">
         <h2 class="text-lg font-semibold text-primary">Musik Lainnya</h2>
@@ -75,7 +75,7 @@ const DetailGallery = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4" id="cardDetail">
       </div>`;
-      const cardDetail = document.getElementById('cardDetail');
+      const cardDetail = document.getElementById("cardDetail");
       cardDetail.innerHTML += musik
         .filter((musik) => musik.id !== id)
         .slice(0, 4)
@@ -89,7 +89,7 @@ const DetailGallery = {
             </div>
           `;
         })
-        .join('');
+        .join("");
     } else {
       other.innerHTML += `
       <div class="flex justify-between items-center">
@@ -98,7 +98,7 @@ const DetailGallery = {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4" id="cardDetail">
       </div>`;
-      const cardDetail = document.getElementById('cardDetail');
+      const cardDetail = document.getElementById("cardDetail");
       cardDetail.innerHTML += makanan
         .filter((makanan) => makanan.id !== id)
         .slice(0, 4)
@@ -112,7 +112,7 @@ const DetailGallery = {
             </div>
           `;
         })
-        .join('');
+        .join("");
     }
   },
 };
