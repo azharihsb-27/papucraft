@@ -1,5 +1,6 @@
 import { getAllKebudayaan } from '../../utils/api';
 import { setTitle } from '../../utils/app-shell';
+import { gallerySkeleton } from '../templates/template-skeleton';
 
 const Gallery = {
   async render() {
@@ -15,8 +16,7 @@ const Gallery = {
                 </div>
                 <div class="my-2">
                   <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2" id="list-gallery">
-                    
-                    
+                    ${gallerySkeleton(4)}
                   </div>
                 </div>
               </article>
@@ -25,7 +25,7 @@ const Gallery = {
   },
 
   async afterRender() {
-    setTitle('Galeri Kebudayaan - PapuCraft')
+    setTitle('Galeri Kebudayaan - PapuCraft');
     const { data } = await getAllKebudayaan();
     const wrapper = document.getElementById('list-gallery');
     const button = document.querySelectorAll('#switch-wrapper button');
@@ -35,20 +35,19 @@ const Gallery = {
 
     const renderKebudayaan = (data) => {
       wrapper.innerHTML = '';
-      wrapper.innerHTML += data
+      wrapper.innerHTML = data
         .map((budaya) => {
-          console.log(budaya.id);
           return `
-        <div class="group rounded-md">
-          <a href="#/gallery/${budaya.id}" class="relative">
-            <img
-              data-src="${budaya.thumbnail}" class="lazyload w-full h-full block m-auto rounded-md bg-cover bg-center object-fit"
-            />
-            <div class="w-full h-full top-0 left-0 absolute bg-black/30 opacity-0 duration-300 rounded-md group-hover:opacity-100">
-              <h3 class="text-white text-xl inset-4 absolute">${budaya.nama}</h3>
-            </div>
-          </a>
-        </div>`;
+            <div class="group rounded-md">
+              <a href="#/gallery/${budaya.id}" class="relative">
+                <img
+                  data-src="${budaya.thumbnail}" class="lazyload w-full h-full block m-auto rounded-md object-cover"
+                />
+                <div class="w-full h-full top-0 left-0 absolute bg-black/30 opacity-0 duration-300 rounded-md group-hover:opacity-100">
+                  <h3 class="text-white text-xl inset-4 absolute">${budaya.nama}</h3>
+                </div>
+              </a>
+            </div>`;
         })
         .join('');
     };
