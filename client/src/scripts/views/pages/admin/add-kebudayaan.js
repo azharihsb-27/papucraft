@@ -1,9 +1,10 @@
 import addKebudayaanInitiator from '../../../utils/add-kebudayaan-initiator';
+import {setTitle} from '../../../utils/app-shell'
 
 const AddKebudayaan = {
     async render(){
         return `
-            <div class="content p-7 lg:p-14">
+            <div class="p-6 md:pl-72 md:pr-10">
               <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Kebudayaan</h2>
               <form class="mt-2 flex flex-col gap-3">
                 <div class="flex flex-col gap-2">
@@ -36,6 +37,7 @@ const AddKebudayaan = {
         `
     },
     async afterRender(){
+        setTitle('Admin | Tambah Kebudayaan - PapuCraft')
         const form = document.querySelector('form')
         const nama = document.getElementById('nama')
         const asalDaerah = document.getElementById('asal-daerah')

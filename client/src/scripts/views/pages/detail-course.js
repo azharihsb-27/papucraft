@@ -1,5 +1,7 @@
 import { getAllKelas, getDetailKelas } from "../../utils/api";
-import UrlParser from "../../routes/url-parser";
+import UrlParser from '../../routes/url-parser';
+import { setTitle } from '../../utils/app-shell';
+
 const DetailCourse = {
   async render() {
     return `
@@ -21,12 +23,16 @@ const DetailCourse = {
 
   async afterRender() {
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const detail = document.getElementById("kelasDetail");
+    const detail = document.getElementById('kelasDetail');
     const { data } = await getDetailKelas(id);
+
     const kelas = await getAllKelas();
     const other = document.getElementById("other");
 
     console.log(data);
+
+    setTitle(`${data.nama_kelas} - PapuCraft`)
+
 
     detail.innerHTML += `
     <div class="w-full md:w-1/2  h-full flex justify-center items-center overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg">

@@ -1,4 +1,5 @@
 import { getHighlight } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 
 const Home = {
   async render() {
@@ -42,6 +43,7 @@ const Home = {
   },
 
   async afterRender() {
+    setTitle('PapuCraft | Karya-karya Seni dan Budaya Papua')
     const listKebudayaan = document.getElementById('list-kebudayaan');
     const { data } = await getHighlight();
     const { kebudayaan, artikel, event } = data;

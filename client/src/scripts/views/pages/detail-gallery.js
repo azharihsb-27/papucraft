@@ -1,7 +1,8 @@
-import UrlParser from "../../routes/url-parser";
-import { getDetailKebudayaan, getAllKebudayaan } from "../../utils/api";
-import { alertError } from "../../utils/show-alert";
 
+import UrlParser from '../../routes/url-parser';
+import { getDetailKebudayaan, getAllKebudayaan } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
+import { alertError } from '../../utils/show-alert';
 const DetailGallery = {
   async render() {
     return `
@@ -15,20 +16,21 @@ const DetailGallery = {
     const { success, data, message } = await getDetailKebudayaan(id);
     const kebudayaan = await getAllKebudayaan();
 
-    console.log(kebudayaan.data);
-    const wrapper = document.querySelector("div#detail");
-    const tarian = kebudayaan.data.filter((tari) => tari.kategori === "Tarian");
+
+    const wrapper = document.querySelector('div#detail');
+    const tarian = kebudayaan.data.filter((tari) => tari.kategori === 'Tarian');
+
     const musik = kebudayaan.data.filter(
       (musik) => musik.kategori === "Alat Musik"
     );
     const makanan = kebudayaan.data.filter(
       (makanan) => makanan.kategori === "Makanan"
     );
-    console.log(tarian);
     if (!success) {
       alertError(message);
     } else {
-      wrapper.innerHTML += `
+    setTitle(`${data.nama} - PapuCraft`)
+    wrapper.innerHTML += `
         <article>
             <h1 class="text-2xl font-bold text-red-600">Galery Detail</h1>
             <div class="mt-4">

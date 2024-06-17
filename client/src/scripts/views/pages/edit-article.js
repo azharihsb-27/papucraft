@@ -3,6 +3,7 @@ import { getDetailArtikel } from '../../utils/api';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
 import editArtikelInitiator from '../../utils/edit-artikel-initiator';
+import { setTitle } from '../../utils/app-shell';
 
 const EditArticle = {
   async render() {
@@ -36,6 +37,7 @@ const EditArticle = {
         `;
   },
   async afterRender() {
+    setTitle('Edit Artikel - PapuCraft')
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
     const { data } = await getDetailArtikel(id);
     const quillEditor = document.querySelector('quill-editor');

@@ -1,4 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
+import { setTitle } from '../../../utils/app-shell';
+import QuillEditor from '../../components/quill-editor'
 import { getDetailArtikel } from '../../../utils/api';
 import editArtikelInitiator from '../../../utils/edit-artikel-initiator';
 import { token } from '../../../utils/session-check';
@@ -38,6 +40,7 @@ const AdminArticleEdit = {
 		`;
   },
   async afterRender() {
+    setTitle('Admin | Edit Artikel - PapuCraft')
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
     const { data } = await getDetailArtikel(id);
     const quillEditor = document.querySelector('quill-editor');
@@ -74,11 +77,10 @@ const AdminArticleEdit = {
       judul,
       source,
       ringkasan,
-      editorValue,
+      // editorValue,
       thumbnail,
       id,
     });
   },
 };
-
 export default AdminArticleEdit;

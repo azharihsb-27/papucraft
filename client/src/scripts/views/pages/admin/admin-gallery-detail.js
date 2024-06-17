@@ -1,6 +1,7 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailKebudayaan } from '../../../utils/api';
 import { alertError } from '../../../utils/show-alert';
+import {setTitle} from '../../../utils/app-shell'
 
 const AdminGalleryDetail = {
   async render() {
@@ -19,6 +20,7 @@ const AdminGalleryDetail = {
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`Admin | ${data.nama} - PapuCraft`)
       wrapper.innerHTML += `
           <div class="flex flex-col gap-2 w-full">
             <label for="nama" class="inline-block">Nama</label>

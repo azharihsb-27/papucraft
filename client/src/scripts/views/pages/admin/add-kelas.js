@@ -1,10 +1,12 @@
 import addKelasInitiator from '../../../utils/add-kelas-initiator';
+import { setTitle } from '../../../utils/app-shell';
+
 const user = JSON.parse(sessionStorage.getItem('user'));
 
 const AddKelas = {
   async render() {
     return `
-            <div class="content p-7 lg:p-14">
+            <div class="p-6 md:pl-72 md:pr-10">
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Tambah Kelas</h2>
                 <div class="flex flex-col md:flex-row w-full mt-2 justify-center bg-gray-100 shadow-xl rounded-lg">
                    <div class="w-full md:w-[30%] flex flex-col justify-center items-center md:py-0 py-2 px-2 gap-1">
@@ -37,6 +39,7 @@ const AddKelas = {
         `;
   },
   async afterRender() {
+    setTitle('Admin | Tambah Kelas - PapuCraft')
     const form = document.querySelector('form');
     const nama = document.getElementById('nama-tempat');
     const alamat = document.getElementById('alamat');

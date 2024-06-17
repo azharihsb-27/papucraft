@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailEvent } from '../../../utils/api';
+import { setTitle } from '../../../utils/app-shell';
 import { alertError } from '../../../utils/show-alert';
 
 const AdminEventDetail = {
@@ -19,6 +20,7 @@ const AdminEventDetail = {
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`Admin | ${data.nama} - PapuCraft`)
       wrapper.innerHTML += `
           <div class="flex flex-col gap-2 w-full">
             <label for="nama" class="inline-block">Nama acara</label>

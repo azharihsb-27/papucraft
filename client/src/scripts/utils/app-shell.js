@@ -5,5 +5,9 @@ const unShowShell = () => {
 const showShell = () => {
   document.querySelector('header').classList.remove('hidden');
   document.querySelector('footer').classList.remove('hidden');
-};
-export { unShowShell, showShell };
+}; 
+const setTitle = (title) =>{
+  document.title = title
+}
+
+export { unShowShell, showShell, setTitle };
