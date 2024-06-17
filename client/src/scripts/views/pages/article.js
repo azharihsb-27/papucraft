@@ -1,5 +1,6 @@
 import { getAllArtikel } from '../../utils/api';
 import { setTitle } from '../../utils/app-shell';
+import { articleSkeleton } from '../templates/template-skeleton';
 
 const Article = {
   async render() {
@@ -9,7 +10,7 @@ const Article = {
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Artikel Baru</h2>
                 <div class="py-2 lg:py-9">
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="new-artikel">
-                    
+                    ${articleSkeleton(3)}
                   </div>
                 </div>
               </article>
@@ -17,8 +18,8 @@ const Article = {
               <article id="all-articles" class="p-7 lg:p-14">
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Semua Artikel</h2>
                 <div class="py-2 lg:py-9">
-                  <div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="all-artikel">
-                  
+                  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="all-artikel">
+                    ${articleSkeleton(3)}
                   </div>  
                 </div>
               </article>
@@ -27,7 +28,7 @@ const Article = {
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Rekomendasi Artikel</h2>
                 <div class="py-2 lg:py-9">
                   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="recom-artikel">
-                    
+                    ${articleSkeleton(3)}
                   </div> 
                 </div>
               </article>
@@ -36,7 +37,7 @@ const Article = {
   },
 
   async afterRender() {
-    setTitle('Artikel - PapuCraft')
+    setTitle('Artikel - PapuCraft');
     const wrapperAllArtikel = document.getElementById('all-artikel');
     const wrapperNewArtikel = document.getElementById('new-artikel');
     const wrapperRecomArtikel = document.getElementById('recom-artikel');
@@ -45,7 +46,7 @@ const Article = {
     newestArtikel.reverse();
 
     if (wrapperNewArtikel) {
-      wrapperNewArtikel.innerHTML += newestArtikel
+      wrapperNewArtikel.innerHTML = newestArtikel
         .map((artikel) => {
           return `
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
@@ -69,7 +70,7 @@ const Article = {
     }
 
     if (wrapperAllArtikel) {
-      wrapperAllArtikel.innerHTML += data
+      wrapperAllArtikel.innerHTML = data
         .map((artikel) => {
           return `
           <div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
@@ -93,7 +94,7 @@ const Article = {
     }
 
     if (wrapperRecomArtikel) {
-      wrapperRecomArtikel.innerHTML += data
+      wrapperRecomArtikel.innerHTML = data
         .slice(0, 3)
         .map((artikel) => {
           return `

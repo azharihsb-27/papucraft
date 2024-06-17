@@ -1,4 +1,5 @@
 import { getAllEvent } from '../../utils/api';
+import { eventSkeleton } from '../templates/template-skeleton';
 
 const Event = {
   async render() {
@@ -20,10 +21,10 @@ const Event = {
 					<h2 class="text-primary text-xl lg:text-2xl font-medium">Semua Acara</h2>
 					<div class="py-2 lg:py-9">
 						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"  id="list-event">
-							
-                  		</div>
-                	</div>
-              	</article>
+							${eventSkeleton(2)}
+        		</div>
+      	</div>
+      </article>
 			</div>
       `;
   },
@@ -43,7 +44,7 @@ const Event = {
     newestLink.setAttribute('href', `#/event/${newestEvent.id}`);
 
     const listEvent = document.getElementById('list-event');
-    listEvent.innerHTML += data
+    listEvent.innerHTML = data
       .map((event) => {
         return `
 			<div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
