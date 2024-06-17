@@ -3,6 +3,7 @@ import { getDetailEvent } from '../../utils/api';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
 import editEventInitiator from '../../utils/edit-event-initiator';
+import { setTitle } from '../../utils/app-shell';
 
 const EditEvent = {
   async render() {
@@ -51,6 +52,7 @@ const EditEvent = {
     `;
   },
   async afterRender() {
+    setTitle('Edit Event - PapuCraft')
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
     const { data } = await getDetailEvent(id);
     const form = document.querySelector('form');

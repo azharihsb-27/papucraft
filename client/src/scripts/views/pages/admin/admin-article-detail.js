@@ -1,4 +1,5 @@
 import UrlParser from '../../../routes/url-parser';
+import {setTitle} from '../../../utils/app-shell'
 import { getDetailArtikel } from '../../../utils/api';
 import { alertError } from '../../../utils/show-alert';
 
@@ -19,6 +20,7 @@ const AdminArticleDetail = {
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`Admin | ${data.judul} - PapuCraft`)
       wrapper.innerHTML += `
           
           <div class="flex flex-col gap-2 w-full">

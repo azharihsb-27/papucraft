@@ -1,4 +1,6 @@
 import addArtikelInitiator from '../../utils/add-artikel-initiator';
+import QuilEditor from '../components/quill-editor'
+import {setTitle} from '../../utils/app-shell'
 
 const AddArticle = {
   async render() {
@@ -31,6 +33,7 @@ const AddArticle = {
         `;
   },
   async afterRender() {
+    setTitle('Tambah Artikel - PapuCraft')
     const quillEditor = document.querySelector('quill-editor');
     const editor = quillEditor.querySelector('#editor');
     const editorValue = editor.querySelector('.ql-editor');

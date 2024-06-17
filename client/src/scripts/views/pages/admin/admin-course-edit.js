@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailKelas } from '../../../utils/api';
+import { setTitle } from '../../../utils/app-shell';
 import editKelasInitiator from '../../../utils/edit-kelas-initiator';
 import { token } from '../../../utils/session-check';
 import { alertError } from '../../../utils/show-alert';
@@ -35,6 +36,7 @@ const AdminCourseEdit = {
 		`;
   },
   async afterRender() {
+    setTitle('Admin | Edit Kelas - PapuCraft')
     const {id} = UrlParser.parseActiveUrlWithoutCombiner()
     const {data} = await getDetailKelas(id)
     const form = document.querySelector('form')

@@ -1,4 +1,5 @@
 import { getAnalytic } from '../../../utils/api';
+import {setTitle} from '../../../utils/app-shell'
 
 const AdminDashboard = {
   async render() {
@@ -84,6 +85,7 @@ const AdminDashboard = {
   },
 
   async afterRender() {
+	setTitle('Dashboard Admin - PapuCraft')
     const jmlViews = document.getElementById('jml-views');
     const jmlUser = document.getElementById('jml-user');
     const jmlGallery = document.getElementById('jml-galeri');

@@ -1,5 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import { getDetailEvent } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
 
@@ -21,10 +22,10 @@ const DetailEvent = {
       uid = JSON.parse(sessionStorage.getItem('user')).uid;
     }
     const { success, data, message } = await getDetailEvent(id);
-    console.log(data);
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`${data.nama} - PapuCraft`)
       wrapper.innerHTML += `
             <div class="w-full flex md:w-1/2 p-2 mt-1">
                 <img data-src=${

@@ -1,6 +1,6 @@
 import { getAllUser } from '../../../utils/api';
+import { setTitle } from '../../../utils/app-shell';
 import deleteUserInitiator from '../../../utils/delete-user-initiator';
-
 
 const AdminUser = {
   async render() {
@@ -30,6 +30,7 @@ const AdminUser = {
   },
 
   async afterRender() {
+	setTitle('Admin | List User - PapuCraft')
     const userListContainer = document.querySelector('#user-list');
     const { data } = await getAllUser();
 	const RENDER_EVENT = 'render'
@@ -62,12 +63,11 @@ const AdminUser = {
 		  .join('');
 	})
 
-	document.dispatchEvent(new Event(RENDER_EVENT))
 
 	const btnDelete = document.querySelectorAll('#btn-delete')
 
-	deleteUserInitiator.init({btnDelete, event: RENDER_EVENT})
+	deleteUserInitiator.init({btnDelete})
   },
 };
-
+ 
 export default AdminUser;

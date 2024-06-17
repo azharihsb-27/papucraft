@@ -1,4 +1,5 @@
 import { getUserProfile } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 import editProfileInitiator from '../../utils/edit-profile-initiator';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
@@ -46,6 +47,7 @@ const ProfileEdit = {
     const email = document.getElementById('email');
     const profile = document.getElementById('profile');
     const preview = document.getElementById('preview-thumbnail');
+    setTitle(`${data.username} - PapuCraft`)
 
     username.value = data.username;
     email.value = data.email;

@@ -260,6 +260,49 @@ const deleteUser = async (uid) =>{
   return responseJson
 }
 
+const deleteKebudayaan = async (id) =>{
+  const response = await fetch(`${baseURL}/kebudayaan/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+const deleteEvent = async (id) =>{
+  const response = await fetch(`${baseURL}/event/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const deleteKelas = async (id) =>{
+  const response = await fetch(`${baseURL}/kelas/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
+const deleteArtikel = async (id) =>{
+  const response = await fetch(`${baseURL}/artikel/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  })
+  const responseJson = response.json()
+  return responseJson
+}
+
 module.exports = {
   getAllKebudayaan,
   getDetailKebudayaan,
@@ -288,4 +331,8 @@ module.exports = {
   sendResetPassword,
   getAnalytic,
   deleteUser,
+  deleteKebudayaan,
+  deleteEvent,
+  deleteKelas,
+  deleteArtikel,
 };

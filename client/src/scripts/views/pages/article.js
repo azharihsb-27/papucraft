@@ -1,4 +1,5 @@
 import { getAllArtikel } from '../../utils/api';
+import { setTitle } from '../../utils/app-shell';
 
 const Article = {
   async render() {
@@ -35,6 +36,7 @@ const Article = {
   },
 
   async afterRender() {
+    setTitle('Artikel - PapuCraft')
     const wrapperAllArtikel = document.getElementById('all-artikel');
     const wrapperNewArtikel = document.getElementById('new-artikel');
     const wrapperRecomArtikel = document.getElementById('recom-artikel');

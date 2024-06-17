@@ -30,6 +30,8 @@ window.addEventListener('hashchange', () => {
     '/admindashboard',
     '/adminuser',
     '/admingallery',
+    '/adminaddkebudayaan',
+    '/adminaddcourse',
     '/admingallerydetail/:id',
     '/admingalleryedit/:id',
     '/adminarticle',

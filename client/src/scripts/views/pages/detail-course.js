@@ -1,5 +1,7 @@
-import { getDetailKelas } from "../../utils/api";
-import UrlParser from "../../routes/url-parser";
+import { getDetailKelas } from '../../utils/api';
+import UrlParser from '../../routes/url-parser';
+import { setTitle } from '../../utils/app-shell';
+
 const DetailCourse = {
   async render() {
     return `
@@ -43,10 +45,9 @@ const DetailCourse = {
 
   async afterRender() {
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
-    const detail = document.getElementById("kelasDetail");
+    const detail = document.getElementById('kelasDetail');
     const { data } = await getDetailKelas(id);
-
-    console.log(data);
+    setTitle(`${data.nama_kelas} - PapuCraft`)
 
     detail.innerHTML += `
         <img class="w-2/4 lg:w-1/2 rounded-lg mb-4 lg:mb-0 lg:mr-4" src="${data.thumbnail}" alt="Nama Kelas">

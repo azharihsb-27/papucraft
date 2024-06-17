@@ -1,3 +1,4 @@
+import { setTitle } from '../../utils/app-shell';
 import LoginInitiator from '../../utils/login-initiator';
 
 const SignIn = {
@@ -51,6 +52,7 @@ const SignIn = {
   },
 
   async afterRender() {
+    setTitle('SignIn - PapuCraft')
     LoginInitiator.init({
       email: document.querySelector('#email'),
       password: document.querySelector('#password'),

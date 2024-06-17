@@ -1,5 +1,6 @@
 import UrlParser from '../../../routes/url-parser';
 import { getDetailKelas } from '../../../utils/api';
+import { setTitle } from '../../../utils/app-shell';
 import { alertError } from '../../../utils/show-alert';
 
 const AdminCourseDetail = {
@@ -16,10 +17,10 @@ const AdminCourseDetail = {
     const wrapper = document.querySelector('div#wrapper');
     const { id } = UrlParser.parseActiveUrlWithoutCombiner();
     const { success, data, message } = await getDetailKelas(id);
-    console.log(data);
     if (!success) {
       alertError(message);
     } else {
+      setTitle(`Admin | ${data.judul} - PapuCraft`)
       wrapper.innerHTML += `
           <div class="flex flex-col gap-2 w-full">
             <label for="nama" class="inline-block">Nama kelas</label>

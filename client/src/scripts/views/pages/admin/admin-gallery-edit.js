@@ -3,6 +3,7 @@ import { getDetailKebudayaan } from '../../../utils/api';
 import { token } from '../../../utils/session-check';
 import { alertError } from '../../../utils/show-alert';
 import editKebudayaanInitiator from '../../../utils/edit-kebudayaan-initiator';
+import { setTitle } from '../../../utils/app-shell';
 
 const AdminGalleryEdit = {
   async render() {
@@ -43,6 +44,7 @@ const AdminGalleryEdit = {
 		`;
   },
   async afterRender() {
+    setTitle('Admin | Edit Kebudayaan - PapuCraft')
     const {id} = UrlParser.parseActiveUrlWithoutCombiner()
     const {data} = await getDetailKebudayaan(id)
     const form = document.querySelector('form')
