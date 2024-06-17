@@ -42,15 +42,15 @@ const Course = {
     if (populer) {
       populer.innerHTML = getKelasPopuler.map((kelas) => {
         return `
-          <div class="w-full md:w-1/2 bg-gray-300 h-64 flex justify-center items-center overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg">
-            <img data-src="${kelas.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-full w-2/4"/>
-          </div>
-          <div class="w-full md:w-1/2 p-4 md:px-10">
-            <h3 class="text-lg font-bold text-primary pb-2" >${kelas.nama_kelas}</h3>
-            <p class="text-gray-600">${kelas.deskripsi}</p>
-            <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300"><a href="#/course/${kelas.id}">Lihat Selengkapnya</a></button>
-          </div>
-        `;
+      <div class="w-full md:w-1/2  h-64 flex justify-center items-center overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg">
+        <img data-src="${kelas.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-full w-2/4"/>
+        </div>
+    <div class="w-full md:w-1/2 p-4 md:px-10">
+      <h3 class="text-lg font-bold text-primary pb-2" >${kelas.nama_kelas}</h3>
+      <p class="text-gray-600">${kelas.deskripsi}</p>
+      <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300"><a href="#/course/${kelas.id}">Lihat Selengkapnya</a></button>
+  </div>
+      `;
       });
     }
     if (container) {
@@ -58,14 +58,15 @@ const Course = {
         .map((kelas) => {
           return `
         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <div class="bg-gray-300 h-54 flex justify-center items-center">
-              <img data-src="${kelas.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-80 w-full"/>
-          </div>
-          <div class="p-4">
-          <h3 class="text-lg font-bold text-primary pb-3">Kelas ${kelas.nama_kelas}</h3>
-          <p class="text-gray-600">${kelas.deskripsi}</p>
-          <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300 w-full"><a href="#/course/:id">Lihat Selengkapnya</a></button>
-          </div>
+
+            <div class="h-54 flex justify-center items-center">
+                <img data-src="${kelas.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-80 w-full"/>
+            </div>
+            <div class="p-4">
+            <h3 class="text-lg font-bold text-primary pb-3">Kelas ${kelas.nama_kelas}</h3>
+            <p class="text-gray-600">${kelas.deskripsi}</p>
+            <button class="mt-4 px-4 py-2 bg-red-600 text-white font-semibold rounded hover:bg-primary_dark duration-300 w-full"><a href="#/course/${kelas.id}">Lihat Selengkapnya</a></button>
+            </div>
         </div>
         `;
         })
