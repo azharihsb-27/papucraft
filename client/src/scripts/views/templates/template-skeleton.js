@@ -139,6 +139,114 @@ const allClassSkeleton = (count) => {
 
   return skeleton;
 };
+const galleryAdminTableSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+      <tr class="animate-pulse border-2 p-2">
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-full h-2 rounded bg-slate-300"></p>
+        </td>
+      </tr>
+    `;
+  }
+
+  return skeleton;
+};
+const articleAdminTableSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+      <tr class="animate-pulse border-2 p-2">
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-full h-2 rounded bg-slate-300"></p>
+        </td>
+      </tr>
+    `;
+  }
+
+  return skeleton;
+};
+const eventAdminTableSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+      <tr class="animate-pulse border-2 p-2">
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-full h-2 rounded bg-slate-300"></p>
+        </td>
+      </tr>
+    `;
+  }
+
+  return skeleton;
+};
+const courseAdminTableSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+      <tr class="animate-pulse border-2 p-2">
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-3/5 h-2 rounded bg-slate-300"></p>
+        </td>
+        <td class="border-2 p-2">
+          <p class="w-full h-2 rounded bg-slate-300"></p>
+        </td>
+      </tr>
+    `;
+  }
+
+  return skeleton;
+};
 
 export {
   highlightCardSkeleton,
@@ -149,4 +257,8 @@ export {
   eventSkeleton,
   popularClassSkeleton,
   allClassSkeleton,
+  galleryAdminTableSkeleton,
+  articleAdminTableSkeleton,
+  eventAdminTableSkeleton,
+  courseAdminTableSkeleton,
 };

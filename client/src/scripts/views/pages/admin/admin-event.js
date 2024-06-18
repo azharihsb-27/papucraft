@@ -1,12 +1,13 @@
 import { getAllEvent } from '../../../utils/api';
 import { setTitle } from '../../../utils/app-shell';
 import deleteEventInitiator from '../../../utils/delete-event-initiator';
+import { eventAdminTableSkeleton } from '../../templates/template-skeleton';
 const AdminEvent = {
   async render() {
     return `
         <div class="p-6 md:pl-72 md:pr-10">
 			<h2 class="text-2xl py-2 font-semibold text-red-500">Daftar Acara</h2>
-			<a href="#/addevent" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Acara</a>
+			<a href="#/addevent" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Acara</a>
 
 					<div class="mt-8 overflow-auto rounded-lg shadow">
 						<table class="w-full">
@@ -22,7 +23,9 @@ const AdminEvent = {
 									<th class="p-3 text-sm font-semibol text-center border-2">Aksi</th>
 								</tr>
 							</thead>
-							<tbody id="event-list"></tbody>
+							<tbody id="event-list">
+								${eventAdminTableSkeleton(2)}
+							</tbody>
 						</table>
 					</div>
         </div>
@@ -30,7 +33,7 @@ const AdminEvent = {
   },
 
   async afterRender() {
-	setTitle('Admin | List Event - PapuCraft')
+    setTitle('Admin | List Event - PapuCraft');
     const eventListContainer = document.querySelector('#event-list');
     const { data } = await getAllEvent();
     eventListContainer.innerHTML = data
@@ -63,8 +66,8 @@ const AdminEvent = {
 			`;
       })
       .join('');
-	  const btnDelete = document.querySelectorAll('#btn-delete')
-	  deleteEventInitiator.init({btnDelete})
+    const btnDelete = document.querySelectorAll('#btn-delete');
+    deleteEventInitiator.init({ btnDelete });
   },
 };
 
