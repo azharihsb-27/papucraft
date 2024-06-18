@@ -99,7 +99,5 @@ module.exports = {
         },
       ],
     }),
-
-    new Dotenv(),
   ],
 };
