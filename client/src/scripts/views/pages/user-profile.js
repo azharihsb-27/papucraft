@@ -115,6 +115,7 @@ const UserProfile = {
       setTitle(`${user.displayName} - PapuCraft`);
       btnEditProfile.classList.add('hidden');
       form.classList.add('hidden');
+      btnReset.classList.add('hidden');
     } else {
       if (user.emailVerified) {
         btnReset.classList.add('hidden');
