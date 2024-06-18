@@ -1,12 +1,13 @@
 import { getAllKelas } from '../../../utils/api';
 import { setTitle } from '../../../utils/app-shell';
 import deleteKelasInitiator from '../../../utils/delete-kelas-initiator';
+import { courseAdminTableSkeleton } from '../../templates/template-skeleton';
 const AdminCourse = {
   async render() {
     return `
 			<div class="p-6 md:pl-72 md:pr-10">
 				<h1 class="text-2xl py-2 font-semibold text-red-500">Daftar Kelas</h1>
-				<a href="#/adminaddcourse" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Kelas</a>
+				<a href="#/adminaddcourse" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Kelas</a>
 				<div class="mt-8 overflow-auto rounded-lg shadow">
 					<table class="w-full">
 						<thead class="bg-gray-50 border-2">
@@ -28,7 +29,9 @@ const AdminCourse = {
 								</th>
 							</tr>
 						</thead>
-						<tbody id="course-list"></tbody>
+						<tbody id="course-list">
+							${courseAdminTableSkeleton(3)}
+						</tbody>
 					</table>
 				</div>
 			</div>
@@ -38,7 +41,7 @@ const AdminCourse = {
   async afterRender() {
     const courseListContainer = document.getElementById('course-list');
     const { data } = await getAllKelas();
-	setTitle('Admin | List Kelas - PapuCraft')
+    setTitle('Admin | List Kelas - PapuCraft');
     courseListContainer.innerHTML = data
       .map(({ id, nama_kelas, deskripsi, alamat }, index) => {
         return `
@@ -68,8 +71,8 @@ const AdminCourse = {
 			`;
       })
       .join('');
-	const btnDelete = document.querySelectorAll('#btn-delete')
-	  deleteKelasInitiator.init({btnDelete})
+    const btnDelete = document.querySelectorAll('#btn-delete');
+    deleteKelasInitiator.init({ btnDelete });
   },
 };
 
