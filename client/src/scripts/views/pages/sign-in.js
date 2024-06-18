@@ -6,22 +6,16 @@ const SignIn = {
     return `
       <div class="md:flex w-full h-screen">
         <div class="hidden md:flex relative w-1/2">
-          <picture>
-            <source class="w-full h-full object-cover" media="(max-width: 680px)" srcset="./bg-img/bg-small.jpg"" />
-            <img class="lazyload w-full h-full object-cover" data-src="./bg-img/bg-large.jpg" alt="Hero Image"
+            <img class="lazyload w-full h-full object-cover" data-src="./bg-img/bg.jpg" alt="Hero Image"
             />
-          </picture>
           <a href="#/" class="text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
         </div>
         <a href="#/" class="md:hidden text-primary text-2xl font-bold top-[2rem] left-[2rem] absolute cursor-pointer z-10">PapuCraft</a>
 
         <div class="md:w-1/2 flex my-auto justify-center relative flex-col px-5 py-[2rem] gap-2 h-screen">
-          <picture>
-            <source class="w-full h-full object-cover" media="(max-width: 680px)" srcset="./bg-img/bg-small.jpg" />
             <img data-src="./bg-img/bg-large.jpg" alt="Hero Image"
               class="lazyload md:hidden w-full left-0 -z-10 absolute h-full object-cover"
             />
-          </picture>
           <div class="w-full flex flex-col min-h-[70%] md:h-[60%] justify-center backdrop-blur-md rounded-md">
             <h2 class="text-3xl mb-2 text-primary mx-auto font-bold">Sign In</h2>
             <p class="mx-auto -mt-2">Let's start with your account</p>
@@ -52,7 +46,7 @@ const SignIn = {
   },
 
   async afterRender() {
-    setTitle('SignIn - PapuCraft')
+    setTitle('SignIn - PapuCraft');
     LoginInitiator.init({
       email: document.querySelector('#email'),
       password: document.querySelector('#password'),
