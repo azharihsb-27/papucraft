@@ -11,7 +11,7 @@ const AddKelas = {
                 <div class="flex flex-col md:flex-row w-full mt-2 justify-center bg-gray-100 shadow-xl rounded-lg">
                    <div class="w-full md:w-[30%] flex flex-col justify-center items-center md:py-0 py-2 px-2 gap-1">
                         <p>Preview Thumbnail</p>
-                        <img data-src="/img/preview.png" class="lazyload w-full lg:w-3/4 h-2/4 object-fit object-cover rounded-lg" id="preview-thumbnail"/>
+                        <img data-src="/img/preview.png" class="lazyload w-full lg:w-3/4 h-2/4 object-cover rounded-lg" id="preview-thumbnail"/>
                    </div> 
                    <div class="w-full md:w-[70%] px-[2rem] py-[1rem]">
                     <form class="flex flex-col gap-2" method="post">
@@ -39,7 +39,7 @@ const AddKelas = {
         `;
   },
   async afterRender() {
-    setTitle('Admin | Tambah Kelas - PapuCraft')
+    setTitle('Admin | Tambah Kelas - PapuCraft');
     const form = document.querySelector('form');
     const nama = document.getElementById('nama-tempat');
     const alamat = document.getElementById('alamat');

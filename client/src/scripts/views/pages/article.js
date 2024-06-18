@@ -53,7 +53,7 @@ const Article = {
             <a href="#/article/${artikel.id}">
             <img data-src="${
               artikel.thumbnail
-            }" class="lazyload rounded-md max-h-[90%]">
+            }" class="lazyload object-cover rounded-md max-h-[90%]">
               <div class="py-2">
                 <h3 class="text-xl text-primary font-semibold">${
                   artikel.judul
@@ -77,7 +77,7 @@ const Article = {
             <a href="#/article/${artikel.id}">
             <img data-src="${
               artikel.thumbnail
-            }" class="lazyload rounded-md max-h-[90%]">
+            }" class="lazyload object-cover rounded-md max-h-[90%]">
               <div class="py-2">
                 <h3 class="text-xl text-primary font-semibold">${
                   artikel.judul
@@ -102,7 +102,7 @@ const Article = {
             <a href="#/article/${artikel.id}">
             <img data-src="${
               artikel.thumbnail
-            }" class="lazyload rounded-md max-h-[90%]">
+            }" class="lazyload object-cover rounded-md max-h-[90%]">
               <div class="py-2">
                 <h3 class="text-xl text-primary font-semibold">${
                   artikel.judul
