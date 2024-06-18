@@ -8,7 +8,6 @@
     "build": "webpack --config webpack.prod.js && npm run build-image",
     "build-image": "node sharp.js",
     "serve": "http-server dist --port 9000",
-    "tailwind": "concurrently \"tailwindcss -i src/styles/style.css -o src/styles/tw.css --watch\" \"twlit --input src/styles/tw.css --output src/styles/tw.js\"",
     "lint": "eslint ./src --fix"
   },
   "keywords": [],
@@ -36,7 +35,6 @@
     "sharp": "^0.33.4",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.3",
-    "twlit": "^0.0.1-alpha.37",
     "webpack": "^5.91.0",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
@@ -48,7 +46,6 @@
     "dotenv": "^16.4.5",
     "firebase": "^10.12.2",
     "lazysizes": "^5.3.2",
-    "lit": "^3.1.3",
     "quill": "^2.0.2",
     "regenerator-runtime": "^0.14.1",
     "sweetalert2": "^11.11.0",
