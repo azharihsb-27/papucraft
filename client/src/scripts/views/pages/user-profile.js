@@ -14,7 +14,7 @@ const UserProfile = {
                 <h2 class="text-primary text-xl lg:text-2xl font-medium">Profil User</h2>
                 <div class="w-full flex flex-col md:flex-row md:justify-center mt-2 gap-5">
                     <div class="w-full md:w-2/5 p-4 flex flex-col items-center shadow-lg gap-2 rounded-md mb-4">
-                        <img class="lazyload w-[175px] h-[175px] rounded-full" id="profile-image" alt="profile image">
+                        <img class="lazyload w-[175px] h-[175px] object-cover rounded-full" id="profile-image" alt="profile image">
                         <h3 class="text-xl font-semibold" id="profile-name"></h3>
                         <div class="flex gap-2">
                             <a href="#/admindashboard" id="btn-admin" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">
@@ -112,7 +112,7 @@ const UserProfile = {
     if (loginMethod === 'google') {
       image.setAttribute('src', user.photoURL);
       name.textContent = user.displayName;
-      setTitle(`${user.displayName} - PapuCraft`)
+      setTitle(`${user.displayName} - PapuCraft`);
       btnEditProfile.classList.add('hidden');
       form.classList.add('hidden');
     } else {
@@ -122,7 +122,7 @@ const UserProfile = {
         btnReset.classList.remove('hidden');
         const { data } = await getUserProfile(user.uid);
         name.textContent = data.username;
-        setTitle(`${data.username} - PapuCraft`)
+        setTitle(`${data.username} - PapuCraft`);
         image.setAttribute('src', data.profile_image);
         btnEditProfile.classList.remove('hidden');
       }

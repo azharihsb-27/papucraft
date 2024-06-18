@@ -3,13 +3,14 @@ import { getDetailArtikel } from '../../utils/api';
 import { setTitle } from '../../utils/app-shell';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
+import { colDetailSkeleton } from '../templates/template-skeleton';
 
 const DetailArticle = {
   async render() {
     return `
         <div class="content p-7 lg:p-14" id="detail">
-            <p class="text-xl lg:text-2xl font-medium text-primary">Detail Artikel</p>
-           
+          <p class="text-xl lg:text-2xl font-medium text-primary">Detail Artikel</p>
+          ${colDetailSkeleton(1)}
         </div>
         `;
   },
@@ -24,13 +25,13 @@ const DetailArticle = {
     if (!success) {
       alertError(message);
     } else {
-      setTitle(`${data.judul} - PapuCraft`)
+      setTitle(`${data.judul} - PapuCraft`);
       wrapper.innerHTML += `
             <article class="mx-auto mt-5 mb-2 flex flex-col w-[90%] h-full">
                 <div class="flex flex-col gap-2 h-[20%]">
                     <img data-src="${
                       data.thumbnail
-                    }" class="lazyload md:max-h-96 object-contain rounded-lg" id="">
+                    }" class="lazyload md:max-h-96 object-cover rounded-lg" id="">
                     <div class="flex mt-2 gap-2 items-center">
                         <h3 class="font-bold">${
                           data.author.username

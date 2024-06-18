@@ -49,7 +49,7 @@ const Event = {
         return `
 			<div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
 				<img
-				data-src=${event.thumbnail} class="lazyload max-h-[90%]"
+				data-src=${event.thumbnail} class="lazyload object-cover max-h-[90%]"
 				/>
 				<div class="px-4 py-2 flex flex-col gap-2">
 					<h3 class="text-xl text-primary font-semibold">${event.nama}</h3>

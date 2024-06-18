@@ -247,6 +247,41 @@ const courseAdminTableSkeleton = (count) => {
 
   return skeleton;
 };
+const colDetailSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+      <div class="animate-pulse">
+        <div class="flex justify-center">
+          <div class="w-1/2 h-[300px] bg-slate-300"></div>
+        </div>
+        <div class="p-6 flex flex-col gap-6">
+          <p class="h-2 w-1/5 bg-slate-300 rounded"></p>
+          <p class="h-2 w-2/5 bg-slate-300 rounded"></p>
+        </div>
+      </div>
+    `;
+  }
+
+  return skeleton;
+};
+const rowDetailSkeleton = (count) => {
+  let skeleton = '';
+
+  for (let i = 0; i < count; i += 1) {
+    skeleton += `
+			<div class="w-full bg-slate-300 h-64 animate-pulse">
+      </div>
+      <div class="w-full flex flex-col gap-4">
+        <h3 class="bg-slate-300 h-2 w-4/5 rounded"></h3>
+        <p class="bg-slate-300 h-2 w-3/5 rounded"></p>
+      </div>
+    `;
+  }
+
+  return skeleton;
+};
 
 export {
   highlightCardSkeleton,
@@ -261,4 +296,6 @@ export {
   articleAdminTableSkeleton,
   eventAdminTableSkeleton,
   courseAdminTableSkeleton,
+  colDetailSkeleton,
+  rowDetailSkeleton,
 };
