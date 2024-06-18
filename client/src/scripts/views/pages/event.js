@@ -8,7 +8,7 @@ const Event = {
 				<article id="new-event" class="p-7 lg:p-14">
 					<h2 class="text-primary text-xl lg:text-2xl font-medium">Acara Terbaru</h2>
 					<div class="py-2 lg:py-9 flex flex-col gap-4">
-						<img data-src="/img/bg.jpg" alt="Newest Event Image" class="lazyload w-full h-[490px] object-cover" id="new-thumbnail"/>
+						<img src="./img/preview.png" alt="Newest Event Image" class="lazyload w-full h-[490px] object-cover" id="new-thumbnail"/>
 						<div class="flex flex-col justify-center gap-4">
 							<h3 class="font-semibold text-primary text-xl xl:text-2xl" id="new-nama"></h3>
 							<p class="xl:text-lg" id="new-deskripsi"></p>
@@ -49,7 +49,7 @@ const Event = {
         return `
 			<div class="shadow-xl p-2 py-1 rounded-lg hover:-translate-y-1 duration-300">
 				<img
-				data-src=${event.thumbnail} class="lazyload max-h-[90%]"
+				data-src=${event.thumbnail} class="lazyload object-cover max-h-[90%]"
 				/>
 				<div class="px-4 py-2 flex flex-col gap-2">
 					<h3 class="text-xl text-primary font-semibold">${event.nama}</h3>

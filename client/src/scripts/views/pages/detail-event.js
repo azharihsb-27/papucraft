@@ -3,13 +3,15 @@ import { getDetailEvent } from '../../utils/api';
 import { setTitle } from '../../utils/app-shell';
 import { token } from '../../utils/session-check';
 import { alertError } from '../../utils/show-alert';
+import { rowDetailSkeleton } from '../templates/template-skeleton';
 
 const DetailEvent = {
   async render() {
     return `
         <div class="content p-7 lg:p-14" id="detail">
             <p class="text-xl lg:text-2xl font-medium text-primary">Detail Acara</p>
-            <div class="mt-2 w-full flex flex-col md:flex-row gap-3 shadow-xl p-2 rounded-lg" id="wrapper">
+            <div class="mt-2 w-full flex flex-col md:flex-row gap-6 justify-center items-center shadow-xl p-2 rounded-lg" id="wrapper">
+            ${rowDetailSkeleton(1)}
             </div>
         </div>
         `;
@@ -25,8 +27,8 @@ const DetailEvent = {
     if (!success) {
       alertError(message);
     } else {
-      setTitle(`${data.nama} - PapuCraft`)
-      wrapper.innerHTML += `
+      setTitle(`${data.nama} - PapuCraft`);
+      wrapper.innerHTML = `
             <div class="w-full flex md:w-1/2 p-2 mt-1">
                 <img data-src=${
                   data.thumbnail

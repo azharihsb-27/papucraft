@@ -33,7 +33,7 @@ const SignIn = {
                 <p class="inline-block font-semibold bg-white px-2 py-1 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute z-5">OR</p>
               </div>
               <button id="login-google" class="mx-auto flex justify-center items-center my-3 w-[40%] gap-2 md:w-[50%] rounded-md bg-white hover:bg-primary hover:text-white border border-1 border-slate-800 p-2 transition">
-              <img data-src="./img/gicon.png" class="lazyload w-[20px] h-[20px]"/>
+              <img data-src="./img/gicon.png" class="lazyload object-cover w-[20px] h-[20px]"/>
               <span>Sign In with Google</span>
               </button>
               <p class="mx-auto text-sm ">Don't have any account yet? <a href="#/signup" class="text-primary font-bold">Sign Up</a></p>

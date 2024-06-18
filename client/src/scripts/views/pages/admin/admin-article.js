@@ -1,13 +1,14 @@
 import { getAllArtikel } from '../../../utils/api';
 import { setTitle } from '../../../utils/app-shell';
-import deleteArtikelInitiator from '../../../utils/delete-artikel-initiator'
+import deleteArtikelInitiator from '../../../utils/delete-artikel-initiator';
+import { articleAdminTableSkeleton } from '../../templates/template-skeleton';
 
 const AdminArticle = {
   async render() {
     return `
       <div class="p-6 md:pl-72 md:pr-10">
         <h2 class="text-2xl py-2 font-semibold text-red-500">Daftar Artikel</h2>
-		<a href="#/addarticle" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Artikel</a>
+		<a href="#/addarticle" class="ml-auto my-auto rounded-lg px-2 py-1 bg-green-400 text-white hover:bg-transparent hover:border-2 hover:border-green-400 hover:text-black transition">Tambah Artikel</a>
 
 				<div class="mt-8 overflow-auto rounded-lg shadow">
 					<table class="w-full">
@@ -27,7 +28,9 @@ const AdminArticle = {
 								</th>
 							</tr>
 						</thead>
-						<tbody id="article-list"></tbody>
+						<tbody id="article-list">
+							${articleAdminTableSkeleton(3)}
+						</tbody>
 					</table>
 				</div>
       </div>
@@ -35,7 +38,7 @@ const AdminArticle = {
   },
 
   async afterRender() {
-	setTitle('Admin | List Artikel - PapuCraft')
+    setTitle('Admin | List Artikel - PapuCraft');
     const articleListContainer = document.getElementById('article-list');
     const { data } = await getAllArtikel();
     articleListContainer.innerHTML = data
@@ -68,8 +71,8 @@ const AdminArticle = {
 			`;
       })
       .join('');
-		const btnDelete = document.querySelectorAll('#btn-delete')
-	  	deleteArtikelInitiator.init({btnDelete})
+    const btnDelete = document.querySelectorAll('#btn-delete');
+    deleteArtikelInitiator.init({ btnDelete });
   },
 };
 

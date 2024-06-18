@@ -1,6 +1,7 @@
-import { getAllKelas, getDetailKelas } from "../../utils/api";
+import { getAllKelas, getDetailKelas } from '../../utils/api';
 import UrlParser from '../../routes/url-parser';
 import { setTitle } from '../../utils/app-shell';
+import { rowDetailSkeleton } from '../templates/template-skeleton';
 
 const DetailCourse = {
   async render() {
@@ -8,8 +9,9 @@ const DetailCourse = {
     <div class="container mx-auto p-6">
     <!-- Course Detail Section -->
      <article class="p-7 lg:p-14">
-            <h2 class="text-xl font-semibold mb-2 pb-5 text-primary">Course Detail</h2>
-            <div class="flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg p-4 mb-6" id="kelasDetail">
+            <h2 class="text-xl lg:text-2xl font-medium text-primary">Detail Kelas</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 bg-white shadow-lg rounded-lg p-4 mb-6" id="kelasDetail">
+            ${rowDetailSkeleton(1)}
             </div>
         </article>
 
@@ -27,14 +29,13 @@ const DetailCourse = {
     const { data } = await getDetailKelas(id);
 
     const kelas = await getAllKelas();
-    const other = document.getElementById("other");
+    const other = document.getElementById('other');
 
     console.log(data);
 
-    setTitle(`${data.nama_kelas} - PapuCraft`)
+    setTitle(`${data.nama_kelas} - PapuCraft`);
 
-
-    detail.innerHTML += `
+    detail.innerHTML = `
     <div class="w-full md:w-1/2  h-full flex justify-center items-center overflow-hidden rounded-t-lg md:rounded-t-none md:rounded-l-lg">
     <img data-src="${data.thumbnail}" alt="Kelas Populer" class="lazyload object-cover h-full w-full"/>
     </div>
@@ -52,7 +53,7 @@ const DetailCourse = {
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-4" id="cardDetail">
         </div>`;
-    const cardDetail = document.getElementById("cardDetail");
+    const cardDetail = document.getElementById('cardDetail');
     console.log(kelas.data);
     cardDetail.innerHTML += kelas.data
       .filter((kelas) => kelas.id !== id)
@@ -67,7 +68,7 @@ const DetailCourse = {
               </div>
             `;
       })
-      .join("");
+      .join('');
   },
 };
 export default DetailCourse;
