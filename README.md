@@ -19,10 +19,10 @@
 ## How to start
 
 - open up 2 terminals
-- change dir in both terminal by typing <cd client> and <cd api>
-- install all dependencies by running <npm install> in both terminal
-- type <npm run build> and <npm run serve> in the first terminal to run in production mode (recomended) or <npm run dev> in development server
-- type <npm run server> in the second terminal to run the server
+- change dir in both terminal by typing "cd client" and "cd api"
+- install all dependencies by running "npm install" in both terminal
+- type "npm run build" and "npm run serve" in the first terminal to run in production mode (recomended) or "npm run dev" in development server
+- type "npm run server" in the second terminal to run the server
 
 ## Deployment Link
 
