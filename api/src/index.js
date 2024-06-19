@@ -16,6 +16,11 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb" }));
 const port = process.env.port || 3000;
 
+app.use((req,res,next)=>{
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  next()
+})
 app.use(admin);
 app.use(artikel);
 app.use(event);
