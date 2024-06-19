@@ -117,16 +117,12 @@ const UserProfile = {
       form.classList.add('hidden');
       btnReset.classList.add('hidden');
     } else {
-      if (user.emailVerified) {
-        btnReset.classList.add('hidden');
-      } else {
         btnReset.classList.remove('hidden');
         const { data } = await getUserProfile(user.uid);
         name.textContent = data.username;
         setTitle(`${data.username} - PapuCraft`);
         image.setAttribute('src', data.profile_image);
         btnEditProfile.classList.remove('hidden');
-      }
     }
 
     resetPasswordInitiator.init({ btnReset, linkReset, email: user.email });
@@ -134,19 +130,3 @@ const UserProfile = {
 };
 
 export default UserProfile;
-
-// form.classList.remove('hidden')
-{
-  /* <form class="w-full flex flex-col gap-2 hidden" id="ubah-password">
-<p class="font-medium">Ubah Password</p>
-<div class="w-full flex flex-col gap-2">
-    <label for="password-lama">Password Lama</label>
-    <input type="text" class="border-2 border-primary outline-none px-2 py-1" placeholder="Password Lama" name="password-lama" id="password-lama" required/>
-</div>
-<div class="w-full flex flex-col gap-2">
-    <label for="password-baru">Password Baru</label>
-    <input type="text" class="border-2 border-primary outline-none px-2 py-1" placeholder="Password Baru" name="password-baru" id="password-baru" required/>
-</div>
-<button type="submit" class="flex items-center justify-center px-2 py-1 bg-green-400 rounded-lg min-h-[44px] min-w-[44px] text-white hover:text-black hover:bg-transparent hover:border hover:border-1 hover:border-green-400" cursor-pointer transition hidden">Ubah Password</button>
-</form> */
-}
